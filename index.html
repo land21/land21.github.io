@@ -129,9 +129,57 @@
               height:30px;
               padding: 4px;
             }}
-    </style>
+
+            /* Loading Screen */
+    #preloader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 6px solid #ddd;
+      border-top: 6px solid #e74c3c;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0%   { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Saat halaman sudah dimuat, sembunyikan preloader */
+    body.loaded #preloader {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Konten utama disembunyikan dulu */
+    #main-content {
+      display: none;
+    }
+
+    body.loaded #main-content {
+      display: block;
+    }
+  </style>
 </head>
 <body class="text-brand-dark">
+
+     <!-- Animasi Loading -->
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
 
     <!-- Header / Navigation -->
     <header id="main-header" class="sticky top-0 z-50 transition-all duration-300 ease-in-out">
@@ -586,6 +634,11 @@
     </footer>
 
     <script>
+      
+// Setelah seluruh konten termasuk gambar selesai dimuat
+    window.addEventListener("load", function() {
+      document.body.classList.add("loaded");
+    }); 
         // Dynamic year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
