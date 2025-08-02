@@ -131,55 +131,83 @@
             }}
 
             /* Loading Screen */
-    #preloader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: white;
-      z-index: 9999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+          #preloader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
 
-    .loader {
-      width: 50px;
-      height: 50px;
-      border: 6px solid #ddd;
-      border-top: 6px solid #e74c3c;
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-    }
+          /* Custom loader - bouncing dots */
+          .custom-loader span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 4px;
+            background-color: #fbbf24; /* Tailwind's yellow-400 */
+            border-radius: 50%;
+            animation: bounce 1.2s infinite ease-in-out both;
+          }
 
-    @keyframes spin {
-      0%   { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
+          .custom-loader span:nth-child(1) {
+            animation-delay: -0.32s;
+          }
+          .custom-loader span:nth-child(2) {
+            animation-delay: -0.16s;
+          }
+          .custom-loader span:nth-child(3) {
+            animation-delay: 0s;
+          }
 
-    /* Saat halaman sudah dimuat, sembunyikan preloader */
-    body.loaded #preloader {
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease;
-    }
+          @keyframes bounce {
+            0%, 80%, 100% {
+              transform: scale(0);
+            } 
+            40% {
+              transform: scale(1);
+            }
+          }
 
-    /* Konten utama disembunyikan dulu */
-    #main-content {
-      display: none;
-    }
+          /* Sembunyikan setelah load */
+          body.loaded #preloader {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease;
+          }
 
-    body.loaded #main-content {
-      display: block;
-    }
+          #main-content {
+            display: none;
+          }
+          body.loaded #main-content {
+            display: block;
+          }
+
   </style>
 </head>
 <body class="text-brand-dark">
 
      <!-- Animasi Loading -->
-  <div id="preloader">
-    <div class="loader"></div>
-  </div>
+      <div id="preloader">
+      <div class="custom-loader">
+        <span></span><span></span><span></span>
+      </div>
+      </div>  
+
+      <div id="preloader">
+        <div class="flex flex-col items-center gap-4">
+          <img src="logo.png" alt="Logo" class="w-16 h-16 animate-pulse">
+          <div class="custom-loader">
+            <span></span><span></span><span></span>
+          </div>
+          <p class="text-sm text-gray-600">Loading... please wait</p>
+        </div>
+      </div>    
+
 
     <!-- Header / Navigation -->
     <header id="main-header" class="sticky top-0 z-50 transition-all duration-300 ease-in-out">
@@ -306,10 +334,7 @@
                             Filosofi Management System
                         </li>
                         <li>
-                            Pengenalan Tools
-                        </li>
-                        <li>
-                            Plan, Do, Check & Action
+                            Pengenalan Tools Plan, Do, Check & Action
                         </li>
                         <li>
                             Membuat WBAWI, Visi, Misi & Goal
@@ -355,7 +380,7 @@
                             Perumusan KPI 
                         </li>
                       </ul>
-                      <a class="text-[#FFB400] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="#">
+                      <a class="text-[#FFB400] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="P2.html">
                         Pelajari lebih lanjut
                         <svg class="w-4 h-4" fill="none" stroke="#FFB400" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                          <line x1="5" x2="19" y1="12" y2="12">
@@ -385,7 +410,7 @@
                         Pendampingan Implementasi Management System
                     </li>
                   </ul>
-                  <a class="text-[#B80F0A] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="#">
+                  <a class="text-[#B80F0A] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="B1.html">
                     Pelajari lebih lanjut
                     <svg class="w-4 h-4" fill="none" stroke="#B80F0A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                      <line x1="5" x2="19" y1="12" y2="12">
@@ -416,7 +441,7 @@
                             7 Habits Kepemimpinan: Proaktif, Visioner, Prioritas, Win-Win, Empati, Sinergi, Pembaruan
                         </li>
                       </ul>
-                      <a class="text-[#FFB400] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="#">
+                      <a class="text-[#FFB400] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="P3">
                         Pelajari lebih lanjut
                         <svg class="w-4 h-4" fill="none" stroke="#FFB400" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                          <line x1="5" x2="19" y1="12" y2="12">
@@ -456,7 +481,7 @@
                             Etos Kerja Kolaboratif
                         </li>
                       </ul>
-                      <a class="text-[#FFB400] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="#">
+                      <a class="text-[#FFB400] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="P4">
                         Pelajari lebih lanjut
                         <svg class="w-4 h-4" fill="none" stroke="#FFB400" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                          <line x1="5" x2="19" y1="12" y2="12">
@@ -493,7 +518,7 @@
                             Strategi Implementasi Nilai
                         </li>
                       </ul>
-                      <a class="text-[#FFB400] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="#">
+                      <a class="text-[#FFB400] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="P5">
                         Pelajari lebih lanjut
                         <svg class="w-4 h-4" fill="none" stroke="#FFB400" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                          <line x1="5" x2="19" y1="12" y2="12">
@@ -524,7 +549,7 @@
                             Pendampingan Penyusunan Values Organisasi dan Internalisasinya
                         </li>
                       </ul>
-                      <a class="text-[#B80F0A] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="#">
+                      <a class="text-[#B80F0A] font-semibold text-[14px] leading-[20px] flex items-center gap-1" href="B2.html">
                         Pelajari lebih lanjut
                         <svg class="w-4 h-4" fill="none" stroke="#B80F0A" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                          <line x1="5" x2="19" y1="12" y2="12">
@@ -541,7 +566,7 @@
     </section>
 
     <!-- Be Brave Section -->
-    <section class="py-16 bg-black-800 text-white">
+    <section class="py-16 bg-black-800 text-white bg-[#FFB4000D]">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h3 class="text-3xl md:text-4xl font-bold mb-4 text-brand-dark">Be Brave, Be Better, <span class="text-brand-yellow">Be Virexa.</span></h3>
             <p class="text-lg mb-8 max-w-2xl mx-auto text-brand-dark">Bergabunglah dengan perusahaan-perusahaan hebat yang telah bertumbuh bersama kami. Saatnya membawa bisnis Anda ke level berikutnya.</p>
@@ -554,7 +579,7 @@
     <!-- Testimoni Section -->
     <section id="testimoni" class="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
         <div class="container mx-auto text-center">
-            <p class="section-title-overline">Testimoni Klien</p>
+            <p class="section-title-overline">Testimoni Client</p>
             <h2 class="section-main-title text-brand-dark">Apa Kata Mereka Tentang Virexa?</h2>
             <div class="grid md:grid-cols-2 gap-8 mt-8">
                 <!-- Testimonial Card 1 (Placeholder) -->
@@ -638,7 +663,8 @@
 // Setelah seluruh konten termasuk gambar selesai dimuat
     window.addEventListener("load", function() {
       document.body.classList.add("loaded");
-    }); 
+    });
+
         // Dynamic year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
 
