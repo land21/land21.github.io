@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virexa Talenta Indonesia - We Help Great Companies Grow Up</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffffff; /* Light beige background */
+            color: #333333; /* Default text color */
+        }
+        .text-brand-red-accent { color: #B80F0A; } /* Accent red from "Grow Up" and icons */
+        .text-brand-black-accent { color: #000000; }
+        .bg-brand-yellow { background-color: #FFB400; } /* Button color */
+        .bg-brand-black { background-color: #000000; } 
+        .hover\:bg-brand-yellow-dark:hover { background-color: #FFB400; }
+        .text-brand-dark { color: #000000; }
+        .text-brand-gray { color: #555555; }
+        .text-brand-yellow { color: #FFB400; }
+        .text-brand-nav { color: #6B7280; } /* Slightly muted color for nav links */
+        .hover\:text-brand-dark:hover { color: #000000; }
+
+        .bg-brand-cta-red { background-color: #B80F0A; } /* Prominent red for final CTA section */
+        .hover\:bg-brand-cta-red-dark:hover { background-color: #B80F0A; }
+
+
+        .section-title-overline { /* For "Tentang Kami", "Layanan Kami" etc. */
+            font-size: 20px; /* 14px */
+            font-weight: 600;
+            color: #B80F0A;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem; /* Reduced margin */
+        }
+        .section-main-title { /* For larger titles like "Cara Kami Membantu.." */
+             font-size: 32px; /* 36px */
+             font-weight: 500;
+             margin-bottom: 2.5rem; /* Increased margin */
+        }
+
+        .decorative-img-container > div {
+            overflow: hidden;
+        }
+        /* Mobile menu styles */
+        .mobile-menu-button svg {
+            width: 1.5rem; /* 24px */
+            height: 1.5rem; /* 24px */
+        }
+
+        /* Custom class for header background on scroll */
+        .header-scrolled-bg {
+            background-color: #ffffff; /* Same as body/hero background */
+        }
+
+        /* Styling for "Cara Kami Membantu" cards */
+        .help-card {
+            background-color: white;
+            border-radius: 0.75rem; /* 12px */
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            padding: 1.5rem; /* 24px */
+            text-align: left;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            position: relative;
+        }
+        .help-card-red {
+            background-color: white;
+            border-radius: 0.75rem; /* 12px */
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            padding: 1.5rem; /* 24px */
+            text-align: left;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            position: relative;
+        }
+        .help-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px #ffb30052, 0 4px 6px -2px #ffb30052;
+        }
+        .help-card-red:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px #B80F0A52, 0 4px 6px -2px #B80F0A52;
+        }
+        .help-card-image {
+            width: 100%;
+            height: 150px; /* Fixed height for images */
+            object-fit: cover;
+            border-radius: 0.5rem; /* 8px */
+            margin-bottom: 1rem;
+        }
+        
+        .help-card h4 {
+            font-size: 1.125rem; /* 18px */
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .help-card p {
+            font-size: 0.875rem; /* 14px */
+            color: #000; /* text-brand-gray */
+            line-height: 1.6;
+        }
+
+        .help-card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: #FFB400;
+            border-radius: 50%;
+            padding: 10px; /* Ruang di dalam lingkaran */
+            margin-bottom: 0.75rem;
+            box-sizing: border-box;
+          }
+          
+          @media (max-width: 768px) {
+            .help-card-number {
+              width: 40px;
+              height: 40px;
+              padding: 6px;
+            }
+          }
+          
+          @media (max-width: 480px) {
+            .help-card-number {
+              width: 30px;
+              height:30px;
+              padding: 4px;
+            }}
+
+            /* Loading Screen */
+          #preloader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          /* Custom loader - bouncing dots */
+          .custom-loader span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 4px;
+            background-color: #fbbf24; /* Tailwind's yellow-400 */
+            border-radius: 50%;
+            animation: bounce 1.2s infinite ease-in-out both;
+          }
+
+          .custom-loader span:nth-child(1) {
+            animation-delay: -0.32s;
+          }
+          .custom-loader span:nth-child(2) {
+            animation-delay: -0.16s;
+          }
+          .custom-loader span:nth-child(3) {
+            animation-delay: 0s;
+          }
+
+          @keyframes bounce {
+            0%, 80%, 100% {
+              transform: scale(0);
+            } 
+            40% {
+              transform: scale(1);
+            }
+          }
+
+
+  </style>
+</head>
+<body class="text-brand-dark">
+ 
+
+
+    <!-- Header / Navigation -->
+    <header id="main-header" class="sticky top-0 z-50 transition-all duration-300 ease-in-out">
+        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                
+                <div id="logo-container" class="flex items-center gap-2 text-[20px] font-normal transition-all duration-300">
+                    <img id="logo" src="image/logo.png" alt="Logo" class="h-[30px] w-auto transition-all duration-300">
+                    <a id="logo-text" href="index.html" class="text-brand-red-accent transition-all duration-300">
+                        Virexa Talenta Indonesia
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-6 items-center ">
+                    <a href="index.html" class="text-sm text-brand-nav hover:text-[#FFB400]">Beranda</a>
+                    <a href="#tentang-kami" class="text-sm font-bold text-brand-dark">Tentang</a>
+                    <a href="#Layanan" class="text-sm font-medium text-brand-nav hover:text-[#FFB400]">Layanan</a>
+                    <a href="#Kontak" class="text-sm font-medium text-brand-nav hover:text-[#FFB400]">Kontak</a>
+                    <a href="https://drive.google.com/file/d/1uAWlSddCl6WI2giCZkWuag5GVnTEWGV6/view?usp=sharing " target="_blank" class="text-sm font-medium bg-brand-yellow text-white px-4 py-2 rounded-md hover:text-brand-dark transition-colors">Company Profile</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" aria-label="Toggle Menu" class="text-brand-dark focus:outline-none mobile-menu-button">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg border-t border-gray-200">
+            <a href="index.html" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Beranda</a>
+            <a href="#tentang-kami" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Tentang</a>
+            <a href="#Layanan" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Layanan</a>
+            <a href="#Kontak" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Kontak</a>
+            <a href="https://drive.google.com/file/d/1nPl7nAa2VsZ-ym7w8bq8gXe0JkZ3_L29/view?usp=drive_link" target="_blank" class="block px-4 py-3 text-sm text-white bg-brand-yellow hover:bg-brand-yellow-dark text-center">Company profile</a>
+        </div>
+    </header>
+
+
+    <!-- Hero Section -->
+    <section class="pt-16 md:pt-24 px-4 sm:px-6 lg:px-8 mb-10 bg-[#FFB4000D] pb-20 ">
+        <div class="container mx-auto grid md:grid-cols-[2fr_1fr] gap-12 items-center">
+            <div>
+                <h1 class="text-3xl sm:text-4xl lg:text-6xl font-medium mb-5 ">
+                    Virexa Talenta Indonesia  <span class="text-brand-red-accent">bukan</span> sekedar Nama
+                </h1>
+                <a href="#Kontak" class="inline-block bg-brand-yellow text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:text-brand-dark transition duration-300 text-base">
+                    Kontak Kami
+                </a>
+            </div>
+            <!-- Decorative Images -->
+            <div class="hidden md:flex justify-end">
+                <div class="pr-4">
+                    <img src="image/heroimage.png" alt="Pemandangan Kantor 1" class="w-full max-w-[700px] h-auto object-contain">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-4 sm:px-8 py-16 bg-white">
+  <div class="max-w-4xl mx-auto space-y-12">
+    
+    <!-- Filosofi -->
+    <div class="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-4 md:space-y-0 items-start space-x-4 border-b-2 border-black pb-20">
+      <div class="shrink-0">
+        <h2 class="text-3xl font-bold relative inline-block">
+          <span class="relative z-10">TENTANG KAMI</span>
+          <span class="absolute inset-x-0 bottom-0 h-5 bg-[#E4312B]/30 z-0"></span>
+        </h2>
+      </div>
+      <p class="text-lg text-gray-700 text-justify ">
+        <span class="font-bold">PT Virexa Talenta Indonesia</span> adalah perusahaan yang berdiri untuk menjadi mitra transformasi organisasi publik, korporasi dan sosial melalui sistem manajemen strategis, pengembangan SDM, digitalisasi proses kerja, serta penyediaan talenta strategis.
+        <br><br>Kami percaya bahwa organisasi yang kuat dibangun dari tiga fondasi utama: arah yang jelas, sistem yang kokoh, dan orang-orang yang tepat. Dengan pendekatan berbasis Management System yang telah terbukti sukses di sektor industri dan sosial, kami hadir sebagai katalisator perubahan yang berkelanjutan dan terukur.
+        <br><br>Lebih dari sekadar konsultasi, kami mendampingi instansi dalam membangun budaya kerja profesional, adaptif, dan berdampak demi terciptanya pelayanan publik yang unggul dan organisasi yang berdaya saing tinggi.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+    <section class="px-4 sm:px-8 py-5 bg-white">
+  <div class="max-w-4xl mx-auto space-y-12">
+    
+    <!-- Filosofi -->
+    <div class="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-4 md:space-y-0 items-start space-x-4 border-b-2 border-black pb-20">
+      <div class="shrink-0">
+        <h2 class="text-3xl font-bold relative inline-block">
+          <span class="relative z-10">FILOSOFI</span>
+          <span class="absolute inset-x-0 bottom-0 h-5 bg-[#FFB400]/30 z-0"></span>
+        </h2>
+      </div>
+      <p class="text-lg text-gray-700 text-justify ">
+        <span class="font-bold">PT Virexa Talenta Indonesia</span> lahir dari keyakinan bahwa keberanian dan keunggulan adalah fondasi utama untuk membentuk generasi Indonesia yang siap menghadapi perubahan dunia.
+        <br><br>Kami percaya bahwa setiap individu adalah <span class="font-bold">pejuang perubahan (vir)</span> yang <span class="font-bold">memiliki potensi besar untuk berkembang (exa)</span>. Dengan pendekatan strategis dan humanis, kami hadir sebagai mitra pertumbuhan organisasi melalui pemberdayaan, pelatihan, dan pendampingan untuk melahirkan talenta unggul yang siap menjawab tantangan zaman dan membawa perubahan nyata di lingkungan kerjanya.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+    <section class="px-4 sm:px-8 py-16 bg-white pb-20">
+  <div class="max-w-4xl mx-auto space-y-12">
+    
+    <!-- VISI -->
+    <div class="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-4 md:space-y-0 items-start">
+      <div class="shrink-0">
+        <h2 class="text-3xl font-bold relative inline-block">
+          <span class="relative z-10">VISI</span>
+          <span class="absolute inset-x-0 bottom-0 h-5 bg-[#E4312B]/30 z-0"></span>
+        </h2>
+      </div>
+      <p class="text-lg text-gray-700 text-justify">
+        Menjadi mitra transformasi organisasi terbaik di Indonesia untuk sektor publik, korporasi dan sosial, melalui sistem manajemen unggul dan penyediaan talenta strategis.
+      </p>
+    </div>
+
+    <!-- MISI -->
+    <div class="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-4 md:space-y-0 items-start space-x-4">
+      <div class="shrink-0">
+        <h2 class="text-3xl font-bold relative inline-block">
+          <span class="relative z-10">MISI</span>
+          <span class="absolute inset-x-0 bottom-0 h-5 bg-[#FFB400]/30 z-0"></span>
+        </h2>
+      </div>
+      <ul class="list-disc text-lg text-gray-700 pl-5 space-y-2 text-justify">
+        <li>Meningkatkan daya saing instansi publik, korporasi dan lembaga sosial melalui penerapan sistem manajemen yang terintegrasi, berbasis nilai, dan berorientasi hasil.</li>
+        <li>Memberikan solusi strategis dalam bidang perencanaan, kinerja, struktur organisasi, dan digitalisasi proses kerja.</li>
+        <li>Menyediakan talenta strategis yang siap pakai melalui proses rekrutmen, asesmen, dan pembinaan eksekutif berbasis kebutuhan organisasi.</li>
+        <li>Membangun budaya kerja profesional dan berkelanjutan.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+    <section id="Kontak" class="bg-[#B80F0A] text-white">
+        <div class="max-w-7xl mx-auto px-6 py-10">
+          <!-- Header -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-white pb-4">
+            <h2 class="text-3xl font-extrabold leading-tight">
+              Ayo Terhubung Dengan Kami
+            </h2>
+            <button class="inline-block bg-brand-yellow text-white font-semibold py-3 px-10 rounded-lg shadow-md hover:bg-brand-yellow-dark transition duration-300 text-base" type="button">
+              Kontak Kami
+            </button>
+          </div>
+      
+          <!-- Isi Footer -->
+          <div class="flex flex-col sm:flex-row sm:justify-between mt-12 gap-12 sm:gap-0">
+            
+            <!-- Logo + Teks -->
+            <div class="max-w-md">
+              <div class="flex items-center gap-3 mb-3">
+                <img alt="Virexa Talenta Indonesia" class="rounded-full bg-white p-2 w-12 h-12" src="image/logofooter.png" />
+                <div>
+                  <p class="font-extrabold uppercase text-sm tracking-wide mb-0">VIREXA</p>
+                  <p class="text-sm mb-0">Talenta Indonesia</p>
+                </div>
+              </div>
+              <p class="text-xs leading-tight max-w-xs text-justify">
+                PT Virexa Talenta Indonesia adalah mitra transformasi organisasi yang mendorong perubahan berkelanjutan melalui sistem manajemen strategis, pengembangan SDM, digitalisasi, dan penyediaan talenta unggul.
+              </p>
+            </div>
+      
+            <!-- Kontak -->
+            <div class="max-w-xs">
+              <p class="font-extrabold mb-4">Kontak</p>
+              <p class="text-xs mb-4 leading-relaxed">+62-813-8563-1179</p>
+              <p class="text-xs mb-4 leading-relaxed">info.virexa@gmail.com</p>
+              <p class="text-xs leading-relaxed text-justify">
+                MENARA BIDAKARA 2<br />
+                Jl. Gatot Subroto Kav. 71-73, RT.8/RW.8, Menteng Dalam Kec. Tebet, Kota Jakarta Selatan, DKI Jakarta, 12870
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+
+    <footer class="bg-brand-dark text-gray-400 py-6 px-1 sm:px-2 lg:px-4">
+        <div class="container mx-auto text-center">
+            <div class="flex justify-center space-x-6 mb-2">
+                <a href="#" class="hover:text-black transition-colors" ><i class="fab fa-facebook-f "></i></a>
+                <a href="#" class="hover:text-black transition-colors" ><i class="fab fa-instagram "></i></a>
+                <a href="#" class="hover:text-black transition-colors" ><i class="fab fa-linkedin-in "></i></a>
+                <a href="#" class="hover:text-black transition-colors"><i class="fab fa-x-twitter"></i></a>
+            </div>
+            <p class="text-sm">&copy; <span id="year"></span> Virexa Talenta Indonesia. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script>
+      
+
+        // Dynamic year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mainHeader = document.getElementById('main-header');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            
+            if (!isExpanded) {
+                mobileMenuButton.innerHTML = `
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>`;
+                if (window.scrollY <= 50) {
+                     mobileMenu.classList.add('bg-white');
+                } else {
+                     mobileMenu.classList.add('bg-white');
+                }
+            } else {
+                mobileMenuButton.innerHTML = `
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>`;
+                mobileMenu.classList.remove('bg-white');
+            }
+        });
+
+        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+        for (let link of mobileMenuLinks) {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+                 mobileMenuButton.innerHTML = `
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>`;
+            });
+        }
+
+        // Header background change on scroll
+        const scrollThreshold = 50; 
+        const logo = document.getElementById('logo');
+        const logoText = document.getElementById('logo-text');
+        const logoContainer = document.getElementById('logo-container');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > scrollThreshold) {
+                mainHeader.classList.add('header-scrolled-bg', 'shadow-sm');
+
+                // KECILKAN LOGO DAN TEKS
+                logo.classList.add('h-[20px]');
+                logoText.classList.add('text-sm');
+                logoContainer.classList.add('gap-1');
+            } else {
+                mainHeader.classList.remove('header-scrolled-bg', 'shadow-sm');
+
+                // KEMBALIKAN UKURAN SEMULA
+                logo.classList.remove('h-[20px]');
+                logoText.classList.remove('text-sm');
+                logoContainer.classList.remove('gap-1');
+            }
+        });
+
+    </script>
+
+</body>
+</html>

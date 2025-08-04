@@ -120,7 +120,7 @@
 
         .btn-accent {
             background-color: #FFB400; /* bg-brand-yellow */
-            color: #000000; /* text-brand-black-accent */
+            color: #ffffff; /* text-brand-black-accent */
         }
 
         .btn-accent:hover {
@@ -258,6 +258,14 @@
             margin: 15px 0;
         }
 
+        .price-day {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 0 0 15px 0;
+        }
+
+
         .price-card > p {
             margin-bottom: 30px;
         }
@@ -325,10 +333,10 @@
                 
                 <!-- Desktop Navigation -->
                 <nav class="hidden md:flex space-x-6 items-center">
-                    <a href="index.html" class="text-sm font-medium text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Beranda</a>
-                    <a href="#tentang-kami" class="text-sm font-medium text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Tentang</a>
-                    <a href="Layanan.html" class="text-sm font-bold text-brand-dark ">Layanan</a>
-                    <a href="#Kontak" class="text-sm font-medium text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Kontak</a>
+                    <a href="index.html" class="text-sm font-medium text-brand-nav hover:text-[#FFB400]">Beranda</a>
+                    <a href="#tentang-kami" class="text-sm font-medium text-brand-nav hover:text-[#FFB400]">Tentang</a>
+                    <a href="/#Layanan" class="text-sm font-bold text-brand-dark ">Layanan</a>
+                    <a href="#Kontak" class="text-sm font-medium text-brand-nav hover:text-[#FFB400]">Kontak</a>
                     <a href="https://drive.google.com/file/d/1nPl7nAa2VsZ-ym7w8bq8gXe0JkZ3_L29/view?usp=drive_link" target="_blank" class="text-sm font-medium bg-brand-yellow text-white px-4 py-2 rounded-md hover:text-brand-dark transition-colors">Company Profile</a>
                 </nav>
 
@@ -347,7 +355,7 @@
         <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg border-t border-gray-200">
             <a href="index.html" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Beranda</a>
             <a href="#tentang-kami" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Tentang</a>
-            <a href="Layanan.html" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Layanan</a>
+            <a href="/#Layanan" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Layanan</a>
             <a href="#Kontak" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Kontak</a>
             <a href="https://drive.google.com/file/d/1nPl7nAa2VsZ-ym7w8bq8gXe0JkZ3_L29/view?usp=drive_link" target="_blank" class="block px-4 py-3 text-sm text-white bg-brand-yellow hover:bg-brand-yellow-dark text-center">Company profile</a>
         </div>
@@ -427,7 +435,7 @@
 
       <div class="accordion-item">
         <div class="accordion-header">
-          <span>5 Sikap Dasar Profesional</span>
+          <span>5 orientasi Mentalitas Dasar</span>
           <i class="fas fa-chevron-down"></i>
         </div>
         <div class="accordion-content">
@@ -435,69 +443,38 @@
         </div>
       </div>
 
-      <div class="accordion-item">
-        <div class="accordion-header">
-          <span>Sense of Ownership</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="accordion-content">
-          <p>Menanamkan rasa memiliki terhadap tugas dan peran dalam organisasi untuk meningkatkan akuntabilitas dan inisiatif.</p>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <div class="accordion-header">
-          <span>Etos Kerja Kolaboratif</span>
-          <i class="fas fa-chevron-down"></i>
-        </div>
-        <div class="accordion-content">
-          <p>Menumbuhkan semangat bekerja sama, saling mendukung, dan saling melengkapi dalam tim untuk hasil terbaik.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
 
 <!-- Harga & Durasi -->
-<section id="benefits" class="benefits">
-  <div class="container">
-    <p class="section-title-overline mb-5 flex items-center gap-3">
-      <span class="w-2 h-5 bg-brand-cta-red block"></span>
-      Fasilitas yang Didapatkan
-    </p>
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="fas fa-book"></i>
+<section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="mb-5" style="font-size: 25px; font-weight:700">Harga Inhouse Training*</h2>  
+            
+            <div class="price-card">
+                <h3 style="font-size: 22px; font-weight: 600;  color: #333;">2 Hari (2 @ 8 Jam)</h3>
+                <div class="price">Rp 1.500.000 <span style="font-size: 18px; font-weight:500; color:#000000">/orang</span></div>
+                <div style="font-size: 20px; font-weight:500; color:#555555">atau</div>
+                <p style="font-size: 20px; font-weight: 600;  color: #333;  margin: 15px 0 0 0">Harian</p>
+                <div class="price-day">Rp 750.000 <span style="font-size: 18px; font-weight:500; color:#000000">/orang</span></div>
+                <p style="font-size: 14px; font-weight: 500;">Minimal 15 peserta – Maksimal 25 peserta</p>
+                
+                <div class="price-includes">
+                    
+                    <ul>
+                        <li>Modul Pelatihan </li>
+                        <li>Lembar refleksi pribadi</li>
+                        <li>Materi audiovisual dan games pendukung</li>
+                        <li>Sertifikat Pelatihan Basic Mentality</li>
+                    </ul>
+                </div>
+                <a href="#contact" class="btn btn-accent" style="margin: 50px 0 0 0">Jadwalkan Pelatihan</a>
+                <p style="font-size: 10px; font-weight: 500;">*Harga belum termasuk tempat pelatihan dan konsumsi peserta</p>
+            </div>
         </div>
-        <h3>Modul Pelatihan</h3>
-        <p>Modul pelatihan untuk memahami dan menerapkan konsep mindset dan sikap dasar profesional.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="fas fa-clipboard-list"></i>
-        </div>
-        <h3>Lembar Refleksi Pribadi</h3>
-        <p>Alat bantu untuk merefleksikan kebiasaan dan mengidentifikasi area pengembangan diri.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="fas fa-video"></i>
-        </div>
-        <h3>Materi Audiovisual & Games</h3>
-        <p>Pembelajaran interaktif melalui media visual dan permainan penguat konsep.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="fas fa-certificate"></i>
-        </div>
-        <h3>Sertifikat Pelatihan</h3>
-        <p>Pengakuan resmi atas partisipasi dan penguasaan materi pelatihan.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 
     <!-- Testimoni Section -->
