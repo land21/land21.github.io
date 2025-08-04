@@ -1,674 +1,878 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link rel="icon" href="image/logo.png" type="image/png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Virexa Talenta Indonesia - We Help Great Companies Grow Up</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <style>
-        /* General Body and Typography Styles */
-        :root {
-            --primary: #B80F0A; /* Brand Red */
-            --secondary: #FFB400; /* Brand Yellow */
-            --dark: #000000; /* Brand Black */
-            --light: #f1f5f9; /* Light gray for backgrounds */
-            --text-dark: #333333;
-            --text-light: #555555;
-        }
+      /* General Body and Typography Styles */
+      :root {
+        --primary: #b80f0a; /* Brand Red */
+        --secondary: #ffb400; /* Brand Yellow */
+        --dark: #000000; /* Brand Black */
+        --light: #f1f5f9; /* Light gray for backgrounds */
+        --text-dark: #333333;
+        --text-light: #555555;
+      }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #ffffff; /* Light beige background */
-            color: #333333; /* Default text color */
-            margin: 0;
-            padding: 0;
-        }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #ffffff; /* Light beige background */
+        color: #333333; /* Default text color */
+        margin: 0;
+        padding: 0;
+      }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
 
-        /* Brand Color Palette Utilities */
-        text-brand-red-accent { color: #B80F0A; } /* Accent red from "Grow Up" and icons */
-        .text-brand-black-accent { color: #000000; }
-        .bg-brand-yellow { background-color: #FFB400; } /* Button color */
-        .bg-brand-black { background-color: #000000; } 
-        .hover\:bg-brand-yellow-dark:hover { background-color: #FFB400; }
-        .text-brand-dark { color: #000000; }
-        .text-brand-gray { color: #555555; }
-        .text-brand-yellow { color: #FFB400; }
-        .text-brand-nav { color: #6B7280; } /* Slightly muted color for nav links */
-        .hover\:text-brand-dark:hover { color: #000000; }
+      /* Brand Color Palette Utilities */
+      text-brand-red-accent {
+        color: #b80f0a;
+      } /* Accent red from "Grow Up" and icons */
+      .text-brand-black-accent {
+        color: #000000;
+      }
+      .bg-brand-yellow {
+        background-color: #ffb400;
+      } /* Button color */
+      .bg-brand-black {
+        background-color: #000000;
+      }
+      .hover\:bg-brand-yellow-dark:hover {
+        background-color: #ffb400;
+      }
+      .text-brand-dark {
+        color: #000000;
+      }
+      .text-brand-gray {
+        color: #555555;
+      }
+      .text-brand-yellow {
+        color: #ffb400;
+      }
+      .text-brand-nav {
+        color: #6b7280;
+      } /* Slightly muted color for nav links */
+      .hover\:text-brand-dark:hover {
+        color: #000000;
+      }
 
-        .bg-brand-cta-red { background-color: #B80F0A; } /* Prominent red for final CTA section */
-        .hover\:bg-brand-cta-red-dark:hover { background-color: #B80F0A; }* Darker red on hover */
+      .bg-brand-cta-red {
+        background-color: #b80f0a;
+      } /* Prominent red for final CTA section */
+      .hover\:bg-brand-cta-red-dark:hover {
+        background-color: #b80f0a;
+      }
+      * Darker red on hover */
 
         /* Section Titles */
         .section-title-overline {
-            font-size: 14px; /* Adjusted from 20px for better balance */
-            font-weight: 600;
-            color: #B80F0A;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-        }
+        font-size: 14px; /* Adjusted from 20px for better balance */
+        font-weight: 600;
+        color: #b80f0a;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 0.5rem;
+      }
 
-        .section-judul {
-            font-size: 30px; /* Adjusted from 20px for better balance */
-            font-weight: 600;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            margin-bottom: 0.5rem;
-            line-height: 110%;
-        }
-        .section-main-title {
-            font-size: 32px;
-            font-weight: 500;
-            margin-bottom: 2.5rem;
-        }
+      .section-judul {
+        font-size: 30px; /* Adjusted from 20px for better balance */
+        font-weight: 600;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-bottom: 0.5rem;
+        line-height: 110%;
+      }
+      .section-main-title {
+        font-size: 32px;
+        font-weight: 500;
+        margin-bottom: 2.5rem;
+      }
 
-        .header-scrolled-bg {
-            background-color: #ffffff; /* Same as body/hero background */
-        }
+      .header-scrolled-bg {
+        background-color: #ffffff; /* Same as body/hero background */
+      }
 
-         /* Mobile menu styles */
-        .mobile-menu-button svg {
-            width: 1.5rem; /* 24px */
-            height: 1.5rem; /* 24px */
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding:0 20px;
+      /* Mobile menu styles */
+      .mobile-menu-button svg {
+        width: 1.5rem; /* 24px */
+        height: 1.5rem; /* 24px */
+      }
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      h2 {
+        text-align: center;
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--dark);
+      }
+
+      .subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto 40px;
+      }
+
+      /* Button Styles */
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 8px; /* Rounded corners */
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .btn-accent {
+        background-color: #ffb400; /* bg-brand-yellow */
+        color: #ffffff; /* text-brand-black-accent */
+      }
+
+      .btn-accent:hover {
+        background-color: #e6a200; /* hover:bg-brand-yellow-dark */
+        transform: translateY(-2px); /* Slight lift on hover */
+      }
+
+      .judul {
+        background-color: var(--primary);
+      }
+
+      .judul-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      /* Benefits Section */
+      .benefits {
+        background-color: white;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .benefit-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .benefit-icon {
+        font-size: 2.5rem;
+        color: #b80f0a;
+        margin-bottom: 20px;
+      }
+
+      .benefit-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      /* Curriculum Section */
+      .curriculum {
+        background-color: var(--light);
+      }
+
+      .accordion {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .accordion-item {
+        margin-bottom: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: white;
+      }
+
+      .accordion-header {
+        padding: 20px;
+        background-color: white;
+        color: var(--dark);
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-left: 5px solid var(--primary);
+      }
+
+      .accordion-header i {
+        transition: transform 0.3s ease;
+      }
+
+      .accordion-content {
+        padding: 0 25px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        color: var(--text-light);
+      }
+
+      .accordion-content p {
+        padding-bottom: 20px;
+      }
+
+      .accordion-item.active .accordion-header {
+        color: var(--primary);
+      }
+
+      .accordion-item.active .accordion-header i {
+        transform: rotate(180deg);
+      }
+
+      .accordion-item.active .accordion-content {
+        max-height: 300px; /* Adjust as needed */
+        padding-top: 10px;
+      }
+
+      /* Pricing Section */
+      .pricing {
+        background-color: white;
+      }
+
+      .price-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 40px;
+        max-width: 600px;
+        margin: 0 auto;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border: 2px solid var(--primary);
+        text-align: center;
+      }
+
+      .price {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin: 0 0 15px 0;
+      }
+
+      .price-day {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--secondary);
+        margin: 0 0 15px 0;
+      }
+
+      .price-card > p {
+        margin-bottom: 30px;
+      }
+
+      .price-includes {
+        text-align: left;
+        margin: 15px 0;
+        display: inline-block;
+      }
+
+      .price-includes ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .price-includes h4 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+      }
+
+      .price-includes li {
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 30px;
+      }
+
+      .price-includes li:before {
+        content: "\f00c"; /* Font Awesome Check icon */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: #b80f0a; /* Green check */
+        position: absolute;
+        left: 0;
+      }
+
+      /* Responsive adjustments for hero section */
+      @media (max-width: 768px) {
+        h2 {
+          font-size: 28px;
         }
 
         section {
-            padding: 80px 0;
+          padding: 60px 0;
         }
+      }
 
-        h2 {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        /* Button Styles */
-
-    
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 8px; /* Rounded corners */
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            font-size: 1rem;
-        }
-
-        .btn-accent {
-            background-color: #FFB400; /* bg-brand-yellow */
-            color: #ffffff; /* text-brand-black-accent */
-        }
-
-        .btn-accent:hover {
-            background-color: #e6a200; /* hover:bg-brand-yellow-dark */
-            transform: translateY(-2px); /* Slight lift on hover */
-        }
-
-        .judul {
-            background-color: var(--primary);
-        }
-        
-        .judul-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-
-         /* Benefits Section */
-        .benefits {
-            background-color: white;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .benefit-card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .benefit-icon {
-            font-size: 2.5rem;
-            color: #B80F0A;
-            margin-bottom: 20px;
-        }
-
-        .benefit-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-
-        /* Curriculum Section */
-        .curriculum {
-            background-color: var(--light);
-        }
-        
-
-        .accordion {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .accordion-item {
-            margin-bottom: 15px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            background-color: white;
-        }
-        
-        .accordion-header {
-            padding: 20px;
-            background-color: white;
-            color: var(--dark);
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-left: 5px solid var(--primary);
-        }
-
-        .accordion-header i {
-            transition: transform 0.3s ease;
-        }
-        
-        .accordion-content {
-            padding: 0 25px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out, padding 0.4s ease-out;
-            color: var(--text-light);
-        }
-
-        .accordion-content p {
-            padding-bottom: 20px;
-        }
-        
-        .accordion-item.active .accordion-header {
-            color: var(--primary);
-        }
-
-        .accordion-item.active .accordion-header i {
-            transform: rotate(180deg);
-        }
-        
-        .accordion-item.active .accordion-content {
-            max-height: 300px; /* Adjust as needed */
-            padding-top: 10px;
-        }
-
-        /* Pricing Section */
-        .pricing {
-            background-color: white;
-        }
-        
-        .price-card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 40px;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            border: 2px solid var(--primary);
-            text-align: center;
-        }
-        
-        .price {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 0 0 15px 0;
-        }
-
-         .price-day {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin: 0 0 15px 0;
-        }
-
-        .price-card > p {
-            margin-bottom: 30px;
-        }
-        
-        .price-includes {
-            text-align: left;
-            margin: 15px 0;
-            display: inline-block;
-        }
-        
-        .price-includes ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .price-includes h4 {
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        .price-includes li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 30px;
-        }
-        
-        .price-includes li:before {
-            content: "\f00c"; /* Font Awesome Check icon */
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            color: #B80F0A; /* Green check */
-            position: absolute;
-            left: 0;
-        }
-
-        /* Responsive adjustments for hero section */
-        @media (max-width: 768px) {
-            h2 {
-                font-size: 28px;
-            }
-            
-            section {
-                padding: 60px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            
-        }
-
-        
+      @media (max-width: 480px) {
+      }
     </style>
-</head>
-<body class="text-brand-dark">
-
+  </head>
+  <body class="text-brand-dark">
     <!-- Header / Navigation -->
-    <header id="main-header" class="sticky top-0 z-50 transition-all duration-300 ease-in-out">
-        <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                    
-                <div id="logo-container" class="flex items-center gap-2 text-[20px] font-normal transition-all duration-300">
-                    <img id="logo" src="image/logo.png" alt="Logo" class="h-[30px] w-auto transition-all duration-300">
-                    <a id="logo-text" href="index.html" class="text-brand-red-accent transition-all duration-300">
-                        Virexa Talenta Indonesia
-                    </a>
-                </div>
-                
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex space-x-6 items-center">
-                    <a href="index.html" class="text-sm font-medium text-brand-nav hover:text-[#FFB400]">Beranda</a>
-                    <a href="#tentang-kami" class="text-sm font-medium text-brand-nav hover:text-[#FFB400]">Tentang</a>
-                    <a href="/#Layanan" class="text-sm font-bold text-brand-dark ">Layanan</a>
-                    <a href="#Kontak" class="text-sm font-medium text-brand-nav hover:text-[#FFB400]">Kontak</a>
-                    <a href="https://drive.google.com/file/d/1nPl7nAa2VsZ-ym7w8bq8gXe0JkZ3_L29/view?usp=drive_link" target="_blank" class="text-sm font-medium bg-brand-yellow text-white px-4 py-2 rounded-md hover:text-brand-dark transition-colors">Company Profile</a>
-                </nav>
+    <header
+      id="main-header"
+      class="sticky top-0 z-50 transition-all duration-300 ease-in-out"
+    >
+      <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-4">
+          <div
+            id="logo-container"
+            class="flex items-center gap-2 text-[20px] font-normal transition-all duration-300"
+          >
+            <img
+              id="logo"
+              src="image/logo.png"
+              alt="Logo"
+              class="h-[30px] w-auto transition-all duration-300"
+            />
+            <a
+              id="logo-text"
+              href="index.html"
+              class="text-brand-red-accent transition-all duration-300"
+            >
+              Virexa Talenta Indonesia
+            </a>
+          </div>
 
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" aria-label="Toggle Menu" class="text-brand-dark focus:outline-none mobile-menu-button">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
+          <!-- Desktop Navigation -->
+          <nav class="hidden md:flex space-x-6 items-center">
+            <a
+              href="index.html"
+              class="text-sm font-medium text-brand-nav hover:text-[#FFB400]"
+              >Beranda</a
+            >
+            <a
+              href="#tentang-kami"
+              class="text-sm font-medium text-brand-nav hover:text-[#FFB400]"
+              >Tentang</a
+            >
+            <a href="/#Layanan" class="text-sm font-bold text-brand-dark"
+              >Layanan</a
+            >
+            <a
+              href="#Kontak"
+              class="text-sm font-medium text-brand-nav hover:text-[#FFB400]"
+              >Kontak</a
+            >
+            <a
+              href="https://drive.google.com/file/d/1nPl7nAa2VsZ-ym7w8bq8gXe0JkZ3_L29/view?usp=drive_link"
+              target="_blank"
+              class="text-sm font-medium bg-brand-yellow text-white px-4 py-2 rounded-md hover:text-brand-dark transition-colors"
+              >Company Profile</a
+            >
+          </nav>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg border-t border-gray-200">
-            <a href="index.html" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Beranda</a>
-            <a href="#tentang-kami" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Tentang</a>
-            <a href="/#Layanan" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Layanan</a>
-            <a href="#Kontak" class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark">Kontak</a>
-            <a href="https://drive.google.com/file/d/1nPl7nAa2VsZ-ym7w8bq8gXe0JkZ3_L29/view?usp=drive_link" target="_blank" class="block px-4 py-3 text-sm text-white bg-brand-yellow hover:bg-brand-yellow-dark text-center">Company profile</a>
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button
+              id="mobile-menu-button"
+              aria-label="Toggle Menu"
+              class="text-brand-dark focus:outline-none mobile-menu-button"
+            >
+              <svg
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                ></path>
+              </svg>
+            </button>
+          </div>
         </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="md:hidden hidden bg-white shadow-lg border-t border-gray-200"
+      >
+        <a
+          href="index.html"
+          class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
+          >Beranda</a
+        >
+        <a
+          href="#tentang-kami"
+          class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
+          >Tentang</a
+        >
+        <a
+          href="/#Layanan"
+          class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
+          >Layanan</a
+        >
+        <a
+          href="#Kontak"
+          class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
+          >Kontak</a
+        >
+        <a
+          href="https://drive.google.com/file/d/1nPl7nAa2VsZ-ym7w8bq8gXe0JkZ3_L29/view?usp=drive_link"
+          target="_blank"
+          class="block px-4 py-3 text-sm text-white bg-brand-yellow hover:bg-brand-yellow-dark text-center"
+          >Company profile</a
+        >
+      </div>
     </header>
-    
-     <section id="judul_pelatihan" class="judul">
-        <div class="container" style="background-color: #B80F0A; padding: 20px;">
-            <p style="color: #ffffff; font-size:small; margin-bottom:20px;">
-                <a href="index.html" >Home /</a> Layanan / Pengenalan Management System Dasar
-            </p>
-            <p class="section-judul mb-5 flex items-center gap-3 border-b-2 border-white pb-4" >
-            Pengenalan Management System Dasar
-            </p>
-           <p style="color: #ffffff;">
-            Pelatihan intensif untuk tim Anda yang ingin memahami fondasi manajemen modern, mulai dari filosofi hingga eksekusi
-           </p>
-        </div>
+
+    <section id="judul_pelatihan" class="judul">
+      <div class="container" style="background-color: #b80f0a; padding: 20px">
+        <p style="color: #ffffff; font-size: small; margin-bottom: 20px">
+          <a href="index.html">Home /</a> Layanan / Pengenalan Management System
+          Dasar
+        </p>
+        <p
+          class="section-judul mb-5 flex items-center gap-3 border-b-2 border-white pb-4"
+        >
+          Pengenalan Management System Dasar
+        </p>
+        <p style="color: #ffffff">
+          Pelatihan intensif untuk tim Anda yang ingin memahami fondasi
+          manajemen modern, mulai dari filosofi hingga eksekusi
+        </p>
+      </div>
     </section>
-    
+
     <section id="benefits" class="benefits">
-        <div class="container">
-            <p class="section-title-overline mb-5 flex items-center gap-3">
-            <span class="w-2 h-5 bg-brand-cta-red block"></span>
-            Apa yang Anda Dapatkan?
-          </p>
-           
-            <!-- <p class="subtitle">Pelatihan kami memberikan nilai tambah yang langsung bisa diaplikasikan.</p> -->
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h3>Modul Lengkap</h3>
-                    <p>Materi terstruktur dengan studi kasus nyata dari berbagai industri.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3>Tools Praktis</h3> 
-                    <p>Template WBAWI, Visi-Misi, dan Goal siap pakai untuk implementasi langsung.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>Sertifikat Resmi</h3>
-                    <p>Bukti kompetensi untuk pengembangan profesional tim Anda.</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Konsumsi Lengkap</h3>
-                    <p>Makan siang & coffee break selama pelatihan sudah termasuk.</p>
-                </div>
+      <div class="container">
+        <p class="section-title-overline mb-5 flex items-center gap-3">
+          <span class="w-2 h-5 bg-brand-cta-red block"></span>
+          Apa yang Anda Dapatkan?
+        </p>
+
+        <!-- <p class="subtitle">Pelatihan kami memberikan nilai tambah yang langsung bisa diaplikasikan.</p> -->
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-book-open"></i>
             </div>
+            <h3>Modul Lengkap</h3>
+            <p>
+              Materi terstruktur dengan studi kasus nyata dari berbagai
+              industri.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3>Tools Praktis</h3>
+            <p>
+              Template WBAWI, Visi-Misi, dan Goal siap pakai untuk implementasi
+              langsung.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <h3>Sertifikat Resmi</h3>
+            <p>Bukti kompetensi untuk pengembangan profesional tim Anda.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h3>Konsumsi Lengkap</h3>
+            <p>Makan siang & coffee break selama pelatihan sudah termasuk.</p>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="curriculum" class="curriculum">
-        <div class="container">
-            <h2 class="mb-5" style="font-size: 30px; font-weight:700">Apa Saja yang Akan Dipelajari?</h2>
-            
-            <div class="accordion">
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Filosofi Management System</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Pahami dasar pemikiran sistem manajemen efektif dan bagaimana menerapkannya dalam budaya organisasi Anda. Bagian ini akan membuka pola pikir baru tentang pendekatan sistematis dalam manajemen.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item active"> <div class="accordion-header">
-                        <span>Tools Plan-Do-Check-Action (PDCA)</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Teknik konkret untuk eksekusi proyek dengan pendekatan PDCA. Anda akan belajar bagaimana menerapkan siklus ini untuk perbaikan berkelanjutan dalam operasional tim.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Membuat WBAWI, Visi-Misi, & Goal</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Langkah demi langkah menyusun dokumen kunci manajemen. Workshop praktis di mana Anda akan membuat draf yang bisa langsung digunakan di organisasi Anda.</p>
-                    </div>
-                </div>
-                
-                <div class="accordion-item">
-                    <div class="accordion-header">
-                        <span>Studi Kasus</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="accordion-content">
-                        <p>Belajar dari contoh masalah & solusi dunia kerja di berbagai industri. Analisis kasus-kasus nyata dan diskusi solusi terbaik dengan instruktur berpengalaman.</p>
-                    </div>
-                </div>
+      <div class="container">
+        <h2 class="mb-5" style="font-size: 30px; font-weight: 700">
+          Apa Saja yang Akan Dipelajari?
+        </h2>
+
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Filosofi Management System</span>
+              <i class="fas fa-chevron-down"></i>
             </div>
+            <div class="accordion-content">
+              <p>
+                Pahami dasar pemikiran sistem manajemen efektif dan bagaimana
+                menerapkannya dalam budaya organisasi Anda. Bagian ini akan
+                membuka pola pikir baru tentang pendekatan sistematis dalam
+                manajemen.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item active">
+            <div class="accordion-header">
+              <span>Tools Plan-Do-Check-Action (PDCA)</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Teknik konkret untuk eksekusi proyek dengan pendekatan PDCA.
+                Anda akan belajar bagaimana menerapkan siklus ini untuk
+                perbaikan berkelanjutan dalam operasional tim.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Membuat WBAWI, Visi-Misi, & Goal</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Langkah demi langkah menyusun dokumen kunci manajemen. Workshop
+                praktis di mana Anda akan membuat draf yang bisa langsung
+                digunakan di organisasi Anda.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Studi Kasus</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Belajar dari contoh masalah & solusi dunia kerja di berbagai
+                industri. Analisis kasus-kasus nyata dan diskusi solusi terbaik
+                dengan instruktur berpengalaman.
+              </p>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="mb-5" style="font-size: 25px; font-weight:700">Harga Inhouse Training*</h2>  
-            
-            <div class="price-card">
-                <h3 style="font-size: 22px; font-weight: 600;  color: #333;">2 Hari (2 @ 8 Jam)</h3>
-                <div class="price">Rp 1.500.000 <span style="font-size: 18px; font-weight:500; color:#000000">/orang</span></div>
-                <div style="font-size: 20px; font-weight:500; color:#555555">atau</div>
-                <p style="font-size: 20px; font-weight: 600;  color: #333;  margin: 15px 0 0 0">Harian</p>
-                <div class="price-day">Rp 750.000 <span style="font-size: 18px; font-weight:500; color:#000000">/orang</span></div>
-                <p style="font-size: 14px; font-weight: 500;">Minimal 15 peserta – Maksimal 25 peserta</p>
-                
-                <div class="price-includes">
-                    
-                    <ul>
-                        <li>Modul Pelatihan Management System</li>
-                        <li>Template Dokumen Management System</li>
-                        <li>Sertifikat Pelatihan Management System</li>
-                    </ul>
-                </div>
-                <a href="#contact" class="btn btn-accent" style="margin: 50px 0 0 0">Jadwalkan Pelatihan</a>
-                <p style="font-size: 10px; font-weight: 500;">*Harga belum termasuk tempat pelatihan dan konsumsi peserta</p>
-            </div>
+      <div class="container">
+        <h2 class="mb-5" style="font-size: 25px; font-weight: 700">
+          Harga Inhouse Training*
+        </h2>
+
+        <div class="price-card">
+          <h3 style="font-size: 22px; font-weight: 600; color: #333">
+            2 Hari (2 @ 8 Jam)
+          </h3>
+          <div class="price">
+            Rp 1.500.000
+            <span style="font-size: 18px; font-weight: 500; color: #000000"
+              >/orang</span
+            >
+          </div>
+          <div style="font-size: 20px; font-weight: 500; color: #555555">
+            atau
+          </div>
+          <p
+            style="
+              font-size: 20px;
+              font-weight: 600;
+              color: #333;
+              margin: 15px 0 0 0;
+            "
+          >
+            Harian
+          </p>
+          <div class="price-day">
+            Rp 750.000
+            <span style="font-size: 18px; font-weight: 500; color: #000000"
+              >/orang</span
+            >
+          </div>
+          <p style="font-size: 14px; font-weight: 500">
+            Minimal 15 peserta – Maksimal 25 peserta
+          </p>
+
+          <div class="price-includes">
+            <ul>
+              <li>Modul Pelatihan Management System</li>
+              <li>Template Dokumen Management System</li>
+              <li>Sertifikat Pelatihan Management System</li>
+            </ul>
+          </div>
+          <a href="#contact" class="btn btn-accent" style="margin: 50px 0 0 0"
+            >Jadwalkan Pelatihan</a
+          >
+          <p style="font-size: 10px; font-weight: 500">
+            *Harga belum termasuk tempat pelatihan dan konsumsi peserta
+          </p>
         </div>
+      </div>
     </section>
-    
 
     <!-- Testimoni Section -->
     <section id="testimoni" class="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
-        <div class="container mx-auto text-center">
-            <p class="section-title-overline mb-5 flex items-center gap-3">
-            <span class="w-2 h-5 bg-brand-cta-red block"></span>
-            Testimoni Client
-          </p>
-            <h2 class="section-main-title text-brand-dark">Apa Kata Mereka Tentang Virexa?</h2>
-            <div class="grid md:grid-cols-2 gap-8 mt-8">
-                <!-- Testimonial Card 1 (Placeholder) -->
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <img src="image/klien1.jpg" alt="Foto Klien 1" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover">
-                    <p class="text-brand-gray italic mb-4">"Layanan Virexa sangat membantu pertumbuhan perusahaan kami. Profesional dan hasilnya nyata!"</p>
-                    <h4 class="font-bold text-brand-dark">Nama Klien 1</h4>
-                    <p class="text-sm text-brand-gray">CEO, Perusahaan ABC</p>
-                </div>
-                <!-- Testimonial Card 2 (Placeholder) -->
-                <div class="bg-white p-8 rounded-xl shadow-lg">
-                    <img src="image/klien2.jpg" alt="Foto Klien 1" class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover">
-                    <p class="text-brand-gray italic mb-4">"Tim Virexa sangat suportif dan memberikan solusi yang inovatif untuk tantangan bisnis kami."</p>
-                    <h4 class="font-bold text-brand-dark">Nama Klien 2</h4>
-                    <p class="text-sm text-brand-gray">Direktur, Perusahaan XYZ</p>
-                </div>
-            </div>
+      <div class="container mx-auto text-center">
+        <p class="section-title-overline mb-5 flex items-center gap-3">
+          <span class="w-2 h-5 bg-brand-cta-red block"></span>
+          Testimoni Client
+        </p>
+        <h2 class="section-main-title text-brand-dark">
+          Apa Kata Mereka Tentang Virexa?
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8 mt-8">
+          <!-- Testimonial Card 1 (Placeholder) -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <img
+              src="image/klien1.jpg"
+              alt="Foto Klien 1"
+              class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover"
+            />
+            <p class="text-brand-gray italic mb-4">
+              "Layanan Virexa sangat membantu pertumbuhan perusahaan kami.
+              Profesional dan hasilnya nyata!"
+            </p>
+            <h4 class="font-bold text-brand-dark">Nama Klien 1</h4>
+            <p class="text-sm text-brand-gray">CEO, Perusahaan ABC</p>
+          </div>
+          <!-- Testimonial Card 2 (Placeholder) -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <img
+              src="image/klien2.jpg"
+              alt="Foto Klien 1"
+              class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover"
+            />
+            <p class="text-brand-gray italic mb-4">
+              "Tim Virexa sangat suportif dan memberikan solusi yang inovatif
+              untuk tantangan bisnis kami."
+            </p>
+            <h4 class="font-bold text-brand-dark">Nama Klien 2</h4>
+            <p class="text-sm text-brand-gray">Direktur, Perusahaan XYZ</p>
+          </div>
         </div>
+      </div>
     </section>
-    
-     <!-- Footer -->
+
+    <!-- Footer -->
     <section id="Kontak" class="bg-[#B80F0A] text-white">
-        <div class="max-w-7xl mx-auto px-6 py-10">
-          <!-- Header -->
-          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-white pb-4">
-            <h2 class="text-3xl font-extrabold leading-tight" style="color: #ffffff;">
-              Ayo Terhubung Dengan Kami
-            </h2>
-            <button class="inline-block bg-brand-yellow text-white font-semibold py-3 px-10 rounded-lg shadow-md hover:bg-brand-yellow-dark transition duration-300 text-base" type="button">
-              Kontak Kami
-            </button>
-          </div>
-      
-          <!-- Isi Footer -->
-          <div class="flex flex-col sm:flex-row sm:justify-between mt-12 gap-12 sm:gap-0">
-            
-            <!-- Logo + Teks -->
-            <div class="max-w-md">
-              <div class="flex items-center gap-3 mb-3">
-                <img alt="Virexa Talenta Indonesia" class="rounded-full bg-white p-2 w-12 h-12" src="image/logofooter.png" />
-                <div>
-                  <p class="font-extrabold uppercase text-sm tracking-wide mb-0">VIREXA</p>
-                  <p class="text-sm mb-0">Talenta Indonesia</p>
-                </div>
+      <div class="max-w-7xl mx-auto px-6 py-10">
+        <!-- Header -->
+        <div
+          class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-white pb-4"
+        >
+          <h2
+            class="text-3xl font-extrabold leading-tight"
+            style="color: #ffffff"
+          >
+            Ayo Terhubung Dengan Kami
+          </h2>
+          <button
+            class="inline-block bg-brand-yellow text-white font-semibold py-3 px-10 rounded-lg shadow-md hover:bg-brand-yellow-dark transition duration-300 text-base"
+            type="button"
+          >
+            Kontak Kami
+          </button>
+        </div>
+
+        <!-- Isi Footer -->
+        <div
+          class="flex flex-col sm:flex-row sm:justify-between mt-12 gap-12 sm:gap-0"
+        >
+          <!-- Logo + Teks -->
+          <div class="max-w-md">
+            <div class="flex items-center gap-3 mb-3">
+              <img
+                alt="Virexa Talenta Indonesia"
+                class="rounded-full bg-white p-2 w-12 h-12"
+                src="image/logofooter.png"
+              />
+              <div>
+                <p class="font-extrabold uppercase text-sm tracking-wide mb-0">
+                  VIREXA
+                </p>
+                <p class="text-sm mb-0">Talenta Indonesia</p>
               </div>
-              <p class="text-xs leading-tight max-w-xs text-justify">
-                PT Virexa Talenta Indonesia adalah mitra transformasi organisasi yang mendorong perubahan berkelanjutan melalui sistem manajemen strategis, pengembangan SDM, digitalisasi, dan penyediaan talenta unggul.
-              </p>
             </div>
-      
-            <!-- Kontak -->
-            <div class="max-w-xs">
-              <p class="font-extrabold mb-4">Kontak</p>
-              <p class="text-xs mb-4 leading-relaxed">+62-813-8563-1179</p>
-              <p class="text-xs mb-4 leading-relaxed">info.virexa@gmail.com</p>
-              <p class="text-xs leading-relaxed text-justify">
-                MENARA BIDAKARA 2<br />
-                Jl. Gatot Subroto Kav. 71-73, RT.8/RW.8, Menteng Dalam Kec. Tebet, Kota Jakarta Selatan, DKI Jakarta, 12870
-              </p>
-            </div>
+            <p class="text-xs leading-tight max-w-xs text-justify">
+              PT Virexa Talenta Indonesia adalah mitra transformasi organisasi
+              yang mendorong perubahan berkelanjutan melalui sistem manajemen
+              strategis, pengembangan SDM, digitalisasi, dan penyediaan talenta
+              unggul.
+            </p>
+          </div>
+
+          <!-- Kontak -->
+          <div class="max-w-xs">
+            <p class="font-extrabold mb-4">Kontak</p>
+            <p class="text-xs mb-4 leading-relaxed">+62-813-8563-1179</p>
+            <p class="text-xs mb-4 leading-relaxed">info.virexa@gmail.com</p>
+            <p class="text-xs leading-relaxed text-justify">
+              MENARA BIDAKARA 2<br />
+              Jl. Gatot Subroto Kav. 71-73, RT.8/RW.8, Menteng Dalam Kec. Tebet,
+              Kota Jakarta Selatan, DKI Jakarta, 12870
+            </p>
           </div>
         </div>
-      </section>
-      
-
+      </div>
+    </section>
 
     <footer class="bg-brand-dark text-gray-400 py-6 px-1 sm:px-2 lg:px-4">
-        <div class="container mx-auto text-center">
-            <div class="flex justify-center space-x-6 mb-2">
-                <a href="#" class="hover:text-black transition-colors" ><i class="fab fa-facebook-f "></i></a>
-                <a href="#" class="hover:text-black transition-colors" ><i class="fab fa-instagram "></i></a>
-                <a href="#" class="hover:text-black transition-colors" ><i class="fab fa-linkedin-in "></i></a>
-                <a href="#" class="hover:text-black transition-colors"><i class="fab fa-x-twitter"></i></a>
-            </div>
-            <p class="text-sm">&copy; <span id="year"></span> Virexa Talenta Indonesia. All rights reserved.</p>
+      <div class="container mx-auto text-center">
+        <div class="flex justify-center space-x-6 mb-2">
+          <a href="#" class="hover:text-black transition-colors"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="#" class="hover:text-black transition-colors"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="#" class="hover:text-black transition-colors"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+          <a href="#" class="hover:text-black transition-colors"
+            ><i class="fab fa-x-twitter"></i
+          ></a>
         </div>
+        <p class="text-sm">
+          &copy; <span id="year"></span> Virexa Talenta Indonesia. All rights
+          reserved.
+        </p>
+      </div>
     </footer>
 
     <script>
-        // Dynamic year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
+      // Dynamic year in footer
+      document.getElementById("year").textContent = new Date().getFullYear();
 
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mainHeader = document.getElementById('main-header');
+      // Mobile menu toggle
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mainHeader = document.getElementById("main-header");
 
-        mobileMenuButton.addEventListener('click', () => {
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            mobileMenu.classList.toggle('hidden');
-            
-            if (!isExpanded) {
-                mobileMenuButton.innerHTML = `
+      mobileMenuButton.addEventListener("click", () => {
+        const isExpanded =
+          mobileMenuButton.getAttribute("aria-expanded") === "true" || false;
+        mobileMenuButton.setAttribute("aria-expanded", !isExpanded);
+        mobileMenu.classList.toggle("hidden");
+
+        if (!isExpanded) {
+          mobileMenuButton.innerHTML = `
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>`;
-                if (window.scrollY <= 50) {
-                     mobileMenu.classList.add('bg-white');
-                } else {
-                     mobileMenu.classList.add('bg-white');
-                }
-            } else {
-                mobileMenuButton.innerHTML = `
+          if (window.scrollY <= 50) {
+            mobileMenu.classList.add("bg-white");
+          } else {
+            mobileMenu.classList.add("bg-white");
+          }
+        } else {
+          mobileMenuButton.innerHTML = `
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                     </svg>`;
-                mobileMenu.classList.remove('bg-white');
-            }
-        });
-
-        const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
-        for (let link of mobileMenuLinks) {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-                 mobileMenuButton.innerHTML = `
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>`;
-            });
+          mobileMenu.classList.remove("bg-white");
         }
+      });
 
-        // Header background change on scroll
-        const scrollThreshold = 50; 
-        const logo = document.getElementById('logo');
-        const logoText = document.getElementById('logo-text');
-        const logoContainer = document.getElementById('logo-container');
+      const mobileMenuLinks = mobileMenu.getElementsByTagName("a");
+      for (let link of mobileMenuLinks) {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          mobileMenuButton.setAttribute("aria-expanded", "false");
+          mobileMenuButton.innerHTML = `
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>`;
+        });
+      }
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > scrollThreshold) {
-                mainHeader.classList.add('header-scrolled-bg', 'shadow-sm');
+      // Header background change on scroll
+      const scrollThreshold = 50;
+      const logo = document.getElementById("logo");
+      const logoText = document.getElementById("logo-text");
+      const logoContainer = document.getElementById("logo-container");
 
-                // KECILKAN LOGO DAN TEKS
-                logo.classList.add('h-[20px]');
-                logoText.classList.add('text-sm');
-                logoContainer.classList.add('gap-1');
-            } else {
-                mainHeader.classList.remove('header-scrolled-bg', 'shadow-sm');
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > scrollThreshold) {
+          mainHeader.classList.add("header-scrolled-bg", "shadow-sm");
 
-                // KEMBALIKAN UKURAN SEMULA
-                logo.classList.remove('h-[20px]');
-                logoText.classList.remove('text-sm');
-                logoContainer.classList.remove('gap-1');
+          // KECILKAN LOGO DAN TEKS
+          logo.classList.add("h-[20px]");
+          logoText.classList.add("text-sm");
+          logoContainer.classList.add("gap-1");
+        } else {
+          mainHeader.classList.remove("header-scrolled-bg", "shadow-sm");
+
+          // KEMBALIKAN UKURAN SEMULA
+          logo.classList.remove("h-[20px]");
+          logoText.classList.remove("text-sm");
+          logoContainer.classList.remove("gap-1");
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const accordionItems = document.querySelectorAll(".accordion-item");
+
+        accordionItems.forEach((item) => {
+          const header = item.querySelector(".accordion-header");
+          header.addEventListener("click", () => {
+            // Optional: close other items
+            const currentlyActive = document.querySelector(
+              ".accordion-item.active"
+            );
+            if (currentlyActive && currentlyActive !== item) {
+              currentlyActive.classList.remove("active");
             }
-        });
 
-         document.addEventListener('DOMContentLoaded', function () {
-            const accordionItems = document.querySelectorAll('.accordion-item');
-
-            accordionItems.forEach(item => {
-                const header = item.querySelector('.accordion-header');
-                header.addEventListener('click', () => {
-                    // Optional: close other items
-                    const currentlyActive = document.querySelector('.accordion-item.active');
-                    if (currentlyActive && currentlyActive !== item) {
-                        currentlyActive.classList.remove('active');
-                    }
-                    
-                    // Toggle current item
-                    item.classList.toggle('active');
-                });
-            });
+            // Toggle current item
+            item.classList.toggle("active");
+          });
         });
+      });
     </script>
-
-</body>
+  </body>
 </html>
