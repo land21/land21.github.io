@@ -1161,25 +1161,6 @@
         }
       });
 
-      document.addEventListener("DOMContentLoaded", function () {
-    const hour = new Date().toLocaleString("en-US", {
-      timeZone: "Asia/Jakarta",
-      hour: "numeric",
-      hour12: false
-    });
-
-    let greeting = "Halo";
-    if (hour >= 5 && hour < 11) greeting = "Selamat pagi";
-    else if (hour >= 11 && hour < 15) greeting = "Selamat siang";
-    else if (hour >= 15 && hour < 18) greeting = "Selamat sore";
-    else greeting = "Selamat malam";
-
-    const subject = "Permintaan Pelatihan";
-    const body = `${greeting}, nama saya [isi nama Anda], saya ingin menjadwalkan pelatihan untuk sesi pelatihan Management System Dasar. Mohon informasi lebih lanjut terkait jadwal dan teknis pelaksanaannya. Terima kasih.`;
-    const mailtoLink = `mailto:info.virexa@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    document.getElementById("emailLink").href = mailtoLink;
-  });
     </script>
   </body>
 </html>
