@@ -682,7 +682,13 @@
               <li>Sertifikat Pelatihan Kepemimpinan Efektif</li>
             </ul>
           </div>
-          <a href="#contact" class="btn btn-accent" style="margin: 50px 0 0 0"
+          <a
+            id="jadwal_wa"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-accent"
+            style="margin: 50px 0 0 0"
             >Jadwalkan Pelatihan</a
           >
           <p style="font-size: 10px; font-weight: 500">
@@ -743,17 +749,20 @@
           class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-white pb-4"
         >
           <h2
-            class="text-3xl font-extrabold leading-tight"
+            class="text-xl sm:text-3xl font-extrabold leading-tight pb-5 sm:pb-0"
             style="color: #ffffff"
           >
             Ayo Terhubung Dengan Kami
           </h2>
-          <button
-            class="inline-block bg-brand-yellow text-white font-semibold py-3 px-10 rounded-lg shadow-md hover:bg-brand-yellow-dark transition duration-300 text-base"
-            type="button"
+          <a
+            id="waLink"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-brand-yellow text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:text-brand-dark transition duration-300 text-base text-center"
           >
             Kontak Kami
-          </button>
+          </a>
         </div>
 
         <!-- Isi Footer -->
@@ -763,16 +772,21 @@
           <!-- Logo + Teks -->
           <div class="max-w-md">
             <div class="flex items-center gap-3 mb-3">
-              <img
-                alt="Virexa Talenta Indonesia"
-                class="rounded-full bg-white p-2 w-12 h-12"
-                src="image/logofooter.png"
-              />
+              <a href="index.html"
+                ><img
+                  alt="Virexa Talenta Indonesia"
+                  class="rounded-full bg-white p-2 w-12 h-12"
+                  src="image/logofooter.png"
+              /></a>
               <div>
-                <p class="font-extrabold uppercase text-sm tracking-wide mb-0">
-                  VIREXA
-                </p>
-                <p class="text-sm mb-0">Talenta Indonesia</p>
+                <a href="index.html">
+                  <p
+                    class="font-extrabold uppercase text-sm tracking-wide mb-0"
+                  >
+                    VIREXA
+                  </p>
+                  <p class="text-sm mb-0">Talenta Indonesia</p></a
+                >
               </div>
             </div>
             <p class="text-xs leading-tight max-w-xs text-justify">
@@ -781,6 +795,23 @@
               strategis, pengembangan SDM, digitalisasi, dan penyediaan talenta
               unggul.
             </p>
+          </div>
+
+          <!-- Navigasi -->
+          <div class="max-w-xs">
+            <p class="font-extrabold mb-4">Navigasi</p>
+            <a href="index.html"
+              ><p class="text-xs mb-4 leading-relaxed">Beranda</p></a
+            >
+            <a href="tentang.html"
+              ><p class="text-xs mb-4 leading-relaxed">Tentang Kami</p></a
+            >
+            <a href="/#Layanan"
+              ><p class="text-xs mb-4 leading-relaxed">Layanan Kami</p></a
+            >
+            <a href="/#Kontak"
+              ><p class="text-xs mb-4 leading-relaxed">Kontak</p></a
+            >
           </div>
 
           <!-- Kontak -->
@@ -910,6 +941,38 @@
           });
         });
       });
+      // Ambil waktu saat ini di zona Asia/Jakarta (WIB)
+      const now = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Jakarta",
+        hour: "numeric",
+        hour12: false,
+      });
+
+      const hour = parseInt(now, 10);
+
+      let greeting = "Halo";
+      if (hour >= 5 && hour < 11) {
+        greeting = "Selamat pagi";
+      } else if (hour >= 11 && hour < 15) {
+        greeting = "Selamat siang";
+      } else if (hour >= 15 && hour < 18) {
+        greeting = "Selamat sore";
+      } else {
+        greeting = "Selamat malam";
+      }
+
+      const message = `Halo ${greeting}, nama saya [isi nama Anda], saya tertarik dengan layanan PT Virexa Talenta Indonesia`;
+      const encodedMessage = encodeURIComponent(message);
+      const message_jadwal = `Halo ${greeting}, Nama saya [Nama Anda], saya ingin menjadwalkan pelatihan untuk sesi *Kepemimpinan Efektif : Pemimpin Organisasi Unggul*. Mohon informasi lebih lanjut terkait ketersediaan jadwal dan teknis pelatihannya. Terima kasih.`;
+      const encodedMessage_jadwal = encodeURIComponent(message_jadwal);
+      const phoneNumber = "6289652090730";
+
+      document.getElementById(
+        "waLink"
+      ).href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      document.getElementById(
+        "jadwal_wa"
+      ).href = `https://wa.me/${phoneNumber}?text=${encodedMessage_jadwal}`;
     </script>
   </body>
 </html>

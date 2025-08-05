@@ -552,7 +552,15 @@
               <li>Praktik langsung dalam sesi</li>
             </ul>
           </div>
-          <a href="#contact" class="btn btn-accent">Jadwalkan Pendampingan</a>
+          <a
+            id="jadwal_wa"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-accent"
+            style="margin: 50px 0 0 0"
+            >Jadwalkan Pendampingan</a
+          >
         </div>
       </div>
     </section>
@@ -613,12 +621,15 @@
           >
             Ayo Terhubung Dengan Kami
           </h2>
-          <button
-            class="inline-block bg-brand-yellow text-white font-semibold py-3 px-10 rounded-lg shadow-md hover:bg-brand-yellow-dark transition duration-300 text-base"
-            type="button"
+          <a
+            id="waLink"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-brand-yellow text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:text-brand-dark transition duration-300 text-base"
           >
             Kontak Kami
-          </button>
+          </a>
         </div>
 
         <!-- Isi Footer -->
@@ -775,6 +786,38 @@
           });
         });
       });
+      // Ambil waktu saat ini di zona Asia/Jakarta (WIB)
+      const now = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Jakarta",
+        hour: "numeric",
+        hour12: false,
+      });
+
+      const hour = parseInt(now, 10);
+
+      let greeting = "Halo";
+      if (hour >= 5 && hour < 11) {
+        greeting = "Selamat pagi";
+      } else if (hour >= 11 && hour < 15) {
+        greeting = "Selamat siang";
+      } else if (hour >= 15 && hour < 18) {
+        greeting = "Selamat sore";
+      } else {
+        greeting = "Selamat malam";
+      }
+
+      const message = `Halo ${greeting}, nama saya [isi nama Anda], saya tertarik dengan layanan PT Virexa Talenta Indonesia`;
+      const encodedMessage = encodeURIComponent(message);
+      const message_jadwal = `Halo ${greeting}, Nama saya [Nama Anda], saya ingin menjadwalkan bimbingan untuk sesi *Implementasi Management System*. Mohon informasi lebih lanjut terkait ketersediaan jadwal dan teknis bimbingannya. Terima kasih.`;
+      const encodedMessage_jadwal = encodeURIComponent(message_jadwal);
+      const phoneNumber = "6289652090730";
+
+      document.getElementById(
+        "waLink"
+      ).href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      document.getElementById(
+        "jadwal_wa"
+      ).href = `https://wa.me/${phoneNumber}?text=${encodedMessage_jadwal}`;
     </script>
   </body>
 </html>
