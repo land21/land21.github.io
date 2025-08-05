@@ -232,10 +232,6 @@
   <body class="text-brand-dark">
     <!-- Animasi Loading -->
     <div id="preloader">
-      <div class="custom-loader"><span></span><span></span><span></span></div>
-    </div>
-
-    <div id="preloader">
       <div class="flex flex-col items-center gap-4">
         <img src="image/logo.png" alt="Logo" class="w-16 h-16 animate-pulse" />
         <p class="text-sm text-gray-600">Virexa Talenta Indonesia</p>
@@ -1054,6 +1050,11 @@
       window.addEventListener("load", function () {
         document.body.classList.add("loaded");
       });
+      // Fail-safe: paksa hide dalam 3 detik
+      setTimeout(() => {
+  document.body.classList.add("loaded");
+}, 3000);
+
       // Dynamic year in footer
       document.getElementById("year").textContent = new Date().getFullYear();
 
