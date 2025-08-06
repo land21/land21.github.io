@@ -10,6 +10,12 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <!-- Swiper CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -226,6 +232,13 @@
       }
       body.loaded #main-content {
         display: block;
+      }
+
+      .swiper-pagination-bullet {
+        background-color: #e4312b !important;
+      }
+      .swiper-pagination-bullet-active {
+        background-color: #e4312b !important;
       }
     </style>
   </head>
@@ -860,6 +873,64 @@
       </div>
     </section>
 
+    <section id="galeri" class="py-16 bg-[#FFB4000D]">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <!-- Slide 1 -->
+            <div class="swiper-slide">
+              <img
+                src="image/galeri1.png"
+                alt="Pelatihan 1"
+                class="w-full h-80 object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <!-- Slide 2 -->
+            <div class="swiper-slide">
+              <img
+                src="image/galeri2.png"
+                alt="Pelatihan 2"
+                class="w-full h-80 object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <!-- Slide 3 -->
+            <div class="swiper-slide">
+              <img
+                src="image/galeri3.png"
+                alt="Pelatihan 3"
+                class="w-full h-80 object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="image/galeri4.png"
+                alt="Pelatihan 4"
+                class="w-full h-80 object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="image/galeri5.png"
+                alt="Pelatihan 5"
+                class="w-full h-80 object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <div class="swiper-slide">
+              <img
+                src="image/galeri6.png"
+                alt="Pelatihan 6"
+                class="w-full h-80 object-cover rounded-lg shadow-md"
+              />
+            </div>
+            <!-- Tambah slide lain jika perlu -->
+          </div>
+
+          <!-- Pagination -->
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- Be Brave Section -->
     <section class="py-16 bg-black-800 text-white bg-[#FFB4000D]">
       <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -934,7 +1005,7 @@
       >
       </iframe>
     </section>
-    
+
     <!-- Footer -->
     <section id="Kontak" class="bg-[#B80F0A] text-white">
       <div class="max-w-7xl mx-auto px-6 py-10">
@@ -1044,6 +1115,7 @@
         </p>
       </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
       // Setelah seluruh konten termasuk gambar selesai dimuat
@@ -1070,9 +1142,9 @@
 
         if (!isExpanded) {
           mobileMenuButton.innerHTML = `
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>`;
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>`;
           if (window.scrollY <= 50) {
             mobileMenu.classList.add("bg-white");
           } else {
@@ -1080,9 +1152,9 @@
           }
         } else {
           mobileMenuButton.innerHTML = `
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>`;
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>`;
           mobileMenu.classList.remove("bg-white");
         }
       });
@@ -1093,9 +1165,9 @@
           mobileMenu.classList.add("hidden");
           mobileMenuButton.setAttribute("aria-expanded", "false");
           mobileMenuButton.innerHTML = `
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                    </svg>`;
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>`;
         });
       }
 
@@ -1160,7 +1232,30 @@
           el.rel = "noopener"; // aman dari eksploitasi window.opener
         }
       });
-
+      const swiper = new Swiper(".mySwiper", {
+        loop: true,
+        spaceBetween: 20,
+        slidesPerView: 1,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          640: {
+            slidesPerView: 1,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          1024: {
+            slidesPerView: 3,
+          },
+        },
+      });
     </script>
   </body>
 </html>
