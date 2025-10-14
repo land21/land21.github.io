@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <link rel="icon" href="image/logo.png" type="image/png" />
+    <link rel="icon" href="/image/logo.png" type="image/png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Virexa Talenta Indonesia - We Help Great Companies Grow Up</title>
@@ -18,6 +18,68 @@
       referrerpolicy="no-referrer"
     />
     <style>
+      /* Container utama */
+  #wa-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 9999;
+  }
+
+  /* Popup pesan */
+  #wa-popup {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+    color: #333;
+    max-width: 220px;
+    position: relative;
+    animation: fadeInUp 0.5s ease;
+  }
+
+  /* Tombol close */
+  #wa-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  #wa-close:hover {
+    color: #000;
+  }
+
+  /* Ikon WhatsApp */
+  .wa-button img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25d366;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+  }
+
+  .wa-button img:hover {
+    transform: scale(1.1);
+  }
+
+  /* Animasi */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
       body {
         font-family: "Poppins", sans-serif;
         background-color: #ffffff; /* Light beige background */
@@ -216,6 +278,23 @@
     </style>
   </head>
   <body class="text-brand-dark">
+    <div id="wa-container">
+      <div id="wa-popup">
+        <span class="wa-text">
+          Hai rekan <b>Virexa!!</b><br />
+          Tertarik dengan layanan kami?<br />
+          Ayo hubungi kami!
+        </span>
+        <button id="wa-close">×</button>
+      </div>
+
+      <a class="wa-button" id="waLink4" href="#" target="_blank">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WA"
+        />
+      </a>
+    </div>
     <!-- Header / Navigation -->
     <header
       id="main-header"
@@ -229,13 +308,13 @@
           >
             <img
               id="logo"
-              src="image/logo.png"
+              src="/image/logo.png"
               alt="Logo"
               class="h-[30px] w-auto transition-all duration-300"
             />
             <a
               id="logo-text"
-              href="index.html"
+              href="/Beranda/"
               class="text-brand-red-accent transition-all duration-300"
             >
               Virexa Talenta Indonesia
@@ -245,15 +324,15 @@
           <!-- Desktop Navigation -->
           <nav class="hidden md:flex space-x-6 items-center">
             <a
-              href="index.html"
+              href="/Beranda/"
               class="text-sm text-brand-nav hover:text-[#FFB400]"
               >Beranda</a
             >
-            <a href="#tentang-kami" class="text-sm font-bold text-brand-dark"
+            <a href="/Tentang-Kami/" class="text-sm font-bold text-brand-dark"
               >Tentang</a
             >
             <a
-              href="/#Layanan"
+              href="/Beranda/#layanan"
               class="text-sm font-medium text-brand-nav hover:text-[#FFB400]"
               >Layanan</a
             >
@@ -263,7 +342,7 @@
               >Kontak</a
             >
             <a
-              href="https://drive.google.com/file/d/1uAWlSddCl6WI2giCZkWuag5GVnTEWGV6/view?usp=sharing "
+              href="https://drive.google.com/file/d/1OWtWtPoinim78KJMtzWsTO4w3xZLhNJc/view?usp=sharing "
               target="_blank"
               class="text-sm font-medium bg-brand-yellow text-white px-4 py-2 rounded-md hover:text-brand-dark transition-colors"
               >Company Profile</a
@@ -301,17 +380,17 @@
         class="md:hidden hidden bg-white shadow-lg border-t border-gray-200"
       >
         <a
-          href="index.html"
+          href="/Beranda/"
           class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
           >Beranda</a
         >
         <a
-          href="#tentang-kami"
+          href="/Tentang-Kami/"
           class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
           >Tentang</a
         >
         <a
-          href="/#Layanan"
+          href="/Beranda/#layanan"
           class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
           >Layanan</a
         >
@@ -321,7 +400,7 @@
           >Kontak</a
         >
         <a
-          href="https://drive.google.com/file/d/1uAWlSddCl6WI2giCZkWuag5GVnTEWGV6/view?usp=sharing"
+          href="https://drive.google.com/file/d/1OWtWtPoinim78KJMtzWsTO4w3xZLhNJc/view?usp=sharing"
           target="_blank"
           class="block px-4 py-3 text-sm text-white bg-brand-yellow hover:bg-brand-yellow-dark text-center"
           >Company profile</a
@@ -355,7 +434,7 @@
         <div class="hidden md:flex justify-end">
           <div class="pr-4">
             <img
-              src="image/heroimage.png"
+              src="/image/heroimage.png"
               alt="Pemandangan Kantor 1"
               class="w-full max-w-[700px] h-auto object-contain"
             />
@@ -527,14 +606,14 @@
           <!-- Logo + Teks -->
           <div class="max-w-md">
             <div class="flex items-center gap-3 mb-3">
-              <a href="index.html"
+              <a href="/Beranda/"
                 ><img
                   alt="Virexa Talenta Indonesia"
                   class="rounded-full bg-white p-2 w-12 h-12"
-                  src="image/logofooter.png"
+                  src="/image/logofooter.png"
               /></a>
               <div>
-                <a href="index.html">
+                <a href="/Beranda/">
                   <p
                     class="font-extrabold uppercase text-sm tracking-wide mb-0"
                   >
@@ -555,13 +634,13 @@
           <!-- Navigasi -->
           <div class="max-w-xs">
             <p class="font-extrabold mb-4">Navigasi</p>
-            <a href="index.html"
+            <a href="/Beranda/"
               ><p class="text-xs mb-4 leading-relaxed">Beranda</p></a
             >
-            <a href="tentang.html"
+            <a href="/Tentang-Kami/"
               ><p class="text-xs mb-4 leading-relaxed">Tentang Kami</p></a
             >
-            <a href="/#Layanan"
+            <a href="/Beranda/#layanan"
               ><p class="text-xs mb-4 leading-relaxed">Layanan Kami</p></a
             >
             <a href="/#Kontak"
@@ -697,16 +776,39 @@
         greeting = "Selamat malam";
       }
 
-      const message = `Halo ${greeting}, nama saya [isi nama Anda], saya tertarik dengan layanan PT Virexa Talenta Indonesia`;
+      // Buat pesan WhatsApp
+      const message = `${greeting}, nama saya [isi nama Anda], saya tertarik dengan layanan PT Virexa Talenta Indonesia`;
       const encodedMessage = encodeURIComponent(message);
+
+      // Nomor tujuan WhatsApp
       const phoneNumber = "6281385631179";
 
-      document.getElementById(
-        "waLink"
-      ).href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-      document.getElementById(
-        "waLink2"
-      ).href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      // Update semua tautan WA
+      ["waLink", "waLink2", "waLink3", "waLink4"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+          el.target = "_blank"; // buka tab baru
+          el.rel = "noopener"; // aman dari eksploitasi window.opener
+        }
+      });
+      
+      // Jalankan script setelah seluruh halaman dimuat
+      window.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("wa-popup");
+        const closeBtn = document.getElementById("wa-close");
+
+        // tombol close
+        closeBtn.addEventListener("click", () => {
+          popup.style.display = "none";
+        });
+
+        // tampilkan popup dengan delay (2 detik)
+        setTimeout(() => {
+          popup.style.display = "flex";
+        }, 2000);
+      });
     </script>
+
   </body>
 </html>

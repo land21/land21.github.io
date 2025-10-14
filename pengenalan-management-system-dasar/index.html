@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <link rel="icon" href="image/logo.png" type="image/png" />
+    <link rel="icon" href="/image/logo.png" type="image/png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Virexa Talenta Indonesia - We Help Great Companies Grow Up</title>
@@ -18,6 +18,68 @@
       referrerpolicy="no-referrer"
     />
     <style>
+      /* Container utama */
+  #wa-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 9999;
+  }
+
+  /* Popup pesan */
+  #wa-popup {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+    color: #333;
+    max-width: 220px;
+    position: relative;
+    animation: fadeInUp 0.5s ease;
+  }
+
+  /* Tombol close */
+  #wa-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  #wa-close:hover {
+    color: #000;
+  }
+
+  /* Ikon WhatsApp */
+  .wa-button img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25d366;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+  }
+
+  .wa-button img:hover {
+    transform: scale(1.1);
+  }
+
+  /* Animasi */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
       /* General Body and Typography Styles */
       :root {
         --primary: #b80f0a; /* Brand Red */
@@ -143,6 +205,7 @@
       }
 
       /* Button Styles */
+
       .btn {
         display: inline-block;
         padding: 12px 30px;
@@ -288,7 +351,7 @@
         font-size: 2.8rem;
         font-weight: 700;
         color: var(--primary);
-        margin: 15px 0;
+        margin: 0 0 15px 0;
       }
 
       .price-day {
@@ -304,7 +367,7 @@
 
       .price-includes {
         text-align: left;
-        margin: 30px 0;
+        margin: 15px 0;
         display: inline-block;
       }
 
@@ -349,6 +412,23 @@
     </style>
   </head>
   <body class="text-brand-dark">
+   <div id="wa-container">
+      <div id="wa-popup">
+        <span class="wa-text">
+          Hai rekan <b>Virexa!!</b><br />
+          Tertarik dengan layanan kami?<br />
+          Ayo hubungi kami!
+        </span>
+        <button id="wa-close">×</button>
+      </div>
+
+      <a id="waLink4" href="#" class="wa-button" target="_blank">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+          alt="WA"
+        />
+      </a>
+    </div>
     <!-- Header / Navigation -->
     <header
       id="main-header"
@@ -362,13 +442,13 @@
           >
             <img
               id="logo"
-              src="image/logo.png"
+              src="/image/logo.png"
               alt="Logo"
               class="h-[30px] w-auto transition-all duration-300"
             />
             <a
               id="logo-text"
-              href="index.html"
+              href="/Beranda/"
               class="text-brand-red-accent transition-all duration-300"
             >
               Virexa Talenta Indonesia
@@ -378,16 +458,16 @@
           <!-- Desktop Navigation -->
           <nav class="hidden md:flex space-x-6 items-center">
             <a
-              href="index.html"
+              href="/Beranda/"
               class="text-sm font-medium text-brand-nav hover:text-[#FFB400]"
               >Beranda</a
             >
             <a
-              href="#tentang-kami"
+              href="/Tentang-Kami/"
               class="text-sm font-medium text-brand-nav hover:text-[#FFB400]"
               >Tentang</a
             >
-            <a href="/#Layanan" class="text-sm font-bold text-brand-dark"
+            <a href="/Beranda/#layanan" class="text-sm font-bold text-brand-dark"
               >Layanan</a
             >
             <a
@@ -396,7 +476,7 @@
               >Kontak</a
             >
             <a
-              href="https://drive.google.com/file/d/1uAWlSddCl6WI2giCZkWuag5GVnTEWGV6/view?usp=sharing"
+              href="https://drive.google.com/file/d/1OWtWtPoinim78KJMtzWsTO4w3xZLhNJc/view?usp=sharing"
               target="_blank"
               class="text-sm font-medium bg-brand-yellow text-white px-4 py-2 rounded-md hover:text-brand-dark transition-colors"
               >Company Profile</a
@@ -434,17 +514,17 @@
         class="md:hidden hidden bg-white shadow-lg border-t border-gray-200"
       >
         <a
-          href="index.html"
+          href="/Beranda/"
           class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
           >Beranda</a
         >
         <a
-          href="#tentang-kami"
+          href="/Tentang-Kami/"
           class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
           >Tentang</a
         >
         <a
-          href="/#Layanan"
+          href="/Beranda/#layanan"
           class="block px-4 py-3 text-sm text-brand-nav hover:bg-gray-50 hover:text-brand-dark"
           >Layanan</a
         >
@@ -454,7 +534,7 @@
           >Kontak</a
         >
         <a
-          href="https://drive.google.com/file/d/1uAWlSddCl6WI2giCZkWuag5GVnTEWGV6/view?usp=sharing"
+          href="https://drive.google.com/file/d/1OWtWtPoinim78KJMtzWsTO4w3xZLhNJc/view?usp=sharing"
           target="_blank"
           class="block px-4 py-3 text-sm text-white bg-brand-yellow hover:bg-brand-yellow-dark text-center"
           >Company profile</a
@@ -462,118 +542,111 @@
       </div>
     </header>
 
-    <!-- Section Judul -->
     <section id="judul_pelatihan" class="judul">
       <div class="container" style="background-color: #b80f0a; padding: 20px">
         <p style="color: #ffffff; font-size: small; margin-bottom: 20px">
-          <a href="index.html">Home /</a> Layanan / Management System Lanjutan
+          <a href="/Beranda/">Home /</a> Layanan / Pengenalan Management System
+          Dasar
         </p>
         <p
           class="section-judul mb-5 flex items-center gap-3 border-b-2 border-white pb-4"
         >
-          Management System Lanjutan
+          Pengenalan Management System Dasar
         </p>
         <p style="color: #ffffff">
-          Pelatihan lanjutan untuk memperkuat analisis strategis dan perumusan
-          kinerja organisasi secara mendalam.
+          Pelatihan intensif untuk tim Anda yang ingin memahami fondasi
+          manajemen modern, mulai dari filosofi hingga eksekusi
         </p>
       </div>
     </section>
 
-    <!-- Benefits / Fasilitas -->
     <section id="benefits" class="benefits">
       <div class="container">
         <p class="section-title-overline mb-5 flex items-center gap-3">
           <span class="w-2 h-5 bg-brand-cta-red block"></span>
-          Fasilitas yang Didapatkan
+          Apa yang Anda Dapatkan?
         </p>
+
+        <!-- <p class="subtitle">Pelatihan kami memberikan nilai tambah yang langsung bisa diaplikasikan.</p> -->
+
         <div class="benefits-grid">
           <div class="benefit-card">
             <div class="benefit-icon">
               <i class="fas fa-book-open"></i>
             </div>
-            <h3>Modul Pelatihan</h3>
+            <h3>Materi/Modul Pelatihan (handout)</h3>
             <p>
-              Panduan lengkap untuk mendalami materi secara bertahap dan
-              sistematis.
+              Materi terstruktur dengan studi kasus nyata dari berbagai
+              industri.
             </p>
           </div>
+
+
           <div class="benefit-card">
             <div class="benefit-icon">
-              <i class="fas fa-tools"></i>
-            </div>
-            <h3>Template Dokumen</h3>
-            <p>
-              Berbagai contoh dokumen sistem manajemen yang siap digunakan
-              langsung.
-            </p>
-          </div>
-          <div class="benefit-card">
-            <div class="benefit-icon">
-              <i class="fas fa-certificate"></i>
+              <i class="fas fa-medal"></i>
             </div>
             <h3>Sertifikat Pelatihan</h3>
-            <p>Bukti keikutsertaan resmi bagi seluruh peserta pelatihan.</p>
+            <p>Bukti kompetensi untuk pengembangan profesional tim Anda.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-pen"></i>
+            </div>
+            <h3>Perlengkapan (ATK)</h3>
+            <p>Selama pelatihan, ATK telah kami sediakan untuk peserta</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Kurikulum -->
     <section id="curriculum" class="curriculum">
       <div class="container">
         <h2 class="mb-5" style="font-size: 30px; font-weight: 700">
-          Materi Pelatihan
+          Apa Saja yang Akan Dipelajari?
         </h2>
+
         <div class="accordion">
           <div class="accordion-item">
             <div class="accordion-header">
-              <span>Analisa Eksternal PESTLE</span>
+              <span>Filosofi Management System</span>
               <i class="fas fa-chevron-down"></i>
             </div>
             <div class="accordion-content">
               <p>
-                Memahami faktor eksternal yang mempengaruhi organisasi dari sisi
-                politik, ekonomi, sosial, teknologi, lingkungan, dan hukum.
+                Pahami dasar pemikiran sistem manajemen efektif dan bagaimana
+                menerapkannya dalam budaya organisasi Anda. Bagian ini akan
+                membuka pola pikir baru tentang pendekatan sistematis dalam
+                manajemen.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item active">
+            <div class="accordion-header">
+              <span>Tools Plan-Do-Check-Action (PDCA)</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Teknik konkret untuk eksekusi proyek dengan pendekatan PDCA.
+                Anda akan belajar bagaimana menerapkan siklus ini untuk
+                perbaikan berkelanjutan dalam operasional tim.
               </p>
             </div>
           </div>
 
           <div class="accordion-item">
             <div class="accordion-header">
-              <span>Analisa Internal: Value Chain & Business Process</span>
+              <span>Membuat WBAWI, Visi-Misi, & Goal</span>
               <i class="fas fa-chevron-down"></i>
             </div>
             <div class="accordion-content">
               <p>
-                Menganalisis proses bisnis internal dan rantai nilai untuk
-                mengidentifikasi kekuatan dan area peningkatan.
-              </p>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <div class="accordion-header">
-              <span>Analisa SWOT & Rancangan Strategi</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="accordion-content">
-              <p>
-                Mengintegrasikan hasil analisis eksternal dan internal untuk
-                merumuskan strategi organisasi secara komprehensif.
-              </p>
-            </div>
-          </div>
-
-          <div class="accordion-item">
-            <div class="accordion-header">
-              <span>Perumusan KPI</span>
-              <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="accordion-content">
-              <p>
-                Menetapkan indikator kinerja utama yang selaras dengan strategi
-                organisasi.
+                Langkah demi langkah menyusun dokumen kunci manajemen. Workshop
+                praktis di mana Anda akan membuat draf yang bisa langsung
+                digunakan di organisasi Anda.
               </p>
             </div>
           </div>
@@ -585,8 +658,9 @@
             </div>
             <div class="accordion-content">
               <p>
-                Diskusi kasus nyata untuk memperkuat pemahaman dan aplikasi
-                materi dalam konteks dunia kerja.
+                Belajar dari contoh masalah & solusi dunia kerja di berbagai
+                industri. Analisis kasus-kasus nyata dan diskusi solusi terbaik
+                dengan instruktur berpengalaman.
               </p>
             </div>
           </div>
@@ -602,7 +676,7 @@
 
         <div class="price-card">
           <h3 style="font-size: 22px; font-weight: 600; color: #333">
-            2 Hari (2 @ 8 Jam)
+            2 Hari (2 @ 6 Jam)
           </h3>
           <div class="price">
             Rp 1.500.000
@@ -610,7 +684,7 @@
               >/orang</span
             >
           </div>
-          <div style="font-size: 20px; font-weight: 500; color: #555555">
+          <!-- <div style="font-size: 20px; font-weight: 500; color: #555555">
             atau
           </div>
           <p
@@ -628,16 +702,16 @@
             <span style="font-size: 18px; font-weight: 500; color: #000000"
               >/orang</span
             >
-          </div>
+          </div> -->
           <p style="font-size: 14px; font-weight: 500">
-            Minimal 15 peserta – Maksimal 25 peserta
+            Minimal 25 peserta – Maksimal 35 peserta
           </p>
 
           <div class="price-includes">
             <ul>
-              <li>Modul Pelatihan Management System Lanjutan</li>
-              <li>Template Dokumen Management System Lanjutan</li>
-              <li>Sertifikat Pelatihan Management System Lanjutan</li>
+              <li>Modul Pelatihan Management System</li>
+              <li>Sertifikat Pelatihan Management System</li>
+              <li>Perlengkapan (ATK)</li>
             </ul>
           </div>
           <a
@@ -650,7 +724,7 @@
             >Jadwalkan Pelatihan</a
           >
           <p style="font-size: 10px; font-weight: 500">
-            *Harga belum termasuk tempat pelatihan dan konsumsi peserta
+            *Harga belum termasuk PPN, tempat pelatihan dan konsumsi peserta
           </p>
         </div>
       </div>
@@ -667,7 +741,7 @@
           <!-- Testimonial Card 1 (Placeholder) -->
           <div class="bg-white p-8 rounded-xl shadow-lg">
             <img
-              src="image/klien1.png"
+              src="/image/klien1.png"
               alt="Foto Klien 1"
               class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover"
             />
@@ -680,7 +754,7 @@
           <!-- Testimonial Card 2 (Placeholder) -->
           <div class="bg-white p-8 rounded-xl shadow-lg">
             <img
-              src="image/klien2.png"
+              src="/image/klien2.png"
               alt="Foto Klien 1"
               class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover"
             />
@@ -693,7 +767,7 @@
           <!-- Testimonial Card 2 (Placeholder) -->
           <div class="bg-white p-8 rounded-xl shadow-lg">
             <img
-              src="image/klien3.png"
+              src="/image/klien3.png"
               alt="Foto Klien 1"
               class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover"
             />
@@ -706,7 +780,6 @@
         </div>
       </div>
     </section>
-
 
     <!-- Footer -->
     <section id="Kontak" class="bg-[#B80F0A] text-white">
@@ -739,14 +812,14 @@
           <!-- Logo + Teks -->
           <div class="max-w-md">
             <div class="flex items-center gap-3 mb-3">
-              <a href="index.html"
+              <a href="/Beranda/"
                 ><img
                   alt="Virexa Talenta Indonesia"
                   class="rounded-full bg-white p-2 w-12 h-12"
-                  src="image/logofooter.png"
+                  src="/image/logofooter.png"
               /></a>
               <div>
-                <a href="index.html">
+                <a href="/Beranda/">
                   <p
                     class="font-extrabold uppercase text-sm tracking-wide mb-0"
                   >
@@ -767,13 +840,13 @@
           <!-- Navigasi -->
           <div class="max-w-xs">
             <p class="font-extrabold mb-4">Navigasi</p>
-            <a href="index.html"
+            <a href="/Beranda/"
               ><p class="text-xs mb-4 leading-relaxed">Beranda</p></a
             >
-            <a href="tentang.html"
+            <a href="/Tentang-Kami/"
               ><p class="text-xs mb-4 leading-relaxed">Tentang Kami</p></a
             >
-            <a href="/#Layanan"
+            <a href="/Beranda/#layanan"
               ><p class="text-xs mb-4 leading-relaxed">Layanan Kami</p></a
             >
             <a href="/#Kontak"
@@ -930,16 +1003,37 @@
 
       const message = `Halo ${greeting}, nama saya [isi nama Anda], saya tertarik dengan layanan PT Virexa Talenta Indonesia`;
       const encodedMessage = encodeURIComponent(message);
-      const message_jadwal = `Halo ${greeting}, Nama saya [Nama Anda], saya ingin menjadwalkan pelatihan untuk sesi *Management System Lanjutan*. Mohon informasi lebih lanjut terkait ketersediaan jadwal dan teknis pelatihannya. Terima kasih.`;
+      const message_jadwal = `Halo ${greeting}, Nama saya [Nama Anda], saya ingin menjadwalkan pelatihan untuk sesi *Management System Dasar*. Mohon informasi lebih lanjut terkait ketersediaan jadwal dan teknis pelatihannya. Terima kasih.`;
       const encodedMessage_jadwal = encodeURIComponent(message_jadwal);
+
       const phoneNumber = "6281385631179";
 
-      document.getElementById(
-        "waLink"
-      ).href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+      ["waLink", "waLink4"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+          el.target = "_blank"; // buka tab baru
+          el.rel = "noopener"; // aman dari eksploitasi window.opener
+        }
+      });
       document.getElementById(
         "jadwal_wa"
       ).href = `https://wa.me/${phoneNumber}?text=${encodedMessage_jadwal}`;
+      // Jalankan script setelah seluruh halaman dimuat
+      window.addEventListener("DOMContentLoaded", () => {
+        const popup = document.getElementById("wa-popup");
+        const closeBtn = document.getElementById("wa-close");
+
+        // tombol close
+        closeBtn.addEventListener("click", () => {
+          popup.style.display = "none";
+        });
+
+        // tampilkan popup dengan delay (2 detik)
+        setTimeout(() => {
+          popup.style.display = "flex";
+        }, 2000);
+      });
     </script>
   </body>
 </html>

@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirect root domain ke /Beranda/
+RewriteRule ^$ /Beranda/ [R=301,L]
