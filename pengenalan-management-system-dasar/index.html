@@ -904,6 +904,78 @@
     </footer>
 
     <script>
+      // Load config saat halaman dimuat
+      async function loadConfig() {
+        try {
+          const response = await fetch("/config.json");
+          const config = await response.json();
+
+          // Update semua link Company Profile
+          const companyProfileLinks = document.querySelectorAll(
+            'a[href*="drive.google.com"]'
+          );
+          companyProfileLinks.forEach((link) => {
+            link.href = config.companyProfileUrl;
+          });
+
+           // Update Google Maps iframe
+          const mapsIframe = document.querySelector('iframe[src*="google.com/maps"]');
+          if (mapsIframe && config.mapsEmbedUrl) {
+            mapsIframe.src = config.mapsEmbedUrl;
+          }
+
+          // Update Testimoni
+          if (config.testimonials && config.testimonials.length > 0) {
+            const testimoniContainer = document.querySelector('#testimoni .grid');
+            if (testimoniContainer) {
+              testimoniContainer.innerHTML = ''; // Kosongkan dulu
+              
+              config.testimonials.forEach(testi => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-8 rounded-xl shadow-lg';
+                card.innerHTML = `
+                  <img
+                    src="${testi.photo}"
+                    alt="Foto ${testi.name}"
+                    class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover"
+                  />
+                  <h4 class="font-bold text-brand-dark">${testi.name}</h4>
+                  <p class="text-sm text-brand-gray mb-6">${testi.position}</p>
+                  <p class="text-brand-gray mb-2">"${testi.text}"</p>
+                `;
+                testimoniContainer.appendChild(card);
+              });
+            }
+          }
+
+          // Opsional: Update link sosial media
+          if (config.socialMedia) {
+            // Contoh update Facebook
+            const fbLink = document.querySelector('a[href="#"] .fa-facebook-f');
+            if (fbLink) fbLink.closest("a").href = config.socialMedia.facebook;
+
+            // Instagram
+            const igLink = document.querySelector('a[href="#"] .fa-instagram');
+            if (igLink) igLink.closest("a").href = config.socialMedia.instagram;
+
+            // LinkedIn
+            const liLink = document.querySelector(
+              'a[href="#"] .fa-linkedin-in'
+            );
+            if (liLink) liLink.closest("a").href = config.socialMedia.linkedin;
+
+            // Twitter
+            const twLink = document.querySelector('a[href="#"] .fa-x-twitter');
+            if (twLink) twLink.closest("a").href = config.socialMedia.twitter;
+          }
+        } catch (error) {
+          console.error("Error loading config:", error);
+        }
+      }
+
+      // Panggil fungsi saat DOM ready
+      document.addEventListener("DOMContentLoaded", loadConfig);
+
       // Dynamic year in footer
       document.getElementById("year").textContent = new Date().getFullYear();
 

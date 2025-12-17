@@ -1,29 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <script type="application/ld+json">
-      {
+      <script type="application/ld+json">
+    {
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "PT Virexa Talenta Indonesia",
         "url": "https://virexa.co.id",
         "logo": "https://virexa.co.id/image/logo.png"
-      }
+    }
     </script>
-    <meta
-      name="google-site-verification"
-      content="Ncxkvk5qYuas2sB6vI-69EF9Ej4Bkx6egxN4zXSy63s"
-    />
-    <meta
-      name="description"
-      content="Virexa Talenta Indonesia, pejuang perubahan dalam transformasi organisasi, korporasi, dan sosial."
-    />
-    <link
-      rel="icon"
-      href="/image/logo.png"
-      type="image/png"
-      alt="Logo Virexa Talenta Indonesia"
-    />
+      <meta name="google-site-verification" content="Ncxkvk5qYuas2sB6vI-69EF9Ej4Bkx6egxN4zXSy63s" />
+      <meta name="description" content="Virexa Talenta Indonesia, pejuang perubahan dalam transformasi organisasi, korporasi, dan sosial.">
+    <link rel="icon" href="/image/logo.png" type="image/png" alt="Logo Virexa Talenta Indonesia" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Virexa Talenta Indonesia - We Help Great Companies Grow Up</title>
@@ -41,79 +30,93 @@
     />
     <style>
       /* Container utama */
-      #wa-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: flex;
-        align-items: flex-end;
-        gap: 10px;
-        z-index: 9999;
+  #wa-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 9999;
+  }
+
+  /* Popup pesan */
+  #wa-popup {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 14px;
+    color: #333;
+    max-width: 220px;
+    position: relative;
+    animation: fadeInUp 0.5s ease;
+  }
+
+  /* Tombol close */
+  #wa-close {
+    position: absolute;
+    top: 6px;
+    right: 8px;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    color: #888;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  #wa-close:hover {
+    color: #000;
+  }
+
+  /* Ikon WhatsApp */
+  .wa-button img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25d366;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+  }
+
+  .wa-button img:hover {
+    transform: scale(1.1);
+  }
+
+  /* Animasi */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+      /* General Body and Typography Styles */
+      :root {
+        --primary: #b80f0a; /* Brand Red */
+        --secondary: #ffb400; /* Brand Yellow */
+        --dark: #000000; /* Brand Black */
+        --light: #f1f5f9; /* Light gray for backgrounds */
+        --text-dark: #333333;
+        --text-light: #555555;
       }
 
-      /* Popup pesan */
-      #wa-popup {
-        background: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        padding: 12px 16px;
-        font-family: "Segoe UI", sans-serif;
-        font-size: 14px;
-        color: #333;
-        max-width: 220px;
-        position: relative;
-        animation: fadeInUp 0.5s ease;
-      }
-
-      /* Tombol close */
-      #wa-close {
-        position: absolute;
-        top: 6px;
-        right: 8px;
-        background: transparent;
-        border: none;
-        font-size: 16px;
-        color: #888;
-        cursor: pointer;
-        line-height: 1;
-      }
-
-      #wa-close:hover {
-        color: #000;
-      }
-
-      /* Ikon WhatsApp */
-      .wa-button img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        background: #25d366;
-        padding: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        transition: transform 0.2s;
-      }
-
-      .wa-button img:hover {
-        transform: scale(1.1);
-      }
-
-      /* Animasi */
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
       body {
         font-family: "Poppins", sans-serif;
         background-color: #ffffff; /* Light beige background */
         color: #333333; /* Default text color */
+        margin: 0;
+        padding: 0;
       }
-      .text-brand-red-accent {
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Brand Color Palette Utilities */
+      text-brand-red-accent {
         color: #b80f0a;
       } /* Accent red from "Grow Up" and icons */
       .text-brand-black-accent {
@@ -150,158 +153,271 @@
       .hover\:bg-brand-cta-red-dark:hover {
         background-color: #b80f0a;
       }
+      * Darker red on hover */
 
-      .section-title-overline {
-        /* For "Tentang Kami", "Layanan Kami" etc. */
-        font-size: 20px; /* 14px */
+        /* Section Titles */
+        .section-title-overline {
+        font-size: 14px; /* Adjusted from 20px for better balance */
         font-weight: 600;
         color: #b80f0a;
         text-transform: uppercase;
         letter-spacing: 0.05em;
-        margin-bottom: 0.5rem; /* Reduced margin */
-      }
-      .section-main-title {
-        /* For larger titles like "Cara Kami Membantu.." */
-        font-size: 32px; /* 36px */
-        font-weight: 500;
-        margin-bottom: 2.5rem; /* Increased margin */
+        margin-bottom: 0.5rem;
       }
 
-      .decorative-img-container > div {
-        overflow: hidden;
+      .section-judul {
+        font-size: 30px; /* Adjusted from 20px for better balance */
+        font-weight: 600;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        margin-bottom: 0.5rem;
+        line-height: 110%;
       }
+      .section-main-title {
+        font-size: 32px;
+        font-weight: 500;
+        margin-bottom: 2.5rem;
+      }
+
+      .header-scrolled-bg {
+        background-color: #ffffff; /* Same as body/hero background */
+      }
+
       /* Mobile menu styles */
       .mobile-menu-button svg {
         width: 1.5rem; /* 24px */
         height: 1.5rem; /* 24px */
       }
-
-      /* Custom class for header background on scroll */
-      .header-scrolled-bg {
-        background-color: #ffffff; /* Same as body/hero background */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
       }
 
-      /* Styling for "Cara Kami Membantu" cards */
-      .help-card {
-        background-color: white;
-        border-radius: 0.75rem; /* 12px */
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        padding: 1.5rem; /* 24px */
-        text-align: left;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        position: relative;
-      }
-      .help-card-red {
-        background-color: white;
-        border-radius: 0.75rem; /* 12px */
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        padding: 1.5rem; /* 24px */
-        text-align: left;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        position: relative;
-      }
-      .help-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px -3px #ffb30052, 0 4px 6px -2px #ffb30052;
-      }
-      .help-card-red:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px -3px #b80f0a52, 0 4px 6px -2px #b80f0a52;
-      }
-      .help-card-image {
-        width: 100%;
-        height: 150px; /* Fixed height for images */
-        object-fit: cover;
-        border-radius: 0.5rem; /* 8px */
-        margin-bottom: 1rem;
+      section {
+        padding: 80px 0;
       }
 
-      .help-card h4 {
-        font-size: 1.125rem; /* 18px */
+      h2 {
+        text-align: center;
+        font-size: 32px;
         font-weight: 700;
-        margin-bottom: 0.5rem;
-      }
-      .help-card p {
-        font-size: 0.875rem; /* 14px */
-        color: #000; /* text-brand-gray */
-        line-height: 1.6;
+        margin-bottom: 1rem;
+        color: var(--dark);
       }
 
-      .help-card-number {
-        display: inline-flex;
+      .subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto 40px;
+      }
+
+      /* Button Styles */
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        border-radius: 8px; /* Rounded corners */
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .btn-accent {
+        background-color: #ffb400; /* bg-brand-yellow */
+        color: #ffffff; /* text-brand-black-accent */
+      }
+
+      .btn-accent:hover {
+        background-color: #e6a200; /* hover:bg-brand-yellow-dark */
+        transform: translateY(-2px); /* Slight lift on hover */
+      }
+
+      .judul {
+        background-color: var(--primary);
+      }
+
+      .judul-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      /* Benefits Section */
+      .benefits {
+        background-color: white;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .benefit-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .benefit-icon {
+        font-size: 2.5rem;
+        color: #b80f0a;
+        margin-bottom: 20px;
+      }
+
+      .benefit-card h3 {
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      /* Curriculum Section */
+      .curriculum {
+        background-color: var(--light);
+      }
+
+      .accordion {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .accordion-item {
+        margin-bottom: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background-color: white;
+      }
+
+      .accordion-header {
+        padding: 20px;
+        background-color: white;
+        color: var(--dark);
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-        width: 50px;
-        height: 50px;
-        background-color: #ffb400;
-        border-radius: 50%;
-        padding: 10px; /* Ruang di dalam lingkaran */
-        margin-bottom: 0.75rem;
-        box-sizing: border-box;
+        border-left: 5px solid var(--primary);
       }
 
+      .accordion-header i {
+        transition: transform 0.3s ease;
+      }
+
+      .accordion-content {
+        padding: 0 25px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+        color: var(--text-light);
+      }
+
+      .accordion-content p {
+        padding-bottom: 20px;
+      }
+
+      .accordion-item.active .accordion-header {
+        color: var(--primary);
+      }
+
+      .accordion-item.active .accordion-header i {
+        transform: rotate(180deg);
+      }
+
+      .accordion-item.active .accordion-content {
+        max-height: 300px; /* Adjust as needed */
+        padding-top: 10px;
+      }
+
+      /* Pricing Section */
+      .pricing {
+        background-color: white;
+      }
+
+      .price-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 40px;
+        max-width: 600px;
+        margin: 0 auto;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border: 2px solid var(--primary);
+        text-align: center;
+      }
+
+      .price {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        margin: 15px 0;
+      }
+
+      .price-day {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--secondary);
+        margin: 0 0 15px 0;
+      }
+
+      .price-card > p {
+        margin-bottom: 30px;
+      }
+
+      .price-includes {
+        text-align: left;
+        margin: 30px 0;
+        display: inline-block;
+      }
+
+      .price-includes ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .price-includes h4 {
+        font-size: 1.1rem;
+        margin-bottom: 15px;
+      }
+
+      .price-includes li {
+        margin-bottom: 12px;
+        position: relative;
+        padding-left: 30px;
+      }
+
+      .price-includes li:before {
+        content: "\f00c"; /* Font Awesome Check icon */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: #b80f0a; /* Green check */
+        position: absolute;
+        left: 0;
+      }
+
+      /* Responsive adjustments for hero section */
       @media (max-width: 768px) {
-        .help-card-number {
-          width: 40px;
-          height: 40px;
-          padding: 6px;
+        h2 {
+          font-size: 28px;
+        }
+
+        section {
+          padding: 60px 0;
         }
       }
 
       @media (max-width: 480px) {
-        .help-card-number {
-          width: 30px;
-          height: 30px;
-          padding: 4px;
-        }
-      }
-
-      /* Loading Screen */
-      #preloader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: white;
-        z-index: 9999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      /* Custom loader - bouncing dots */
-      .custom-loader span {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        margin: 0 4px;
-        background-color: #fbbf24; /* Tailwind's yellow-400 */
-        border-radius: 50%;
-        animation: bounce 1.2s infinite ease-in-out both;
-      }
-
-      .custom-loader span:nth-child(1) {
-        animation-delay: -0.32s;
-      }
-      .custom-loader span:nth-child(2) {
-        animation-delay: -0.16s;
-      }
-      .custom-loader span:nth-child(3) {
-        animation-delay: 0s;
-      }
-
-      @keyframes bounce {
-        0%,
-        80%,
-        100% {
-          transform: scale(0);
-        }
-        40% {
-          transform: scale(1);
-        }
       }
     </style>
   </head>
@@ -316,12 +432,13 @@
         <button id="wa-close">×</button>
       </div>
 
-      <a class="wa-button" id="waLink4" href="#" target="_blank">
+      <a id="waLink4" href="#" class="wa-button" target="_blank">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
           alt="WA"
         />
       </a>
+    </div>
     </div>
     <!-- Header / Navigation -->
     <header
@@ -353,15 +470,15 @@
           <nav class="hidden md:flex space-x-6 items-center">
             <a
               href="/Beranda/"
-              class="text-sm text-brand-nav hover:text-[#FFB400]"
+              class="text-sm font-medium text-brand-nav hover:text-[#FFB400]"
               >Beranda</a
             >
-            <a href="/Tentang-Kami/" class="text-sm font-bold text-brand-dark"
+            <a
+              href="/Tentang-Kami/"
+              class="text-sm font-medium text-brand-nav hover:text-[#FFB400]"
               >Tentang</a
             >
-            <a
-              href="/Beranda/#layanan"
-              class="text-sm font-medium text-brand-nav hover:text-[#FFB400]"
+            <a href="/Beranda/#layanan" class="text-sm font-bold text-brand-dark"
               >Layanan</a
             >
             <a
@@ -436,173 +553,205 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
-    <section
-      class="pt-16 md:pt-24 px-4 sm:px-6 lg:px-8 mb-10 bg-[#FFB4000D] pb-20"
-    >
-      <div
-        class="container mx-auto grid md:grid-cols-[2fr_1fr] gap-12 items-center"
-      >
-        <div>
-          <h1 class="text-3xl sm:text-4xl lg:text-6xl font-medium mb-5">
-            Virexa Talenta Indonesia
-            <span class="text-brand-red-accent">bukan</span> sekedar nama
-          </h1>
+    <!-- Section Judul -->
+    <section id="judul_pelatihan" class="judul">
+      <div class="container" style="background-color: #b80f0a; padding: 20px">
+        <p style="color: #ffffff; font-size: small; margin-bottom: 20px">
+          <a href="/Beranda/">Home /</a> Layanan / Smart With AI
+        </p>
+        <p
+          class="section-judul mb-5 flex items-center gap-3 border-b-2 border-white pb-4"
+        >
+          Smart With AI : Pelatihan Dasar Pemanfaatan AI
+        </p>
+        <p style="color: #ffffff">
+          Pelatihan ini dirancang untuk membantu anda memahami, memanfaatkan, dan mengintegrasikan teknologi kecerdasan buatan (Artificial Intelligence) secara efektif dalam aktivitas kerja sehari-hari guna meningkatkan produktivitas, kualitas pengambilan keputusan, dan efisiensi proses bisnis.
+        </p>
+      </div>
+    </section>
+
+    <!-- Benefits / Fasilitas -->
+    <section id="benefits" class="benefits">
+      <div class="container">
+        <p class="section-title-overline mb-5 flex items-center gap-3">
+          <span class="w-2 h-5 bg-brand-cta-red block"></span>
+          Fasilitas yang Didapatkan
+        </p>
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-book-open"></i>
+            </div>
+            <h3>Materi/Modul Pelatihan (handout)</h3>
+            <p>
+              Materi terstruktur dengan studi kasus nyata dari berbagai
+              industri.
+            </p>
+          </div>
+
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-medal"></i>
+            </div>
+            <h3>Sertifikat Pelatihan</h3>
+            <p>Bukti kompetensi untuk pengembangan profesional tim Anda.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-pen"></i>
+            </div>
+            <h3>Perlengkapan (ATK)</h3>
+            <p>Selama pelatihan, ATK telah kami sediakan untuk peserta</p>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Kurikulum -->
+    <section id="curriculum" class="curriculum">
+      <div class="container">
+        <h2 class="mb-5" style="font-size: 30px; font-weight: 700">
+          Materi Pelatihan
+        </h2>
+        <div class="accordion">
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Pengenalan & Mindset AI</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Memberikan pemahaman dasar tentang AI serta membangun pola pikir adaptif agar AI dimanfaatkan sebagai alat bantu kerja yang cerdas, etis, dan bernilai tambah.
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span
+                >Eksplorasi AI Tools</span
+              >
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Mengenalkan berbagai tools AI yang relevan untuk mendukung pekerjaan sehari-hari serta cara memilih dan menggunakannya secara efektif.
+              </p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Workshop Praktikal</span>
+              <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="accordion-content">
+              <p>
+                Sesi praktik langsung untuk menerapkan AI dalam kasus kerja nyata dan menghasilkan output yang dapat digunakan secara langsung.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Harga & Durasi -->
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <h2 class="mb-5" style="font-size: 25px; font-weight: 700">
+          Harga Inhouse Training*
+        </h2>
+
+        <div class="price-card">
+          <h3 style="font-size: 22px; font-weight: 600; color: #333">
+            2 Hari (1 @ 6 Jam)
+          </h3>
+          <div class="price">
+            Rp 1.500.000
+            <span style="font-size: 18px; font-weight: 500; color: #000000"
+              >/orang</span
+            >
+          </div>
+          <p style="font-size: 14px; font-weight: 500">
+            Minimal 25 peserta – Maksimal 35 peserta
+          </p>
+
+          <div class="price-includes">
+            <ul>
+              <li>Modul Pelatihan Smart With AI : Pengenalan dasar pemanfaatan AI </li>
+              <li>Sertifikat Pelatihan </li>
+              <li>Perlengkapan (ATK)</li>
+            </ul>
+          </div>
           <a
-            id="waLink"
+            id="jadwal_wa"
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-block bg-brand-yellow text-white font-semibold py-3 px-8 rounded-lg shadow-md hover:text-brand-dark transition duration-300 text-base"
+            class="btn btn-accent"
+            style="margin: 50px 0 0 0"
+            >Jadwalkan Pelatihan</a
           >
-            Kontak Kami
-          </a>
+          <p style="font-size: 10px; font-weight: 500">
+            *Harga belum termasuk tempat pelatihan dan konsumsi peserta
+          </p>
         </div>
-        <!-- Decorative Images -->
-        <div class="hidden md:flex justify-end">
-          <div class="pr-4">
+      </div>
+    </section>
+
+     <!-- Testimoni Section -->
+    <section id="testimoni" class="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+      <div class="container mx-auto text-center">
+        <p class="section-title-overline">Testimoni Client</p>
+        <h2 class="section-main-title text-brand-dark">
+          Apa Kata Mereka Tentang Virexa?
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8 mt-8">
+          <!-- Testimonial Card 1 (Placeholder) -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
             <img
-              src="/image/tentangkami.webp"
-              alt="Foto Kegiatan Virexa"
-              class="w-full max-w-[700px] h-auto object-contain"
+              src="/image/klien1.png"
+              alt="Foto Klien 1"
+              class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover"
             />
+            <p class="text-brand-gray italic mb-4">
+              "Sangat luar biasa dan menginspirasi. Inilah yang memang dibutuhkan untuk meningkatkan kinerja perusahaan. Saya sangat terinspirasi untuk menaikkan target perusahaan, dan banyak gambaran baru yang muncul terkait strategi peningkatan ke depan."
+            </p>
+            <h4 class="font-bold text-brand-dark">Taufikurahman</h4>
+            <p class="text-sm text-brand-gray">Manajer, Semarang</p>
+          </div>
+          <!-- Testimonial Card 2 (Placeholder) -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <img
+              src="/image/klien2.png"
+              alt="Foto Klien 1"
+              class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover"
+            />
+            <p class="text-brand-gray italic mb-4">
+              "Semangat saya benar-benar ter-boost. Banyak gambaran dan pelajaran berharga untuk perbaikan perusahaan. Ternyata, masih banyak hal yang bisa ditingkatkan dari sisi internal dan strategi."
+            </p>
+            <h4 class="font-bold text-brand-dark">Abdan Sakura</h4>
+            <p class="text-sm text-brand-gray">Manajer, Pekanbaru</p>
+          </div>
+          <!-- Testimonial Card 2 (Placeholder) -->
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <img
+              src="/image/klien3.png"
+              alt="Foto Klien 1"
+              class="w-24 h-24 rounded-full mx-auto mb-6 border-4 border-brand-yellow object-cover"
+            />
+            <p class="text-brand-gray italic mb-4">
+              "Saya merasa sangat termotivasi dan semangat saya kembali terpompa. Sekarang saya memiliki gambaran yang lebih jelas tentang bagaimana meningkatkan produksi di perusahaan saya."
+            </p>
+            <h4 class="font-bold text-brand-dark">Ali Sakti Hasibuan</h4>
+            <p class="text-sm text-brand-gray">Manajer, Padang Sidempuan</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="px-4 sm:px-8 py-16 bg-white">
-      <div class="max-w-4xl mx-auto space-y-12">
-        <!-- Filosofi -->
-        <div
-          class="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-4 md:space-y-0 items-start space-x-4 border-b-2 border-black pb-20"
-        >
-          <div class="shrink-0">
-            <h2 class="text-3xl font-bold relative inline-block">
-              <span class="relative z-10">TENTANG KAMI</span>
-              <span
-                class="absolute inset-x-0 bottom-0 h-5 bg-[#E4312B]/30 z-0"
-              ></span>
-            </h2>
-          </div>
-          <p class="text-lg text-gray-700 text-justify">
-            <span class="font-bold">PT Virexa Talenta Indonesia</span> adalah
-            perusahaan yang berdiri untuk menjadi mitra transformasi organisasi
-            publik, korporasi dan sosial melalui sistem manajemen strategis,
-            pengembangan SDM, digitalisasi proses kerja, serta penyediaan
-            talenta strategis. <br /><br />Kami percaya bahwa organisasi yang
-            kuat dibangun dari tiga fondasi utama: arah yang jelas, sistem yang
-            kokoh, dan orang-orang yang tepat. Dengan pendekatan berbasis
-            Management System yang telah terbukti sukses di sektor industri dan
-            sosial, kami hadir sebagai katalisator perubahan yang berkelanjutan
-            dan terukur. <br /><br />Lebih dari sekadar konsultasi, kami
-            mendampingi instansi dalam membangun budaya kerja profesional,
-            adaptif, dan berdampak demi terciptanya pelayanan publik yang unggul
-            dan organisasi yang berdaya saing tinggi.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="px-4 sm:px-8 py-5 bg-white">
-      <div class="max-w-4xl mx-auto space-y-12">
-        <!-- Filosofi -->
-        <div
-          class="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-4 md:space-y-0 items-start space-x-4 border-b-2 border-black pb-20"
-        >
-          <div class="shrink-0">
-            <h2 class="text-3xl font-bold relative inline-block">
-              <span class="relative z-10">FILOSOFI</span>
-              <span
-                class="absolute inset-x-0 bottom-0 h-5 bg-[#FFB400]/30 z-0"
-              ></span>
-            </h2>
-          </div>
-          <p class="text-lg text-gray-700 text-justify">
-            <span class="font-bold">Virexa Talenta Indonesia</span> lahir dari
-            keyakinan bahwa keberanian dan keunggulan adalah fondasi utama untuk
-            membentuk generasi Indonesia yang siap menghadapi perubahan dunia.
-            <br /><br />Kami percaya bahwa setiap individu adalah
-            <span class="font-bold">pejuang perubahan (vir)</span> yang
-            <span class="font-bold"
-              >memiliki potensi besar untuk berkembang (exa)</span
-            >. Dengan pendekatan strategis dan humanis, kami hadir sebagai mitra
-            pertumbuhan organisasi melalui pemberdayaan, pelatihan, dan
-            pendampingan untuk melahirkan talenta unggul yang siap menjawab
-            tantangan zaman dan membawa perubahan nyata di lingkungan kerjanya.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="px-4 sm:px-8 py-16 bg-white pb-20">
-      <div class="max-w-4xl mx-auto space-y-12">
-        <!-- VISI -->
-        <div
-          class="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-4 md:space-y-0 items-start"
-        >
-          <div class="shrink-0">
-            <h2 class="text-3xl font-bold relative inline-block">
-              <span class="relative z-10">VISI</span>
-              <span
-                class="absolute inset-x-0 bottom-0 h-5 bg-[#E4312B]/30 z-0"
-              ></span>
-            </h2>
-          </div>
-          <p class="text-lg text-gray-700 text-justify">
-            Menjadi mitra transformasi organisasi terbaik di Indonesia untuk
-            sektor publik, korporasi dan sosial, melalui sistem manajemen unggul
-            dan penyediaan talenta strategis.
-          </p>
-        </div>
-
-        <!-- MISI -->
-        <div
-          class="flex flex-col md:flex-row md:items-start md:space-x-4 space-y-4 md:space-y-0 items-start space-x-4"
-        >
-          <div class="shrink-0">
-            <h2 class="text-3xl font-bold relative inline-block">
-              <span class="relative z-10">MISI</span>
-              <span
-                class="absolute inset-x-0 bottom-0 h-5 bg-[#FFB400]/30 z-0"
-              ></span>
-            </h2>
-          </div>
-          <ul
-            class="list-disc text-lg text-gray-700 pl-5 space-y-2 text-justify"
-          >
-            <li>
-              Meningkatkan daya saing instansi publik, korporasi dan lembaga
-              sosial melalui penerapan sistem manajemen yang terintegrasi,
-              berbasis nilai, dan berorientasi hasil.
-            </li>
-            <li>
-              Memberikan solusi strategis dalam bidang perencanaan, kinerja,
-              struktur organisasi, dan digitalisasi proses kerja.
-            </li>
-            <li>
-              Menyediakan talenta strategis yang siap pakai melalui proses
-              rekrutmen, asesmen, dan pembinaan eksekutif berbasis kebutuhan
-              organisasi.
-            </li>
-            <li>Membangun budaya kerja profesional dan berkelanjutan.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.175182991176!2d106.83834327589148!3d-6.240628361111317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3c09753d66f%3A0xc80a23bc8ba0219d!2sMenara%20Bidakara%202!5e0!3m2!1sen!2sid!4v1754282499909!5m2!1sen!2sid"
-        width="100%"
-        height="400"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      >
-      </iframe>
-    </section>
 
     <!-- Footer -->
     <section id="Kontak" class="bg-[#B80F0A] text-white">
@@ -613,11 +762,12 @@
         >
           <h2
             class="text-xl sm:text-3xl font-extrabold leading-tight pb-5 sm:pb-0"
+            style="color: #ffffff"
           >
             Ayo Terhubung Dengan Kami
           </h2>
           <a
-            id="waLink2"
+            id="waLink"
             href="#"
             target="_blank"
             rel="noopener noreferrer"
@@ -856,6 +1006,25 @@
         }
       });
 
+      document.addEventListener("DOMContentLoaded", function () {
+        const accordionItems = document.querySelectorAll(".accordion-item");
+
+        accordionItems.forEach((item) => {
+          const header = item.querySelector(".accordion-header");
+          header.addEventListener("click", () => {
+            // Optional: close other items
+            const currentlyActive = document.querySelector(
+              ".accordion-item.active"
+            );
+            if (currentlyActive && currentlyActive !== item) {
+              currentlyActive.classList.remove("active");
+            }
+
+            // Toggle current item
+            item.classList.toggle("active");
+          });
+        });
+      });
       // Ambil waktu saat ini di zona Asia/Jakarta (WIB)
       const now = new Date().toLocaleString("en-US", {
         timeZone: "Asia/Jakarta",
@@ -876,15 +1045,13 @@
         greeting = "Selamat malam";
       }
 
-      // Buat pesan WhatsApp
-      const message = `${greeting}, nama saya [isi nama Anda], saya tertarik dengan layanan PT Virexa Talenta Indonesia`;
+      const message = `Halo ${greeting}, nama saya [isi nama Anda], saya tertarik dengan layanan PT Virexa Talenta Indonesia`;
       const encodedMessage = encodeURIComponent(message);
-
-      // Nomor tujuan WhatsApp
+      const message_jadwal = `Halo ${greeting}, Nama saya [Nama Anda], saya ingin menjadwalkan pelatihan untuk sesi *Values Organisasi : Menjadikan Nilai sebagai Budaya Hidup Organisasi*. Mohon informasi lebih lanjut terkait ketersediaan jadwal dan teknis pelatihannya. Terima kasih.`;
+      const encodedMessage_jadwal = encodeURIComponent(message_jadwal);
       const phoneNumber = "6281385631179";
 
-      // Update semua tautan WA
-      ["waLink", "waLink2", "waLink3", "waLink4"].forEach((id) => {
+      ["waLink", "waLink4"].forEach((id) => {
         const el = document.getElementById(id);
         if (el) {
           el.href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -892,7 +1059,9 @@
           el.rel = "noopener"; // aman dari eksploitasi window.opener
         }
       });
-
+      document.getElementById(
+        "jadwal_wa"
+      ).href = `https://wa.me/${phoneNumber}?text=${encodedMessage_jadwal}`;
       // Jalankan script setelah seluruh halaman dimuat
       window.addEventListener("DOMContentLoaded", () => {
         const popup = document.getElementById("wa-popup");
