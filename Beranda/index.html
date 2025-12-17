@@ -1,7 +1,86 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <link rel="icon" href="/image/logo.png" type="image/png" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://virexa.co.id/#website",
+          "url": "https://virexa.co.id/",
+          "name": "Virexa Talenta Indonesia",
+          "description": "Mitra transformasi organisasi yang mendorong perubahan berkelanjutan melalui sistem manajemen strategis, pengembangan SDM, digitalisasi, dan penyediaan talenta unggul.",
+          "inLanguage": "id-ID",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://virexa.co.id/search/{search_term_string}/"
+            },
+            "query-input": "required name=search_term_string"
+          },
+          "publisher": {
+            "@id": "https://virexa.co.id/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://virexa.co.id/#webpage",
+          "url": "https://virexa.co.id/",
+          "name": "Beranda - Virexa Talenta Indonesia",
+          "description": "Halaman utama Virexa Talenta Indonesia yang menyediakan informasi tentang layanan transformasi organisasi.",
+          "inLanguage": "id-ID",
+          "isPartOf": {
+            "@id": "https://virexa.co.id/#website"
+          },
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "@id": "https://virexa.co.id/#breadcrumb",
+            "itemListElement": {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Beranda"
+            }
+          },
+          "potentialAction": {
+            "@type": "ReadAction",
+            "target": "https://virexa.co.id/"
+          },
+          "about": {
+            "@id": "https://virexa.co.id/#organization"
+          }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://virexa.co.id/#organization",
+          "name": "PT Virexa Talenta Indonesia",
+          "url": "https://virexa.co.id/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://virexa.co.id/image/logo.png",
+            "contentUrl": "https://virexa.co.id/image/logo.png",
+            "width": 112,
+            "height": 112
+            
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+62-813-8563-1179",
+            "contactType": "Customer Service",
+            "areaServed": "ID",
+            "availableLanguage": "Indonesian"
+          }
+        }
+      ]
+    }
+    </script>
+
+
+    <link rel="canonical" href="https://virexa.co.id/">
+    <meta name="google-site-verification" content="Ncxkvk5qYuas2sB6vI-69EF9Ej4Bkx6egxN4zXSy63s" />
+    <meta name="description" content="Virexa Talenta Indonesia, pejuang perubahan dalam transformasi organisasi, korporasi, dan sosial.">
+    <link rel="icon" href="/image/logo.png" type="image/png" alt="Logo Virexa Talenta Indonesia" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Virexa Talenta Indonesia - We Help Great Companies Grow Up</title>
@@ -24,6 +103,21 @@
       referrerpolicy="no-referrer"
     />
     <style>
+      :root {
+        /* Warna dasar */
+        --color-white: #ffffff;
+        --color-black: #000000;
+        --color-red: #b80f0a;
+        --color-yellow: #ffb400;
+        --color-gray: #555555;
+        --color-green: #25d366;
+
+        /* Shadow/opacity versi warna */
+        --color-red-shadow: rgba(184, 15, 10, 0.32);
+        --color-yellow-shadow: rgba(255, 180, 0, 0.32);
+        --color-black-shadow: rgba(0, 0, 0, 0.2);
+
+      }
       /* Container utama */
       #wa-container {
         position: fixed;
@@ -37,13 +131,13 @@
 
       /* Popup pesan */
       #wa-popup {
-        background: #ffffff;
+        background: var(--color-white);
         border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 4px 12px var(--color-black-shadow);
         padding: 12px 16px;
         font-family: "Segoe UI", sans-serif;
         font-size: 14px;
-        color: #333;
+        color: var(--color-black);
         max-width: 220px;
         position: relative;
         animation: fadeInUp 0.5s ease;
@@ -57,13 +151,13 @@
         background: transparent;
         border: none;
         font-size: 16px;
-        color: #888;
+        color: var(--color-gray);
         cursor: pointer;
         line-height: 1;
       }
 
       #wa-close:hover {
-        color: #000;
+        color: var(--color-black);
       }
 
       /* Ikon WhatsApp */
@@ -71,9 +165,9 @@
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: #25d366;
+        background: var(--color-green);
         padding: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 12px var(--color-black-shadow);
         transition: transform 0.2s;
       }
 
@@ -94,52 +188,56 @@
       }
       body {
         font-family: "Poppins", sans-serif;
-        background-color: #ffffff; /* Light beige background */
-        color: #333333; /* Default text color */
+        background-color: var(--color-white); /* Light beige background */
+        color: var(--color-gray); /* Default text color */
       }
       .text-brand-red-accent {
-        color: #b80f0a;
+        color: var(--color-red);
       } /* Accent red from "Grow Up" and icons */
       .text-brand-black-accent {
-        color: #000000;
+        color: var(--color-black)
+;
       }
       .bg-brand-yellow {
-        background-color: #ffb400;
+        background-color: var(--color-yellow);
       } /* Button color */
       .bg-brand-black {
-        background-color: #000000;
+        background-color: var(--color-black)
+;
       }
       .hover\:bg-brand-yellow-dark:hover {
-        background-color: #ffb400;
+        background-color: var(--color-yellow);
       }
       .text-brand-dark {
-        color: #000000;
+        color: var(--color-black)
+;
       }
       .text-brand-gray {
-        color: #555555;
+        color: var(--color-gray);
       }
       .text-brand-yellow {
-        color: #ffb400;
+        color: var(--color-yellow);
       }
       .text-brand-nav {
-        color: #6b7280;
+        color: var(--color-gray);
       } /* Slightly muted color for nav links */
       .hover\:text-brand-dark:hover {
-        color: #000000;
+        color: var(--color-black)
+;
       }
 
       .bg-brand-cta-red {
-        background-color: #b80f0a;
+        background-color: var(--color-red);
       } /* Prominent red for final CTA section */
       .hover\:bg-brand-cta-red-dark:hover {
-        background-color: #b80f0a;
+        background-color: var(--color-red);
       }
 
       .section-title-overline {
         /* For "Tentang Kami", "Layanan Kami" etc. */
         font-size: 20px; /* 14px */
         font-weight: 600;
-        color: #b80f0a;
+        color: var(--color-red);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 0.5rem; /* Reduced margin */
@@ -162,25 +260,25 @@
 
       /* Custom class for header background on scroll */
       .header-scrolled-bg {
-        background-color: #ffffff; /* Same as body/hero background */
+        background-color: var(--color-white); /* Same as body/hero background */
       }
 
       /* Styling for "Cara Kami Membantu" cards */
       .help-card {
-        background-color: white;
+        background-color: var(--color-white);
         border-radius: 0.75rem; /* 12px */
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 6px -1px var(--color-black-shadow),
+          0 2px 4px -1px var(--color-black-shadow);
         padding: 1.5rem; /* 24px */
         text-align: left;
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         position: relative;
       }
       .help-card-red {
-        background-color: white;
+        background-color: var(--color-white);
         border-radius: 0.75rem; /* 12px */
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 6px -1px var(--color-black-shadow),
+          0 2px 4px -1px var(--color-black-shadow);
         padding: 1.5rem; /* 24px */
         text-align: left;
         transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -209,7 +307,7 @@
       }
       .help-card p {
         font-size: 0.875rem; /* 14px */
-        color: #000; /* text-brand-gray */
+        color: var(--color-black); /* text-brand-gray */
         line-height: 1.6;
       }
 
@@ -219,7 +317,7 @@
         justify-content: center;
         width: 50px;
         height: 50px;
-        background-color: #ffb400;
+        background-color: var(--color-yellow);
         border-radius: 50%;
         padding: 10px; /* Ruang di dalam lingkaran */
         margin-bottom: 0.75rem;
@@ -249,7 +347,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: white;
+        background: var(--color-white);
         z-index: 9999;
         display: flex;
         justify-content: center;
@@ -262,7 +360,7 @@
         width: 12px;
         height: 12px;
         margin: 0 4px;
-        background-color: #fbbf24; /* Tailwind's yellow-400 */
+        background-color: var(--color-yellow); /* Tailwind's yellow-400 */
         border-radius: 50%;
         animation: bounce 1.2s infinite ease-in-out both;
       }
@@ -303,10 +401,10 @@
       }
 
       .swiper-pagination-bullet {
-        background-color: #e4312b !important;
+        background-color: var(--color-white) !important;
       }
       .swiper-pagination-bullet-active {
-        background-color: #e4312b !important;
+        background-color: var(--color-white)!important;
       }
     </style>
   </head>
@@ -314,7 +412,7 @@
     <!-- Animasi Loading -->
     <div id="preloader">
       <div class="flex flex-col items-center gap-4">
-        <img src="/image/logo.png" alt="Logo" class="w-16 h-16 animate-pulse" />
+        <img src="/image/logo.png" alt="Logo Virexa Talenta Indonesia" class="w-16 h-16 animate-pulse" />
         <p class="text-sm text-gray-600">Virexa Talenta Indonesia</p>
         <div class="custom-loader"><span></span><span></span><span></span></div>
       </div>
@@ -350,7 +448,7 @@
             <img
               id="logo"
               src="/image/logo.png"
-              alt="Logo"
+              alt="Logo Virexa Talenta Indonesia"
               class="h-[30px] w-auto transition-all duration-300"
             />
             <a
@@ -383,7 +481,7 @@
               >Kontak</a
             >
             <a
-              href="https://drive.google.com/file/d/1OWtWtPoinim78KJMtzWsTO4w3xZLhNJc/view?usp=sharing"
+              href="https://drive.google.com/file/d/1Im_YTvqgZgZJu6Irf9d4MSNBu16_mcLg/view?usp=sharing"
               target="_blank"
               class="text-sm font-medium bg-brand-yellow text-white px-4 py-2 rounded-md hover:text-brand-dark transition-colors"
               >Company Profile</a
@@ -441,7 +539,7 @@
           >Kontak</a
         >
         <a
-          href="https://drive.google.com/file/d/1OWtWtPoinim78KJMtzWsTO4w3xZLhNJc/view?usp=sharing"
+          href="https://drive.google.com/file/d/1Im_YTvqgZgZJu6Irf9d4MSNBu16_mcLg/view?usp=sharing"
           target="_blank"
           class="block px-4 py-3 text-sm text-white bg-brand-yellow hover:bg-brand-yellow-dark text-center"
           >Company profile</a
@@ -497,11 +595,11 @@
         </p>
         <div class="grid md:grid-cols-2 gap-12 items-start">
           <div>
-            <div class="rounded-lg overflow-hidden shadow-lg mb-6">
+            <div class="relative w-full aspect-[16/9] overflow-hidden rounded-lg shadow-lg mb-6">
               <img
                 src="/image/tentang1.png"
                 alt="Tim Virexa sedang rapat"
-                class="w-full h-auto object-cover"
+                class="absolute inset-0 w-full h-full object-cover"
               />
             </div>
             <h3 class="text-2xl font-medium mb-4">Lebih Dari Nama</h3>
@@ -521,11 +619,11 @@
           </div>
 
           <div>
-            <div class="rounded-lg overflow-hidden shadow-lg mb-6">
+            <div class="relative w-full aspect-[16/9] overflow-hidden rounded-lg shadow-lg mb-6">
               <img
                 src="/image/tentang2.png"
                 alt="Tim Virexa sedang berdiskusi strategi"
-                class="w-full h-auto object-cover"
+                class="absolute inset-0 w-full h-full object-cover"
               />
             </div>
             <h3 class="text-2xl font-medium mb-4">Solusi Untuk Pertumbuhan</h3>
@@ -747,7 +845,7 @@
             <!-- Konten -->
             <div class="mt-14 px-4">
               <h4 class="text-lg font-semibold mb-2">
-                Kepemimpinan Efektif Pemimpin Organisasi Unggul
+                Kepemimpinan Efektif : Pemimpin Organisasi Unggul
               </h4>
               <ul
                 class="text-black-600 text-[14px] leading-[20px] list-disc list-inside mb-6"
@@ -975,22 +1073,8 @@
             <!-- Slide 3 -->
             <div class="swiper-slide">
               <img
-                src="/image/galeri3.png"
-                alt="Pelatihan 3"
-                class="w-full h-80 object-cover rounded-lg shadow-md"
-              />
-            </div>
-            <div class="swiper-slide">
-              <img
                 src="/image/galeri4.png"
                 alt="Pelatihan 4"
-                class="w-full h-80 object-cover rounded-lg shadow-md"
-              />
-            </div>
-            <div class="swiper-slide">
-              <img
-                src="/image/galeri5.png"
-                alt="Pelatihan 5"
                 class="w-full h-80 object-cover rounded-lg shadow-md"
               />
             </div>
@@ -1180,7 +1264,7 @@
           <div class="max-w-xs">
             <p class="font-extrabold mb-4">Kontak</p>
             <p class="text-xs mb-4 leading-relaxed">+62-813-8563-1179</p>
-            <p class="text-xs mb-4 leading-relaxed">info.virexa@gmail.com</p>
+            <p class="text-xs mb-4 leading-relaxed">info@virexa.co.id</p>
             <p class="text-xs leading-relaxed text-justify">
               MENARA BIDAKARA 2<br />
               Jl. Gatot Subroto Kav. 71-73, RT.8/RW.8, Menteng Dalam Kec. Tebet,

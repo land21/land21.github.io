@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://virexa.co.id/Beranda/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://virexa.co.id/Tentang-Kami/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://virexa.co.id/pengenalan-management-system-dasar/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://virexa.co.id/management-system-lanjutan/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://virexa.co.id/implementasi-management-system/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://virexa.co.id/kepemimpinan-efektif/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://virexa.co.id/basic-mentality/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://virexa.co.id/values-organisasi/</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://virexa.co.id/penyusunan-values-organisasi/</loc>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

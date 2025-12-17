@@ -3,3 +3,7 @@ RewriteBase /
 
 # Redirect root domain ke /Beranda/
 RewriteRule ^$ /Beranda/ [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^www\.virexa\.co\.id [NC,OR]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://virexa.co.id/$1 [L,R=301]
