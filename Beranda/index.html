@@ -542,63 +542,108 @@
       }
 
       .gallery-container {
-        position: relative;
-        width: 100%;
-        height: 60vh;
-        min-height: 400px;
-        overflow: hidden;
-        margin: 20px 0;
+      position: relative;
+        background: #FFB4000D;
+      width: 100%;
+      height: 80vh;
+      min-height: 600px;
+      overflow: hidden;
+      margin: 20px 0;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      gap: 16px;
+    }
+
+    /* Responsive heights - PENTING! */
+    @media (max-width: 1024px) {
+      .gallery-container {
+        height: 70vh;
+        min-height: 500px;
+        gap: 12px;
+        padding: 16px;
       }
+    }
+
+    @media (max-width: 768px) {
+      .gallery-container {
+        height: 65vh;
+        min-height: 450px;
+        gap: 10px;
+        padding: 12px;
+        flex-direction: row; /* Tetap horizontal di tablet */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-container {
+        height: 70vh; /* Lebih tinggi untuk mobile */
+        min-height: 500px; /* Lebih besar di mobile */
+        gap: 8px;
+        padding: 10px;
+        flex-direction: row; /* Horizontal untuk 1 kolom */
+      }
+    }
+
+    .gallery-column {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-column {
+        gap: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-column {
+        gap: 8px;
+        flex: 1; /* Full width untuk 1 kolom */
+      }
+    }
+
 
       .photo-item {
-      position: absolute;
-      border-radius: 12px;
+      position: relative;
+      border-radius: 8px; /* Lebih kecil di mobile */
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       opacity: 0;
       border: 1px solid rgba(0, 0, 0, 0.05);
-  
-    /* ← UBAH: Gunakan transform instead of left/top */
-    left: 0;
-    top: 0;
-    transform: translate(0, 0) scale(0.8) rotate(0deg);
-    
-    /* ← TAMBAH: GPU hints */
-    will-change: transform, opacity;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    
-    /* ← UBAH: Transisi spesifik, bukan 'all' */
-    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-                width 0.6s ease-out,
-                height 0.6s ease-out,  z-index 0s;
-  }
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.3s ease;
+      flex: 0 0 auto;
+    }
 
-.photo-item.active {
-  opacity: 1;
+      .photo-item.active {
+        opacity: 1;
+        transform: translateY(0);   
 
-}
+      }
 
-/* ← TAMBAH: State untuk changeLayout */
-.photo-item.transitioning {
-  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
-              width 0.5s ease-out,
-              height 0.5s ease-out,
-              z-index 0s;
-}
+      .photo-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      }
 
-.photo-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  
-  /* ← TAMBAH: Force GPU rendering */
-  transform: translateZ(0);
-  -webkit-transform: translateZ(0);
-}
+      @media (max-width: 768px) {
+      .photo-item:hover {
+        transform: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+      .photo-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        /* Tidak ada GPU acceleration */
+      }
 
       .photo-item::before {
         content: "";
@@ -615,37 +660,48 @@
       }
 
       .controls {
-        position: relative;
-        margin: 20px auto;
-        display: flex;
-        gap: 15px;
-        justify-content: center;
-        z-index: 1000;
-        background: rgba(0, 0, 0, 0.05);
-        backdrop-filter: blur(10px);
-        padding: 15px 25px;
-        border-radius: 50px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        max-width: fit-content;
-      }
+  position: relative;
+  margin: 20px auto;
+  display: flex;
+  gap: 0;
+  justify-content: center;
+  z-index: 1000;
+  background: #FFB4000D;
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  max-width: fit-content;
+  padding: 0;
+  overflow: hidden;
+}
 
+    @media (max-width: 768px) {
+      .controls {
+        gap: 0px;
+      }
+    }
+
+    .btn {
+  padding: 12px 24px;
+  border-radius: 0;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
+  border: none;
+  flex: 1;
+  font-weight: bold;
+}
+
+    @media (max-width: 768px) {
       .btn {
-        background: rgba(0, 0, 0, 0.05);
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        color: #333;
         padding: 10px 20px;
-        border-radius: 25px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.3s;
-        backdrop-filter: blur(5px);
+        font-size: 13px;
       }
+    }
 
-      .btn:hover {
-        background: rgba(0, 0, 0, 0.1);
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
+    .controls:hover {
+  background: rgba(255, 180, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(255, 180, 0, 0.3);
+}
 
       .info {
         position: relative;
@@ -671,24 +727,28 @@
 
       @keyframes floatcustom {
         0%, 100% {
-          transform: translate(var(--translate-x, 0), var(--translate-y, 0)) 
-                    translateY(0px) 
-                    rotate(var(--rotation, 0deg));  /* ✅ TAMBAH: default 0deg */
+          transform: translateY(0px);          /* ✅ UBAH jadi sederhana */
         }
         50% {
-          transform: translate(var(--translate-x, 0), var(--translate-y, 0)) 
-                    translateY(-20px) 
-                    rotate(var(--rotation, 0deg));  /* ✅ TAMBAH: default 0deg */
+          transform: translateY(-8px);        /* ✅ UBAH jadi sederhana */
         }
       }
 
       .photo-item.floating {
-        animation: floatCustom 6s ease-in-out infinite;  /* ✅ UBAH: float → floatCustom */
+        animation: floatCustom 5s ease-in-out infinite;  /* ✅ UBAH durasi */
       }
-.resizing .photo-item {
-  transition: none !important;
-  animation: none !important;
-}
+
+      /* Disable floating di mobile */
+      @media (max-width: 768px) {
+        .photo-item.floating {
+          animation: none;
+        }
+      }
+
+      .resizing .photo-item {
+        transition: none !important;
+        animation: none !important;
+      }
 
 
       @media (max-width: 768px) {
@@ -712,23 +772,21 @@
           font-size: 12px;
         }
 
-        .gallery-container {
-          height: 50vh;
-          min-height: 300px;
-        }
-        .photo-item {
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                width 0.4s ease-out,
-                height 0.4s ease-out;
-  }
-  
-  .photo-item.transitioning {
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-                width 0.3s ease-out,
-                height 0.3s ease-out;
-  }
+       
+       
       }
+      #photoCount {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 768px) {
+      #photoCount {
+        font-size: 12px;
+      }
+    }
+      
     </style>
   </head>
   <body class="text-brand-dark">
@@ -1458,28 +1516,17 @@
     </section>
 
     <section id="galeri" class="py-8 bg-[#FFB4000D]">
-      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <p class="section-title-overline mb-1 flex items-center gap-3 ">
-          <span class="w-2 h-5 bg-brand-cta-red block"></span>
-          Galeri Pelatihan
-        </p>
-        <p id="photoCount">Menampilkan 0 dari 0 foto</p>
-        <!-- <div class="info">
-          <h1 class="section-title-overline">Galeri Pelatihan</h1>
-          <p id="photoCount">Menampilkan 0 dari 0 foto</p>
-        </div> -->
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-bold mb-2">Galeri Pelatihan</h2>
+      <p id="photoCount">Menampilkan 0 dari 0 foto</p>
 
-        <div class="upload-section"></div>
+      <div class="gallery-container" id="gallery"></div>
 
-        <div class="gallery-container" id="gallery"></div>
-
-        <div class="controls">
-          <button class="btn" onclick="refreshGallery()">Cek Foto Lain</button>
-          <button class="btn" onclick="toggleAnimation()">Stop</button>
-          <button class="btn" onclick="changeLayout()">Pindah Posisi</button>
-        </div>
+      <div class="controls">
+        <button class="btn" onclick="refreshGallery()">Jelajahi Foto</button>
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- Be Brave Section -->
     <section class="py-5 pb-16 bg-black-800 text-white bg-[#FFB4000D]">
@@ -1510,7 +1557,7 @@
         <h2 class="section-main-title text-brand-dark">
           Apa Kata Mereka Tentang Virexa?
         </h2>
-        <div class="grid md:grid-cols-3 gap-8 mt-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8">
           <!-- Testimonial Card 1 (Placeholder) -->
           <div class="bg-white p-8 rounded-xl shadow-lg">
             <img
@@ -1520,7 +1567,7 @@
             />
             <h4 class="font-bold text-brand-dark">GANJAR RAMDANI SAPUTRA, S.Pd., M.Pd.</h4>
             <p class="text-sm text-brand-gray mb-6">Sekretaris, Badan Kesatuan Bangsa dan Politik</p>
-            <p class="text-brand-gray mb-2">
+            <p class="text-brand-gray mb-2 ">
               "Terima kasih kepada Virexa yang telah hadir di Kota Sukabumi dan berbagi ilmu. Pelatihan AI ini memberikan banyak pengetahuan baru bagi saya. Saya berharap ilmu yang saya dapatkan dapat saya tularkan kepada seluruh rekan kerja di kantor, karena pemahaman tentang AI sangat relevan dan penting untuk pengembangan kerja ke depan"
             </p>
             
@@ -1534,7 +1581,7 @@
             />
             <h4 class="font-bold text-brand-dark"> DRG. WITA DARMAWANTI, MMRS.</h4>
             <p class="text-sm text-brand-gray mb-6">Kepala Bidang Pencegahan dan Pengendalian Penyakit</p>
-            <p class="text-brand-grayx   mb-2">
+            <p class="text-brand-gray mb-2">
               "Sejak Virexa hadir dengan pelatihan kepemimpinan efektif ini, mindset kami mengalami perubahan yang signifikan. Saya terinspirasi dari materi 7 Habits yang disampaikan dengan sangat menarik. Selama dua hari pelatihan, saya tidak merasa mengantuk sama sekali, berbeda dengan pelatihan pada umumnya. Selain itu, interaksi dan komunikasi dengan rekan-rekan di ruangan ini terasa semakin kuat, meskipun kami biasanya sering bertemu di lingkungan kerja."
             </p>
             
@@ -1756,14 +1803,56 @@
       // Panggil fungsi saat DOM ready
       document.addEventListener("DOMContentLoaded", loadConfig);
 
-      let photos = [];
+    let photos = [];
 let currentPhotos = [];
-let isAnimating = true;
 let refreshInterval;
-let existingPositions = [];
 let allPhotosLoaded = false;
-const priorityPhotos = []; // Foto prioritas (1-10)
-const lazyPhotos = []; // Foto lazy load (11+)
+let isAnimating = true;
+const specialPhotos = [];
+const regularPhotos = [];
+const priorityPhotos = [];
+const lazyPhotos = [];
+     const layoutPatterns = {
+      1: [[100]], // Mobile: 1 foto per batch
+      2: [[60, 40], [50, 50], [40, 60]], // Tablet: 2 foto
+      3: [[40, 30, 30], [33, 34, 33], [30, 40, 30]], // Desktop kecil
+      4: [[30, 25, 25, 20], [25, 25, 25, 25], [35, 25, 20, 20]] // Desktop besar
+    };
+
+    function getLayoutPattern(columnCount) {
+      const patterns = layoutPatterns[columnCount] || layoutPatterns[3];
+      return patterns[Math.floor(Math.random() * patterns.length)];
+    }
+
+function getColumnCount() {
+      const width = window.innerWidth;
+      if (width >= 1200) return 4;      // Desktop besar: 4 kolom
+      if (width >= 992) return 3;       // Desktop kecil: 3 kolom
+      if (width >= 768) return 2;       // Tablet: 2 kolom
+      return 1;                         // Mobile: 1 kolom (PENTING!)
+    }
+// Fungsi untuk ganti foto non-fiks saja
+function replaceNonFixedPhotos() {
+  const columnCount = getColumnCount();
+  const avgPhotosPerColumn = 3.5;
+  const maxPhotos = Math.floor(columnCount * avgPhotosPerColumn);
+  
+  // Ambil foto non-fiks yang tersisa
+  const otherPhotos = photos.filter(p => !specialPhotos.includes(p) && !currentPhotos.includes(p));
+  
+  if (otherPhotos.length === 0) return currentPhotos;
+  
+  // Shuffle foto lain
+  const shuffled = [...otherPhotos].sort(() => Math.random() - 0.5);
+  
+  // Ganti foto non-fiks dengan foto baru
+  let newPhotos = [...specialPhotos]; // Foto fiks tetap
+  const remainingSlots = maxPhotos - specialPhotos.length;
+  
+  newPhotos = [...newPhotos, ...shuffled.slice(0, remainingSlots)];
+  
+  return newPhotos;
+}
 
 // Service Worker untuk Cache
 if ('serviceWorker' in navigator && getCookie('virexa_cache') === 'accepted') {
@@ -1785,9 +1874,36 @@ async function loadImagesFromFolder() {
   const extensions = ["webp", "jpg", "jpeg", "png", "JPG", "JPEG", "PNG"];
   
   // ========================================
-  // STEP 1: Load 10 foto PRIORITAS DULU
+  // STEP 1: Load 2 foto KHUSUS (galerifiks1-2)
   // ========================================
-  console.log('🚀 Loading priority images (1-10)...');
+  console.log('🎯 Loading special photos (galerifiks1-2)...');
+  const specialLoadPromises = [];
+  
+  for (let i = 1; i <= 2; i++) {  // ← UBAH: dari 5 ke 2
+    for (let ext of extensions) {
+      const path = `/Galeri/galerifiks${i}.${ext}`;
+      const promise = fetch(path, { method: 'HEAD' })
+        .then(response => {
+          if (response.ok) {
+            specialPhotos.push(path);
+            photos.push(path);
+            return true;
+          }
+          return false;
+        })
+        .catch(() => false);
+      
+      specialLoadPromises.push(promise);
+    }
+  }
+  
+  await Promise.all(specialLoadPromises);
+  console.log(`✅ ${specialPhotos.length} special photos loaded`);
+  
+  // ========================================
+  // STEP 2: Load 10 foto REGULER (galeri1-10)
+  // ========================================
+  console.log('🚀 Loading regular priority photos (galeri1-10)...');
   const priorityLoadPromises = [];
   
   for (let i = 1; i <= 10; i++) {
@@ -1796,6 +1912,7 @@ async function loadImagesFromFolder() {
       const promise = fetch(path, { method: 'HEAD' })
         .then(response => {
           if (response.ok) {
+            regularPhotos.push(path);
             priorityPhotos.push(path);
             photos.push(path);
             return true;
@@ -1808,29 +1925,28 @@ async function loadImagesFromFolder() {
     }
   }
   
-  // Tunggu 10 foto prioritas selesai cek
   await Promise.all(priorityLoadPromises);
+  console.log(`✅ ${regularPhotos.length} regular photos loaded`);
   
   // ========================================
   // TAMPILKAN GALERI SEGERA!
   // ========================================
-  if (priorityPhotos.length > 0) {
-    console.log(`✅ ${priorityPhotos.length} priority photos loaded!`);
+  if (specialPhotos.length > 0 || regularPhotos.length > 0) {
+    console.log(`📊 Total priority: ${photos.length} (${specialPhotos.length} special + ${regularPhotos.length} regular)`);
     updatePhotoCount();
-    displayPhotos(); // TAMPIL SEKARANG!
+    displayPhotos();
     
-    // Cache prioritas jika cookies diterima
     if (getCookie('virexa_cache') === 'accepted') {
-      cacheImages(priorityPhotos);
+      cacheImages([...specialPhotos, ...regularPhotos]);
     }
   } else {
-    console.warn('⚠️ No priority photos found, using placeholders');
+    console.warn('⚠️ No photos found, using placeholders');
     generatePlaceholders();
     displayPhotos();
   }
   
   // ========================================
-  // STEP 2: Load sisanya di BACKGROUND
+  // STEP 3: Load sisanya di BACKGROUND (11-100)
   // ========================================
   console.log('📦 Loading remaining images in background (11-100)...');
   setTimeout(async () => {
@@ -1842,7 +1958,7 @@ async function loadImagesFromFolder() {
           if (response.ok) {
             lazyPhotos.push(path);
             photos.push(path);
-            break; // Stop jika sudah ketemu 1 extension
+            break;
           }
         } catch (e) {
           // Skip
@@ -1851,17 +1967,17 @@ async function loadImagesFromFolder() {
     }
     
     allPhotosLoaded = true;
-    console.log(`✅ Total ${photos.length} images loaded (${priorityPhotos.length} priority + ${lazyPhotos.length} lazy)`);
+    console.log(`✅ Total ${photos.length} images loaded`);
     updatePhotoCount();
     
-    // Cache semua jika cookies diterima
     if (getCookie('virexa_cache') === 'accepted') {
       cacheImages(lazyPhotos);
     }
-  }, 100); // Minimal delay, langsung jalankan di background
+  }, 100);
 }
 
-      function generatePlaceholders() {
+// Generate placeholder images (fallback)
+function generatePlaceholders() {
   const colors = [
     ["#FF6B6B", "#4ECDC4"],
     ["#A8E6CF", "#FFD3B6"],
@@ -1901,211 +2017,158 @@ async function loadImagesFromFolder() {
 }
 
 function updatePhotoCount() {
-  const countElement = document.getElementById('photoCount');
-  if (countElement) {
-    countElement.textContent = `Menampilkan ${currentPhotos.length} dari ${photos.length} foto`;
-  }
-}
-
-// Fungsi untuk cek overlap
-function checkOverlap(newPos, existingPos) {
-  const margin = 50;
-  return !(
-    newPos.left + newPos.width + margin < existingPos.left ||
-    newPos.left > existingPos.left + existingPos.width + margin ||
-    newPos.top + newPos.height + margin < existingPos.top ||
-    newPos.top > existingPos.top + existingPos.height + margin
-  );
-}
-
-function getRandomPosition() {
-  const container = document.getElementById("gallery");
-  if (!container) return null;
-  
-  const vw = container.offsetWidth;
-  const vh = container.offsetHeight;
-  const minSize = Math.max(vw * 0.15, 80);
-  const maxSize = Math.min(vw * 0.35, 300);
-
-  let attempts = 0;
-  let position;
-
-  while (attempts < 100) {
-    const size = Math.random() * (maxSize - minSize) + minSize;
-    const aspectRatio = 0.7 + Math.random() * 0.6;
-    const width = size;
-    const height = size * aspectRatio;
-
-    position = {
-      width,
-      height,
-      left: Math.random() * (vw - width),
-      top: Math.random() * (vh - height),
-      rotation: (Math.random() - 0.5) * 15,
-    };
-
-    let hasOverlap = false;
-    for (let existingPos of existingPositions) {
-      if (checkOverlap(position, existingPos)) {
-        hasOverlap = true;
-        break;
+      const countElement = document.getElementById('photoCount');
+      if (countElement) {
+        countElement.textContent = `Menampilkan ${currentPhotos.length} dari ${photos.length} foto`;
       }
     }
-
-    if (!hasOverlap) {
-      existingPositions.push(position);
-      return position;
-    }
-    attempts++;
-  }
-
-  existingPositions.push(position);
-  return position;
-}
-
-function resetPositions() {
-  existingPositions = [];
-}
 
 function selectRandomPhotos() {
-  const count = 8 + Math.floor(Math.random() * 3);
-  
-  // Jika semua foto belum load, gunakan hanya foto prioritas
-  if (!allPhotosLoaded) {
-    const availablePhotos = priorityPhotos.length > 0 ? priorityPhotos : photos;
-    const shuffled = [...availablePhotos].sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, Math.min(count, shuffled.length));
-  }
-  
-  // Jika semua sudah load, random dari semua foto
-  const shuffled = [...photos].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count);
-}
-
-function displayPhotos() {
-  const gallery = document.getElementById("gallery");
-  if (!gallery) return;
-  
-  gallery.innerHTML = "";
-  currentPhotos = selectRandomPhotos();
-  resetPositions();
-  
-  // ✅ TAMBAH: Shuffle z-index untuk variasi
-  const shuffledIndices = Array.from({length: currentPhotos.length}, (_, i) => i)
-    .sort(() => Math.random() - 0.5);
-  
-  currentPhotos.forEach((photo, index) => {
-    const pos = getRandomPosition();
-    if (!pos) return;
-    
-    const photoDiv = document.createElement("div");
-    photoDiv.className = "photo-item";
-    
-    // ✅ UBAH: Set SEMUA property dengan inline style
-    photoDiv.style.cssText = `
-      width: ${pos.width}px;
-      height: ${pos.height}px;
-      --translate-x: ${pos.left}px;
-      --translate-y: ${pos.top}px;
-      --rotation: ${pos.rotation}deg;
-      z-index: ${shuffledIndices[index]};
-      transform: translate(${pos.left}px, ${pos.top}px) rotate(${pos.rotation}deg);
-    `;
-
-    const img = document.createElement("img");
-    img.src = photo;
-    img.alt = `Foto ${index + 1}`;
-    img.loading = "lazy";
-    if (index < 3) {
-      img.loading = "eager";
+      const columnCount = getColumnCount();
+      
+      // Sesuaikan jumlah foto per kolom berdasarkan ukuran layar
+      let photosPerColumn;  
+      if (columnCount === 1) {
+        photosPerColumn = 4; // Mobile: 4 foto
+      } else if (columnCount === 2) {
+        photosPerColumn = 3.5; // Tablet: 3-4 foto per kolom
+      } else {
+        photosPerColumn = 3; // Desktop: 3 foto per kolom
+      }
+      
+      const maxPhotos = Math.floor(columnCount * photosPerColumn);
+      
+      // ✅ KUNCI: Foto fiks HANYA di desktop (3+ kolom)
+      let selectedPhotos = [];
+      
+      if (columnCount >= 3) {
+        // Desktop: Gunakan foto fiks
+        selectedPhotos = [...specialPhotos];
+        
+        const remainingSlots = Math.min(
+          maxPhotos - specialPhotos.length, 
+          photos.length - specialPhotos.length
+        );
+        
+        const otherPhotos = photos.filter(p => !specialPhotos.includes(p));
+        const shuffled = [...otherPhotos].sort(() => Math.random() - 0.5);
+        
+        selectedPhotos = [...selectedPhotos, ...shuffled.slice(0, remainingSlots)];
+      } else {
+        // Mobile/Tablet: SEMUA foto random, TIDAK ada foto fiks
+        const shuffled = [...photos].sort(() => Math.random() - 0.5);
+        selectedPhotos = shuffled.slice(0, maxPhotos);
+      }
+      
+      return selectedPhotos;
     }
 
-    photoDiv.appendChild(img);
-    gallery.appendChild(photoDiv);
+ function displayPhotos() {
+      const gallery = document.getElementById("gallery");
+      if (!gallery) return;
+      
+      gallery.innerHTML = "";
+      currentPhotos = selectRandomPhotos();
+      
+      const columnCount = getColumnCount();
+      const shuffledPhotos = [...currentPhotos].sort(() => Math.random() - 0.5);
+      
+      // Bagi ke kolom
+      const columns = Array.from({ length: columnCount }, () => []);
+      shuffledPhotos.forEach((photo, index) => {
+        columns[index % columnCount].push(photo);
+      });
+      
+      // Render kolom
+      columns.forEach((columnPhotos, colIndex) => {
+        if (columnPhotos.length === 0) return;
+        
+        const columnDiv = document.createElement("div");
+        columnDiv.className = "gallery-column";
+        
+        // Dapatkan pattern untuk kolom ini
+        const pattern = getLayoutPattern(columnCount);
+        
+        // Sesuaikan pattern dengan jumlah foto
+        let heights = [];
+        if (columnPhotos.length <= pattern.length) {
+          heights = pattern.slice(0, columnPhotos.length);
+        } else {
+          heights = Array(columnPhotos.length).fill(100 / columnPhotos.length);
+        }
+        
+        // Normalisasi
+        const totalHeight = heights.reduce((sum, h) => sum + h, 0);
+        heights = heights.map(h => (h / totalHeight) * 100);
+        
+        // Hitung gap berdasarkan layar
+        let gapPx;
+        if (columnCount === 1) gapPx = 8;
+        else if (columnCount === 2) gapPx = 10;
+        else gapPx = 12;
+        
+        // Buat foto
+        columnPhotos.forEach((photo, photoIndex) => {
+          const photoDiv = document.createElement("div");
+          photoDiv.className = "photo-item";
+          
+          // Perhitungan height yang benar dengan gap
+          const gapTotal = gapPx * (columnPhotos.length - 1);
+          const availableHeight = 100;
+          photoDiv.style.height = `calc(${heights[photoIndex]}% - ${gapTotal / columnPhotos.length}px)`;
+          
+          const img = document.createElement("img");
+          img.src = photo;
+          img.alt = `Foto ${colIndex * columnCount + photoIndex + 1}`;
+          img.loading = photoIndex < 2 ? "eager" : "lazy";
+          
+          photoDiv.appendChild(img);
+          columnDiv.appendChild(photoDiv);
+          
+          // Animasi masuk
+          setTimeout(() => {
+            photoDiv.classList.add("active");
+            // Floating hanya di desktop
+            if (columnCount >= 3 && Math.random() < 0.15) {
+              photoDiv.classList.add("floating");
+            }
+          }, (colIndex * columnPhotos.length + photoIndex) * 80);
+        });
+        
+        gallery.appendChild(columnDiv);
+      });
+      
+      updatePhotoCount();
+    }
 
-    setTimeout(() => {
-      photoDiv.classList.add("active");
-      if (Math.random() < 0.3) {
-        photoDiv.classList.add("floating");
-      }
-    }, index * 80);
-  });
 
-  updatePhotoCount();
-}
-
+// Fungsi untuk cek foto lain (ganti foto non-fiks)
 function refreshGallery() {
-  const gallery = document.getElementById("gallery");
-  if (!gallery) return;
-  
-  const items = gallery.querySelectorAll(".photo-item");
-
-  items.forEach((item, index) => {
-    setTimeout(() => {
-      item.classList.remove("active");
-    }, index * 50);
-  });
-
-  setTimeout(() => {
-    displayPhotos();
-  }, items.length * 50 + 500);
-}
-
-function changeLayout() {
-  const items = document.querySelectorAll(".photo-item");
-  
-  items.forEach(item => item.classList.add('transitioning'));
-  
-  resetPositions();
-  
-  // ✅ TAMBAH: Shuffle z-index agar foto yang tertutup bisa muncul
-  const shuffledIndices = Array.from({length: items.length}, (_, i) => i)
-    .sort(() => Math.random() - 0.5);
-  
-  requestAnimationFrame(() => {
-    items.forEach((item, index) => {  // ← UBAH: Tambah parameter index
-      const pos = getRandomPosition();
-      if (!pos) return;
+      const gallery = document.getElementById("gallery");
+      if (!gallery) return;
       
-      item.style.width = pos.width + "px";
-      item.style.height = pos.height + "px";
+      const photoItems = gallery.querySelectorAll(".photo-item");
       
-      // ✅ TAMBAH: Update CSS variables untuk transform
-      item.style.setProperty("--translate-x", pos.left + "px");
-      item.style.setProperty("--translate-y", pos.top + "px");
-      item.style.setProperty("--rotation", pos.rotation + "deg");
+      // Fade out
+      photoItems.forEach((item, index) => {
+        setTimeout(() => {
+          item.style.opacity = "0";
+          item.style.transform = "scale(0.95)";
+        }, index * 40);
+      });
       
-      // ✅ TAMBAH: Update z-index dengan shuffle
-      item.style.zIndex = shuffledIndices[index];
-      
-      // ✅ KEEP: Force browser untuk re-render dengan transform baru
-      item.style.transform = `translate(${pos.left}px, ${pos.top}px) rotate(${pos.rotation}deg)`;
-    });
-    
-    setTimeout(() => {
-      items.forEach(item => item.classList.remove('transitioning'));
-    }, 800);
-  });
-}
+      // Re-display
+      setTimeout(() => {
+        displayPhotos();
+      }, photoItems.length * 40 + 400);
+    }
 
 
-function toggleAnimation() {
-  isAnimating = !isAnimating;
-  const btn = event.target;
-  
-  if (isAnimating) {
-    startAutoRefresh();
-    btn.textContent = "Stop";
-  } else {
-    clearInterval(refreshInterval);
-    btn.textContent = "Start";
-  }
-}
 
 function startAutoRefresh() {
-  clearInterval(refreshInterval); // Clear existing interval
+  clearInterval(refreshInterval);
   refreshInterval = setInterval(() => {
-    if (isAnimating) {
+    if (isAnimating) {  /* ✅ UBAH: tambah cek isPaused */
       refreshGallery();
     }
   }, 45000);
@@ -2113,24 +2176,18 @@ function startAutoRefresh() {
 
 // Initialize SEGERA saat DOM ready
 document.addEventListener('DOMContentLoaded', () => {
-  loadImagesFromFolder(); // Langsung load!
-  startAutoRefresh();
+  loadImagesFromFolder(); // ✅ Load foto asli dari folder
+  startAutoRefresh();      // ✅ Mulai auto-refresh
 });
 
-// Responsive resize
+// Responsive resize dengan debounce
 let resizeTimeout;
+
 window.addEventListener("resize", () => {
-  const gallery = document.getElementById("gallery");
-  if (gallery) {
-    gallery.classList.add('resizing');
-  }
-  
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
-    if (gallery) {
-      gallery.classList.remove('resizing');
-    }
-  }, 250);
+    displayPhotos(); // ✅ Sederhana, langsung re-render
+  }, 300);
 });
 
       // Setelah seluruh konten termasuk gambar selesai dimuat
