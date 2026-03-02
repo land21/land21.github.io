@@ -185,7 +185,7 @@
     transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease;
     opacity: 0;
   }
-  .expand-panel.open { max-height: 600px; opacity: 1; }
+  .expand-panel.open { max-height: 1400px; opacity: 1; }
 
   .company-grid { display: grid; grid-template-columns: 1fr; gap: 7px; margin-top: 12px; }
   .company-btn {
@@ -522,7 +522,7 @@
         </div>
 
         <!-- CARD 3: Generate Link Zoom -->
-        <div class="card" data-search="Generate Link Zoom Buat Undangan Template">
+        <div class="card" data-search="Generate Share Zoom Buat Undangan Template">
           <div class="card-header">
             <div class="card-icon violet">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -531,7 +531,7 @@
               </svg>
             </div>
             <div>
-              <div class="card-title">Generate Link Zoom</div>
+              <div class="card-title">Generate Share Zoom</div>
               <div class="card-desc">Buat template pesan undangan Zoom otomatis</div>
             </div>
           </div>
@@ -540,7 +540,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
             </svg>
-            Buat Link Zoom
+            Buat Share Zoom
           </button>
 
           <!-- Zoom form expand -->
@@ -844,7 +844,7 @@ function toggleZoom(btn) {
   panel.classList.toggle('open', zoomOpen);
   btn.innerHTML = zoomOpen
     ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/></svg> Tutup Form`
-    : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Buat Link Zoom`;
+    : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Buat Share Zoom`;
 }
 
 // ─── Generate Zoom ────────────────────────────────────────
