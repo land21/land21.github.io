@@ -532,9 +532,15 @@
         <div class="card" data-search="KPI Perusahaan Dashboard">
           <div class="card-header">
             <div class="card-icon blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
-                <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <!-- Outer Target -->
+                <circle cx="12" cy="12" r="8" />
+                <circle cx="12" cy="12" r="4" />
+              
+                <!-- Arrow -->
+                <line x1="12" y1="12" x2="17" y2="7" />
+                <polyline points="17 7 15 7 17 9" />
               </svg>
             </div>
             <div>
@@ -549,6 +555,36 @@
           <div class="expand-panel" id="kpiPanel">
             <div style="margin-top:14px;margin-bottom:6px;font-size:12px;font-weight:600;color:#9ba3bf;letter-spacing:0.3px;">PILIH PERUSAHAAN</div>
             <div class="company-grid" id="kpiCompanyGrid"></div>
+          </div>
+          <div class="card-footer">
+            <a id="link-doc-kpi" href="#" target="_blank" class="doc-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Dokumentasi KPI →
+            </a>
+          </div>
+        </div>
+
+        <!-- KPI Perusahaan -->
+        <div class="card" data-search="Laporan KPI Perusahaan Dashboard">
+          <div class="card-header">
+            <div class="card-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
+              </svg>
+            </div>
+            <div>
+              <div class="card-title">Laporan KPI Perusahaan</div>
+              <div class="card-desc">Akses Laporan KPI per perusahaan</div>
+            </div>
+          </div>
+          <button class="btn btn-blue" onclick="toggleLaporan(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            Lihat Laporan
+          </button>
+          <div class="expand-panel" id="laporanPanel">
+            <div style="margin-top:14px;margin-bottom:6px;font-size:12px;font-weight:600;color:#9ba3bf;letter-spacing:0.3px;">PILIH PERUSAHAAN</div>
+            <div class="company-grid" id="laporanCompanyGrid"></div>
           </div>
           <div class="card-footer">
             <a id="link-doc-kpi" href="#" target="_blank" class="doc-link">
@@ -777,6 +813,7 @@ const companies = [
     color: '#43772D', bg: '#FFF', border: '#43772D',
     link:      'https://drive.google.com/drive/folders/1fvsTJaHiVzH_kDE33e4f_XT7CKEkpd0B?usp=drive_link',
     driveLink: 'https://drive.google.com/drive/folders/1CuOpOGHaJmgSyC8hSQsJ-6A-czp722SM?usp=drive_link',
+    laporanLink: 'https://drive.google.com/drive/folders/1f9E_7Q_7il9AzxUt8geLXBdxIZJc6fXc?usp=drive_link',
   },
   {
     name: 'PT Doa Bangsa Agrobisnis', type: 'Pertanian',
@@ -784,12 +821,14 @@ const companies = [
     color: '#0070C0', bg: '#fff', border: '#0070C0',
     link:      'https://drive.google.com/drive/folders/1NjC_TbLgnKMnRUzZ0Wc20MtVonLOcd6m?usp=drive_link',
     driveLink: 'https://drive.google.com/drive/folders/1_SoubqISJ9Pu2rpTJ-O0KXnL3Vdn1YnF?usp=drive_link',
+    laporanLink: 'https://drive.google.com/drive/folders/1siM8jeXJ4P2PD7yPuZzw5lq69DSuM2Au?usp=drive_link',
   },
 ];
 
 // ─── State variables ───────────────────────────────────────────────────────
 let driveOpen = false;
 let kpiOpen   = false;
+let laporanOpen = false;
 let zoomOpen  = false;
 let chatOpen  = false;
 let agendaCounter = 0;
@@ -888,6 +927,7 @@ function buildCompanyHTML(c, linkField) {
 }
 (function renderCompanies() {
   document.getElementById('kpiCompanyGrid').innerHTML   = companies.map(c => buildCompanyHTML(c, 'link')).join('');
+  document.getElementById('laporanCompanyGrid').innerHTML   = companies.map(c => buildCompanyHTML(c, 'laporanLink')).join('');
   document.getElementById('driveCompanyGrid').innerHTML = companies.map(c => buildCompanyHTML(c, 'driveLink')).join('');
 
   // Populate dropdown perusahaan di form Chat
@@ -913,6 +953,13 @@ function toggleKPI(btn) {
   btn.innerHTML = kpiOpen
     ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><path d="M18 15l-6-6-6 6"/></svg> Tutup'
     : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><path d="M9 18l6-6-6-6"/></svg> Lihat KPI';
+}
+function toggleLaporan(btn) {
+  laporanOpen = !laporanOpen;
+  document.getElementById('laporanPanel').classList.toggle('open', laporanOpen);
+  btn.innerHTML = laporanOpen
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><path d="M18 15l-6-6-6 6"/></svg> Tutup'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><path d="M9 18l6-6-6-6"/></svg> Lihat Laporan';
 }
 function toggleZoom(btn) {
   zoomOpen = !zoomOpen;
