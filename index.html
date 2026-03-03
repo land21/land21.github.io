@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Internal Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root {
     --sidebar-w: 230px;
@@ -70,34 +69,51 @@
   #content { padding: 28px; flex: 1; }
   .card { background: var(--surface); border-radius: 14px; box-shadow: var(--card-shadow); padding: 24px; border: 1px solid var(--border-card); transition: box-shadow 0.2s ease; }
   .card:hover { box-shadow: var(--card-shadow-hover); }
+
+  /* ── Module Grid ── */
   .module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-  .module-grid.searching { display: flex; flex-wrap: wrap; }
-  .module-grid.searching .card { min-width: 320px; flex: 1; }
+
+  /* Saat searching: flex agar card bisa reorder, min-width 0 di mobile */
+  .module-grid.searching {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-content: flex-start;
+  }
+  /* Card saat searching: tumbuh tapi tidak terlalu lebar */
+  .module-grid.searching .card {
+    flex: 1 1 300px;
+    min-width: 0;
+    max-width: 100%;
+  }
+  /* Sembunyikan divider section saat searching */
+  .module-grid.searching .grid-section-header { display: none; }
+
   .card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
   .card-icon { width: 42px; height: 42px; border-radius: 11px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
   .card-icon svg { width: 20px; height: 20px; }
   .card-icon.blue   { background: var(--blue-light);   color: var(--blue); }
-  .card-icon.red   { background: var(--red-light);   color: var(--red); }
+  .card-icon.red    { background: var(--red-light);    color: var(--red); }
   .card-icon.green  { background: var(--green-light);  color: var(--green); }
   .card-icon.violet { background: var(--violet-light); color: var(--violet-dark); }
   .card-title { font-size: 15px; font-weight: 700; color: var(--text-dark); letter-spacing: -0.2px; }
   .card-desc  { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
   .btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 9px; font-size: 13.5px; font-weight: 600; cursor: pointer; border: none; transition: all 0.16s ease; font-family: 'DM Sans', sans-serif; text-decoration: none; }
   .btn svg { width: 15px; height: 15px; }
-  .btn-primary { background: var(--red); color: var(--surface); border: 1.5px solid var(--red); }
+  .btn-primary { background: var(--red);    color: var(--surface); border: 1.5px solid var(--red); }
   .btn-primary:hover { background: var(--red-hover); color: var(--red); border: 1.5px solid var(--red); transform: translateY(-1px); box-shadow: var(--btn-shadow); }
-  .btn-blue { background: var(--blue); color: var(--surface); border: 1.5px solid var(--blue); }
-  .btn-blue:hover { background: var(--blue-hover); color: var(--blue); border: 1.5px solid var(--blue); transform: translateY(-1px); box-shadow: var(--btn-shadow); }
-  .btn-violet { background: var(--violet); color: var(--surface); border: 1.5px solid var(--violet); }
-  .btn-violet:hover { background: var(--violet-hover); color: var(--violet); border: 1.5px solid var(--violet); transform: translateY(-1px); box-shadow: var(--btn-shadow); }
-  .btn-green { background: var(--green); color: var(--surface); border: 1.5px solid var(--green); }
-  .btn-green:hover { background: var(--green-hover); color: var(--green); border: 1.5px solid var(--green); transform: translateY(-1px); box-shadow: var(--btn-shadow); }
+  .btn-blue    { background: var(--blue);   color: var(--surface); border: 1.5px solid var(--blue); }
+  .btn-blue:hover    { background: var(--blue-hover); color: var(--blue); border: 1.5px solid var(--blue); transform: translateY(-1px); box-shadow: var(--btn-shadow); }
+  .btn-violet  { background: var(--violet); color: var(--surface); border: 1.5px solid var(--violet); }
+  .btn-violet:hover  { background: #fff; color: var(--violet); border: 1.5px solid var(--violet); transform: translateY(-1px); box-shadow: var(--btn-shadow); }
+  .btn-green   { background: var(--green);  color: var(--surface); border: 1.5px solid var(--green); }
+  .btn-green:hover   { background: var(--green-hover); color: var(--green); border: 1.5px solid var(--green); transform: translateY(-1px); box-shadow: var(--btn-shadow); }
   .btn-secondary { background: var(--surface-badge); color: var(--text-secondary); }
   .btn-secondary:hover { background: var(--border-input); }
   .btn-outline { background: transparent; color: var(--red); border: 1.5px solid var(--border-outline); }
   .btn-outline:hover { background: var(--red-light); }
   .btn-success { background: var(--green); color: var(--surface); }
-  .btn-success:hover { background: var(--green-hover); }
+  .btn-success:hover { background: var(--green-hover); color: var(--green); }
   .btn-ghost { background: transparent; color: var(--text-secondary); border: 1px solid var(--border); }
   .btn-ghost:hover { background: var(--red-light); color: var(--red); border-color: var(--border-accent-hover); }
   .doc-link { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
@@ -107,12 +123,11 @@
 
   /* ── Expand Panel ── */
   .expand-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease; opacity: 0; }
-  /* FIX: nilai 1400px memastikan tombol Copy to Clipboard tidak terpotong */
   .expand-panel.open { max-height: 1400px; opacity: 1; }
 
   .company-grid { display: grid; grid-template-columns: 1fr; gap: 7px; margin-top: 12px; }
   .company-btn { display: flex; align-items: center; gap: 11px; padding: 10px 14px; border-radius: 10px; background: var(--surface); border: 1.5px solid var(--border-card); color: var(--text-dark); font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.18s ease; font-family: 'DM Sans', sans-serif; }
-  .company-btn:hover { transform: translateX(3px); border-color: var(--co-color, var(--red)); background: var(--surface); }
+  .company-btn:hover { transform: translateX(3px); border-color: var(--co-color, var(--red)); }
   .company-btn:hover .co-name { color: var(--co-color, var(--red)); }
   .company-btn .co-logo { width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; letter-spacing: -0.5px; background: var(--co-bg, #f0f2f8); color: var(--co-color, var(--red)); border: 1.5px solid var(--co-border, var(--border-card)); transition: all 0.18s ease; overflow: hidden; }
   .company-btn:hover .co-logo { background: var(--co-color, var(--red)); color: #fff; }
@@ -125,19 +140,21 @@
   .company-btn .co-arrow { width: 14px; height: 14px; color: var(--text-muted); flex-shrink: 0; transition: all 0.18s ease; opacity: 0; transform: translateX(-4px); }
   .company-btn:hover .co-arrow { opacity: 1; transform: translateX(0); color: var(--co-color, var(--red)); }
 
-  /* ── Select input ── */
-  .form-select {
-    width: 100%; padding: 9px 12px; border-radius: 9px;
-    border: 1.5px solid var(--border-input); font-size: 13.5px; color: var(--text-dark);
-    font-family: 'DM Sans', sans-serif; background: var(--surface-input);
-    transition: border-color 0.15s, box-shadow 0.15s; outline: none;
-    appearance: none; cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ba3bf' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px;
-  }
+  /* ── Forms ── */
+  .form-select { width: 100%; padding: 9px 12px; border-radius: 9px; border: 1.5px solid var(--border-input); font-size: 13.5px; color: var(--text-dark); font-family: 'DM Sans', sans-serif; background: var(--surface-input); transition: border-color 0.15s, box-shadow 0.15s; outline: none; appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239ba3bf' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px; }
   .form-select:focus { border-color: var(--red); box-shadow: var(--focus-ring); background-color: var(--surface); }
+  .zoom-form { margin-top: 14px; }
+  .form-field { margin-bottom: 12px; }
+  .form-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 5px; display: block; letter-spacing: 0.2px; }
+  .form-input { width: 100%; padding: 9px 12px; border-radius: 9px; border: 1.5px solid var(--border-input); font-size: 13.5px; color: var(--text-dark); font-family: 'DM Sans', sans-serif; background: var(--surface-input); transition: border-color 0.15s, box-shadow 0.15s; outline: none; }
+  .form-input:focus { border-color: var(--red); box-shadow: var(--focus-ring); background: var(--surface); }
+  .output-box { background: var(--surface-accent); border: 1.5px solid var(--border-accent); border-radius: 10px; padding: 14px; font-size: 13px; line-height: 1.7; color: var(--text-body); font-family: 'DM Mono', monospace; white-space: pre-wrap; margin-top: 14px; display: none; }
+  .output-box.visible { display: block; }
+  .copy-feedback { font-size: 12px; color: var(--green); font-weight: 600; opacity: 0; transition: opacity 0.3s; margin-left: 6px; }
+  .copy-feedback.show { opacity: 1; }
+  .time-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-  /* ── Agenda item builder ── */
+  /* ── Agenda builder ── */
   .agenda-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; margin-bottom: 12px; }
   .agenda-item { background: var(--surface-accent); border: 1.5px solid var(--border-input); border-radius: 11px; padding: 14px; }
   .agenda-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
@@ -153,20 +170,45 @@
   .ag-waktu-fields { transition: opacity 0.2s; }
   .ag-waktu-fields.hidden { opacity: 0.3; pointer-events: none; }
 
-  /* ── Time row ── */
-  .time-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  /* ── Grid section divider ── */
+  .grid-section-header { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; padding-top: 8px; }
+  .grid-section-header:first-child { padding-top: 0; }
+  .grid-section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; }
+  .grid-section-line { flex: 1; height: 1px; background: var(--border-card); }
 
-  /* ── Zoom Form ── */
-  .zoom-form { margin-top: 14px; }
-  .form-field { margin-bottom: 12px; }
-  .form-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); margin-bottom: 5px; display: block; letter-spacing: 0.2px; }
-  .form-input { width: 100%; padding: 9px 12px; border-radius: 9px; border: 1.5px solid var(--border-input); font-size: 13.5px; color: var(--text-dark); font-family: 'DM Sans', sans-serif; background: var(--surface-input); transition: border-color 0.15s, box-shadow 0.15s; outline: none; }
-  .form-input:focus { border-color: var(--red); box-shadow: var(--focus-ring); background: var(--surface); }
-  .output-box { background: var(--surface-accent); border: 1.5px solid var(--border-accent); border-radius: 10px; padding: 14px; font-size: 13px; line-height: 1.7; color: var(--text-body); font-family: 'DM Mono', monospace; white-space: pre-wrap; margin-top: 14px; display: none; }
-  .output-box.visible { display: block; }
-  .copy-feedback { font-size: 12px; color: var(--green); font-weight: 600; opacity: 0; transition: opacity 0.3s; margin-left: 6px; }
-  .copy-feedback.show { opacity: 1; }
+  /* ── Search state ── */
+  .search-wrap { display: flex; align-items: center; gap: 7px; background: var(--surface-badge); border: 1.5px solid var(--border); border-radius: 10px; padding: 6px 12px; transition: border-color 0.15s, box-shadow 0.15s, width 0.25s ease; width: 180px; }
+  .search-wrap:focus-within { border-color: var(--red); box-shadow: var(--focus-ring); background: var(--surface); width: 240px; }
+  .search-icon { width: 14px; height: 14px; color: var(--text-muted); flex-shrink: 0; }
+  .search-input { border: none; outline: none; background: transparent; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text-dark); width: 100%; min-width: 0; }
+  .search-input::placeholder { color: var(--text-muted); }
+  .search-clear { background: none; border: none; cursor: pointer; padding: 0; color: var(--text-muted); display: flex; align-items: center; flex-shrink: 0; transition: color 0.15s; }
+  .search-clear:hover { color: var(--red); }
+  .card.search-hidden { display: none; }
+  .search-empty { grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 14px; }
+  .search-empty svg { width: 36px; height: 36px; margin: 0 auto 10px; display: block; color: var(--border); }
+  .search-empty span { display: block; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; }
 
+  /* ── Chat section full-width ── */
+  .chat-section { margin-top: 28px; }
+  .chat-section-title { font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+  .chat-section-title::after { content:''; flex:1; height:1px; background: var(--border-card); }
+  .chat-card-wide { background: var(--surface); border-radius: 14px; box-shadow: var(--card-shadow); border: 1px solid var(--border-card); transition: box-shadow 0.2s ease; overflow: hidden; }
+  .chat-card-wide:hover { box-shadow: var(--card-shadow-hover); }
+  .chat-card-top { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; gap: 16px; }
+  .chat-card-top-left { display: flex; align-items: center; gap: 14px; }
+  .chat-card-body { border-top: 1px solid var(--border-card); }
+  .chat-card-body.hidden { display: none; }
+  .chat-body-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .chat-col-form   { padding: 20px 24px; border-right: 1px solid var(--border-card); }
+  .chat-col-output { padding: 20px 24px; display: flex; flex-direction: column; gap: 12px; }
+  .chat-col-output .output-box { flex: 1; display: none; min-height: 160px; margin-top: 0; }
+  .chat-col-output .output-box.visible { display: block; }
+  .output-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); font-size: 13px; gap: 8px; min-height: 160px; }
+  .output-empty svg { width: 32px; height: 32px; color: var(--border); }
+  .chat-card-footer { padding: 12px 24px; border-top: 1px solid var(--border-footer); }
+
+  /* ── Page ── */
   .placeholder-card { background: white; border-radius: 14px; border: 2px dashed #d8dff0; padding: 48px; text-align: center; }
   .placeholder-icon { width: 52px; height: 52px; margin: 0 auto 14px; color: #c4cde0; }
   .placeholder-card h3 { font-size: 16px; font-weight: 600; color: #9ba3bf; }
@@ -177,135 +219,42 @@
   .section-title { font-size: 18px; font-weight: 700; color: #1a1d2e; letter-spacing: -0.4px; margin-bottom: 4px; }
   .section-sub { font-size: 13px; color: #9ba3bf; margin-bottom: 20px; }
 
-  /* ── Search ── */
-  .search-wrap { display: flex; align-items: center; gap: 7px; background: var(--surface-badge); border: 1.5px solid var(--border); border-radius: 10px; padding: 6px 12px; transition: border-color 0.15s, box-shadow 0.15s, width 0.25s ease; width: 180px; }
-  .search-wrap:focus-within { border-color: var(--red); box-shadow: var(--focus-ring); background: var(--surface); width: 240px; }
-  .search-icon { width: 14px; height: 14px; color: var(--text-muted); flex-shrink: 0; }
-  .search-input { border: none; outline: none; background: transparent; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text-dark); width: 100%; min-width: 0; }
-  .search-input::placeholder { color: var(--text-muted); }
-  .search-clear { background: none; border: none; cursor: pointer; padding: 0; color: var(--text-muted); display: flex; align-items: center; flex-shrink: 0; transition: color 0.15s; }
-  .search-clear:hover { color: var(--red); }
-  .card.search-hidden { display: none; }
-  .card.search-match  { order: 0; }
-  .card.search-weak   { order: 1; }
-  .search-empty { grid-column: 1 / -1; text-align: center; padding: 40px 20px; color: var(--text-muted); font-size: 14px; }
-  .search-empty svg { width: 36px; height: 36px; margin: 0 auto 10px; display: block; color: var(--border); }
-  .search-empty span { display: block; font-weight: 600; color: var(--text-secondary); margin-bottom: 4px; }
-
-  /* ── Grid section divider ── */
-  .grid-section-header {
-    grid-column: 1 / -1;
-    display: flex; align-items: center; gap: 12px;
-    padding-top: 8px;
-  }
-  .grid-section-header:first-child { padding-top: 0; }
-  .grid-section-label {
-    font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
-    text-transform: uppercase; color: var(--text-muted);
-    white-space: nowrap;
-  }
-  .grid-section-line {
-    flex: 1; height: 1px; background: var(--border-card);
-  }
-
-  /* ── Chat section (full-width, below grid) ── */
-  .chat-section { margin-top: 28px; }
-  .chat-section-title { font-size: 13px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.6px; text-transform: uppercase; margin-bottom: 12px; }
-  .chat-card-wide { background: var(--surface); border-radius: 14px; box-shadow: var(--card-shadow); border: 1px solid var(--border-card); transition: box-shadow 0.2s ease; overflow: hidden; }
-  .chat-card-wide:hover { box-shadow: var(--card-shadow-hover); }
-
-  /* Header bar — always visible */
-  .chat-card-top { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; gap: 16px; }
-  .chat-card-top-left { display: flex; align-items: center; gap: 14px; }
-
-  /* Body — shown/hidden on toggle */
-  .chat-card-body { border-top: 1px solid var(--border-card); }
-  .chat-card-body.hidden { display: none; }
-
-  /* 2-column layout inside */
-  .chat-body-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
-  .chat-col-form   { padding: 20px 24px; border-right: 1px solid var(--border-card); }
-  .chat-col-output { padding: 20px 24px; display: flex; flex-direction: column; gap: 12px; }
-  .chat-col-output .output-box { flex: 1; display: none; min-height: 160px; margin-top: 0; }
-  .chat-col-output .output-box.visible { display: block; }
-
-  /* Output empty state */
-  .output-empty { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); font-size: 13px; gap: 8px; min-height: 160px; }
-  .output-empty svg { width: 32px; height: 32px; color: var(--border); }
-
-  /* Chat card footer */
-  .chat-card-footer { padding: 12px 24px; border-top: 1px solid var(--border-footer); }
-
-  @media (max-width: 768px) {
-    .chat-body-inner { grid-template-columns: 1fr; }
-    .chat-col-form   { border-right: none; border-bottom: 1px solid var(--border-card); }
-    .chat-card-top   { padding: 14px 16px; }
-    .chat-col-form, .chat-col-output { padding: 16px; }
-    .chat-section { margin-top: 20px; }
-  }
-  .hamburger {
-    display: none; align-items: center; justify-content: center;
-    width: 36px; height: 36px; border-radius: 9px; border: none;
-    background: var(--surface-badge); color: var(--text-secondary);
-    cursor: pointer; flex-shrink: 0; transition: background 0.15s;
-  }
+  /* ── Hamburger + overlay ── */
+  .hamburger { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 9px; border: none; background: var(--surface-badge); color: var(--text-secondary); cursor: pointer; flex-shrink: 0; transition: background 0.15s; }
   .hamburger:hover { background: var(--red-light); color: var(--red); }
   .hamburger svg { width: 18px; height: 18px; }
-
-  /* ── Sidebar overlay (mobile backdrop) ── */
-  #sidebar-overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.35); z-index: 99;
-    backdrop-filter: blur(2px);
-  }
+  #sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.35); z-index: 99; backdrop-filter: blur(2px); }
   #sidebar-overlay.show { display: block; }
-
-  /* ── Close button inside sidebar (mobile only) ── */
-  .sidebar-close {
-    display: none; position: absolute; top: 14px; right: 14px;
-    width: 28px; height: 28px; border-radius: 7px; border: none;
-    background: var(--surface-badge); color: var(--text-secondary);
-    cursor: pointer; align-items: center; justify-content: center;
-  }
+  .sidebar-close { display: none; position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; border-radius: 7px; border: none; background: var(--surface-badge); color: var(--text-secondary); cursor: pointer; align-items: center; justify-content: center; }
   .sidebar-close svg { width: 14px; height: 14px; }
 
-  /* ══════════════════════════════════════
-     RESPONSIVE — tablet & mobile
-     ══════════════════════════════════════ */
+  /* ══ RESPONSIVE ══ */
   @media (max-width: 768px) {
-    /* Sidebar: slide off-screen, overlay-based */
-    #sidebar {
-      transform: translateX(-100%);
-      transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
-      z-index: 200; position: fixed;
-    }
+    #sidebar { transform: translateX(-100%); transition: transform 0.28s cubic-bezier(0.4,0,0.2,1); z-index: 200; position: fixed; }
     #sidebar.open { transform: translateX(0); }
     .sidebar-close { display: flex; }
-
-    /* Main fills full width */
     #main { margin-left: 0; }
-
-    /* Header */
     #header { padding: 0 16px; gap: 10px; }
     #header .breadcrumb { display: none; }
     .hamburger { display: flex; }
-
-    /* Search: expand full available space */
     .search-wrap { width: 140px; }
     .search-wrap:focus-within { width: 190px; }
-
-    /* Content */
     #content { padding: 16px; }
     .section-title { font-size: 16px; }
 
-    /* Cards: single column */
+    /* Grid: single column normal, flex wrap saat searching */
     .module-grid { grid-template-columns: 1fr; gap: 14px; }
-    .module-grid.searching .card { min-width: 0; }
+    /* Mobile searching: paksa 1 kolom */
+    .module-grid.searching { flex-direction: column; }
+    .module-grid.searching .card { flex: none; width: 100%; max-width: 100%; min-width: 0; }
 
-    /* Time row: stack on very small screens */
     .time-row { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .chat-body-inner { grid-template-columns: 1fr; }
+    .chat-col-form { border-right: none; border-bottom: 1px solid var(--border-card); }
+    .chat-card-top { padding: 14px 16px; }
+    .chat-col-form, .chat-col-output { padding: 16px; }
+    .chat-section { margin-top: 20px; }
   }
-
   @media (max-width: 400px) {
     .time-row { grid-template-columns: 1fr; }
     .search-wrap { width: 120px; }
@@ -372,7 +321,7 @@
       </div>
     </div>
     <div style="display:flex;align-items:center;gap:10px">
-      <div class="search-wrap" id="searchWrap">
+      <div class="search-wrap">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
@@ -391,10 +340,9 @@
   </header>
 
   <div id="content">
-
-    <!-- PAGE: AMS -->
     <div id="page-ams" class="page active">
-      <div class="module-grid">
+
+      <div class="module-grid" id="amsGrid">
 
         <!-- ── Akses Cepat ── -->
         <div class="grid-section-header">
@@ -402,7 +350,6 @@
           <div class="grid-section-line"></div>
         </div>
 
-        <!-- PICA Review -->
         <div class="card" data-search="Jadwal PICA Review Kegiatan">
           <div class="card-header">
             <div class="card-icon violet">
@@ -411,86 +358,48 @@
                 <line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
               </svg>
             </div>
-            <div>
-              <div class="card-title">Jadwal PICA Review</div>
-              <div class="card-desc">Lihat dan kelola jadwal kegiatan PICA Review</div>
-            </div>
+            <div><div class="card-title">Jadwal PICA Review</div><div class="card-desc">Lihat dan kelola jadwal kegiatan PICA Review</div></div>
           </div>
           <a id="link-jadwal-pica" href="#" target="_blank" class="btn btn-violet">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Buka Jadwal
           </a>
-          <div class="card-footer">
-            <a id="link-doc-pica" href="#" target="_blank" class="doc-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Dokumentasi Kegiatan →
-            </a>
-          </div>
+          <div class="card-footer"><a id="link-doc-pica" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Kegiatan →</a></div>
         </div>
 
-        <!-- To Do List AMS -->
         <div class="card" data-search="To Do List AMS Tugas Spreadsheet Daftar Pekerjaan">
           <div class="card-header">
             <div class="card-icon violet">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="3" y="5" width="18" height="16" rx="2"/>
-                <polyline points="7 10 9.5 13 13 8"/>
-                <line x1="15" y1="10" x2="19" y2="10"/>
-                <polyline points="7 16 9.5 19 13 14"/>
-                <line x1="15" y1="16" x2="19" y2="16"/>
+                <polyline points="7 10 9.5 13 13 8"/><line x1="15" y1="10" x2="19" y2="10"/>
+                <polyline points="7 16 9.5 19 13 14"/><line x1="15" y1="16" x2="19" y2="16"/>
               </svg>
             </div>
-            <div>
-              <div class="card-title">To Do List AMS</div>
-              <div class="card-desc">Daftar tugas dan pekerjaan tim AMS</div>
-            </div>
+            <div><div class="card-title">To Do List AMS</div><div class="card-desc">Daftar tugas dan pekerjaan tim AMS</div></div>
           </div>
           <a id="link-todo" href="#" target="_blank" class="btn btn-violet">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Buka Spreadsheet
           </a>
-          <div class="card-footer">
-            <a id="link-doc-todo" href="#" target="_blank" class="doc-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Dokumentasi To Do →
-            </a>
-          </div>
+          <div class="card-footer"><a id="link-doc-todo" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi To Do →</a></div>
         </div>
 
-        <!-- Absen -->
         <div class="card" data-search="Absen Kehadiran Presensi Tim">
           <div class="card-header">
             <div class="card-icon violet">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-                <polyline points="16 11 18 13 22 9"/>
+                <circle cx="12" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>
               </svg>
             </div>
-            <div>
-              <div class="card-title">Absen</div>
-              <div class="card-desc">Presensi kehadiran tim AMS</div>
-            </div>
+            <div><div class="card-title">Absen</div><div class="card-desc">Presensi kehadiran tim AMS</div></div>
           </div>
           <a id="link-absen" href="#" target="_blank" class="btn btn-violet">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Buka Absen
           </a>
-          <div class="card-footer">
-            <a id="link-doc-absen" href="#" target="_blank" class="doc-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Dokumentasi Absen →
-            </a>
-          </div>
+          <div class="card-footer"><a id="link-doc-absen" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Absen →</a></div>
         </div>
 
         <!-- ── Per Perusahaan ── -->
@@ -499,7 +408,6 @@
           <div class="grid-section-line"></div>
         </div>
 
-        <!-- Drive Perusahaan -->
         <div class="card" data-search="Drive Perusahaan Akses folder">
           <div class="card-header">
             <div class="card-icon blue">
@@ -507,10 +415,7 @@
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
               </svg>
             </div>
-            <div>
-              <div class="card-title">Drive Perusahaan</div>
-              <div class="card-desc">Akses Drive per perusahaan</div>
-            </div>
+            <div><div class="card-title">Drive Perusahaan</div><div class="card-desc">Akses Drive per perusahaan</div></div>
           </div>
           <button class="btn btn-blue" onclick="toggleDrive(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -520,33 +425,18 @@
             <div style="margin-top:14px;margin-bottom:6px;font-size:12px;font-weight:600;color:#9ba3bf;letter-spacing:0.3px;">PILIH PERUSAHAAN</div>
             <div class="company-grid" id="driveCompanyGrid"></div>
           </div>
-          <div class="card-footer">
-            <a id="link-drive" href="#" target="_blank" class="doc-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Dokumentasi Drive →
-            </a>
-          </div>
+          <div class="card-footer"><a id="link-drive" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Drive →</a></div>
         </div>
 
-        <!-- KPI Perusahaan -->
         <div class="card" data-search="KPI Perusahaan Dashboard">
           <div class="card-header">
             <div class="card-icon blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <!-- Outer Target -->
-                <circle cx="12" cy="12" r="8" />
-                <circle cx="12" cy="12" r="4" />
-              
-                <!-- Arrow -->
-                <line x1="12" y1="12" x2="17" y2="7" />
-                <polyline points="17 7 15 7 17 9" />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/>
+                <line x1="12" y1="12" x2="17" y2="7"/><polyline points="17 7 15 7 17 9"/>
               </svg>
             </div>
-            <div>
-              <div class="card-title">KPI Perusahaan</div>
-              <div class="card-desc">Akses dashboard KPI per perusahaan</div>
-            </div>
+            <div><div class="card-title">KPI Perusahaan</div><div class="card-desc">Akses dashboard KPI per perusahaan</div></div>
           </div>
           <button class="btn btn-blue" onclick="toggleKPI(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -556,15 +446,9 @@
             <div style="margin-top:14px;margin-bottom:6px;font-size:12px;font-weight:600;color:#9ba3bf;letter-spacing:0.3px;">PILIH PERUSAHAAN</div>
             <div class="company-grid" id="kpiCompanyGrid"></div>
           </div>
-          <div class="card-footer">
-            <a id="link-doc-kpi" href="#" target="_blank" class="doc-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Dokumentasi KPI →
-            </a>
-          </div>
+          <div class="card-footer"><a id="link-doc-kpi" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi KPI →</a></div>
         </div>
 
-        <!-- KPI Perusahaan -->
         <div class="card" data-search="Laporan KPI Perusahaan Dashboard">
           <div class="card-header">
             <div class="card-icon blue">
@@ -573,10 +457,7 @@
                 <line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/>
               </svg>
             </div>
-            <div>
-              <div class="card-title">Laporan KPI Perusahaan</div>
-              <div class="card-desc">Akses Laporan KPI per perusahaan</div>
-            </div>
+            <div><div class="card-title">Laporan KPI Perusahaan</div><div class="card-desc">Akses Laporan KPI per perusahaan</div></div>
           </div>
           <button class="btn btn-blue" onclick="toggleLaporan(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
@@ -586,12 +467,7 @@
             <div style="margin-top:14px;margin-bottom:6px;font-size:12px;font-weight:600;color:#9ba3bf;letter-spacing:0.3px;">PILIH PERUSAHAAN</div>
             <div class="company-grid" id="laporanCompanyGrid"></div>
           </div>
-          <div class="card-footer">
-            <a id="link-doc-kpi" href="#" target="_blank" class="doc-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Dokumentasi KPI →
-            </a>
-          </div>
+          <div class="card-footer"><a id="link-doc-laporan" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Laporan →</a></div>
         </div>
 
         <!-- ── Generator ── -->
@@ -600,7 +476,6 @@
           <div class="grid-section-line"></div>
         </div>
 
-        <!-- Generate Share Zoom -->
         <div class="card" data-search="Generate Share Zoom Buat Undangan Template">
           <div class="card-header">
             <div class="card-icon green">
@@ -609,10 +484,7 @@
                 <rect x="1" y="6" width="14" height="12" rx="2"/>
               </svg>
             </div>
-            <div>
-              <div class="card-title">Generate Share Zoom</div>
-              <div class="card-desc">Buat template pesan undangan Zoom otomatis</div>
-            </div>
+            <div><div class="card-title">Generate Share Zoom</div><div class="card-desc">Buat template pesan undangan Zoom otomatis</div></div>
           </div>
           <button class="btn btn-green" onclick="toggleZoom(this)">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -622,58 +494,29 @@
           </button>
           <div class="expand-panel" id="zoomPanel">
             <div class="zoom-form">
-              <div class="form-field">
-                <label class="form-label">Keperluan Zoom</label>
-                <input class="form-input" id="zoomKeperluan" type="text" placeholder="cth: Rapat Koordinasi Q1 2025" />
-              </div>
-              <div class="form-field">
-                <label class="form-label">Penyelenggara</label>
-                <input class="form-input" id="zoomPenyelenggara" type="text" placeholder="cth: Divisi HRD" />
-              </div>
-              <div class="form-field">
-                <label class="form-label">Link Zoom</label>
-                <input class="form-input" id="zoomLink" type="url" placeholder="https://zoom.us/j/..." />
-              </div>
+              <div class="form-field"><label class="form-label">Keperluan Zoom</label><input class="form-input" id="zoomKeperluan" type="text" placeholder="cth: Rapat Koordinasi Q1 2025" /></div>
+              <div class="form-field"><label class="form-label">Penyelenggara</label><input class="form-input" id="zoomPenyelenggara" type="text" placeholder="cth: Divisi HRD" /></div>
+              <div class="form-field"><label class="form-label">Link Zoom</label><input class="form-input" id="zoomLink" type="url" placeholder="https://zoom.us/j/..." /></div>
               <div style="display:flex;gap:8px;flex-wrap:wrap">
-                <button class="btn btn-success" onclick="generateZoom()">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                  Generate
-                </button>
-                <button class="btn btn-ghost" onclick="resetZoom()">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/>
-                  </svg>
-                  Reset
-                </button>
+                <button class="btn btn-success" onclick="generateZoom()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Generate</button>
+                <button class="btn btn-ghost" onclick="resetZoom()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>Reset</button>
               </div>
               <div class="output-box" id="zoomOutput"></div>
               <div id="copyRow" style="display:none;margin-top:10px;align-items:center;gap:6px">
-                <button class="btn btn-outline" onclick="copyZoom()">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                  </svg>
-                  Copy to Clipboard
-                </button>
+                <button class="btn btn-outline" onclick="copyZoom()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy to Clipboard</button>
                 <span class="copy-feedback" id="copyFeedback">&#10003; Tersalin!</span>
               </div>
             </div>
           </div>
-          <div class="card-footer">
-            <a id="link-doc-zoom" href="#" target="_blank" class="doc-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Dokumentasi Zoom →
-            </a>
-          </div>
+          <div class="card-footer"><a id="link-doc-zoom" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Zoom →</a></div>
         </div>
 
       </div><!-- /module-grid -->
 
-      <!-- ── Generate Chat — full-width section ── -->
-      <div class="chat-section">
+      <!-- ── Generator Pesan (full-width) ── -->
+      <div class="chat-section" id="chatSection">
         <div class="chat-section-title">Generator Pesan</div>
         <div class="chat-card-wide" data-search="Generate Chat Pemberitahuan Review KPI Template Notifikasi Briefing">
-
-          <!-- Header bar -->
           <div class="chat-card-top">
             <div class="chat-card-top-left">
               <div class="card-icon red" style="flex-shrink:0">
@@ -693,17 +536,10 @@
               Buat Pesan
             </button>
           </div>
-
-          <!-- Body (toggle) -->
           <div class="chat-card-body hidden" id="chatPanel">
             <div class="chat-body-inner">
-
-              <!-- Kolom kiri: form -->
               <div class="chat-col-form">
-                <div class="form-field">
-                  <label class="form-label">Perusahaan</label>
-                  <select class="form-select" id="chatPerusahaan"></select>
-                </div>
+                <div class="form-field"><label class="form-label">Perusahaan</label><select class="form-select" id="chatPerusahaan"></select></div>
                 <div class="form-field" style="margin-bottom:8px">
                   <label class="form-label">Agenda Acara</label>
                   <div class="agenda-list" id="agendaList"></div>
@@ -713,63 +549,42 @@
                   </button>
                 </div>
                 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
-                  <button class="btn btn-primary" onclick="generateChat()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                    Generate
-                  </button>
-                  <button class="btn btn-ghost" onclick="resetChat()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                      <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/>
-                    </svg>
-                    Reset
-                  </button>
+                  <button class="btn btn-primary" onclick="generateChat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Generate</button>
+                  <button class="btn btn-ghost" onclick="resetChat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>Reset</button>
                 </div>
               </div>
-
-              <!-- Kolom kanan: output -->
               <div class="chat-col-output">
                 <div class="form-label">Hasil Pesan</div>
                 <div class="output-empty" id="chatOutputEmpty">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
                   Isi form lalu klik Generate
                 </div>
                 <div class="output-box" id="chatOutput" style="min-height:200px"></div>
                 <div id="chatCopyRow" style="display:none;align-items:center;gap:6px">
-                  <button class="btn btn-outline" onclick="copyChat()">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-                      <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                    </svg>
-                    Copy to Clipboard
-                  </button>
+                  <button class="btn btn-outline" onclick="copyChat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy to Clipboard</button>
                   <span class="copy-feedback" id="chatCopyFeedback">&#10003; Tersalin!</span>
                 </div>
               </div>
-
             </div>
           </div>
-
-          <div class="chat-card-footer">
-            <a id="link-doc-chat" href="#" target="_blank" class="doc-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Dokumentasi Pemberitahuan →
-            </a>
-          </div>
-
+          <div class="chat-card-footer"><a id="link-doc-chat" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Pemberitahuan →</a></div>
         </div>
+      </div>
+
+      <!-- Empty state search (di luar grid, muncul jika semua tersembunyi) -->
+      <div id="searchEmptyAll" style="display:none;text-align:center;padding:60px 20px;color:var(--text-muted);font-size:14px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px;margin:0 auto 12px;display:block;color:var(--border)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <span style="display:block;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">Tidak ada modul ditemukan</span>
+        Coba kata kunci lain
       </div>
 
     </div><!-- /page-ams -->
 
-    <!-- PAGE: VIREXA -->
     <div id="page-virexa" class="page">
       <div class="section-title">Virexa</div>
       <div class="section-sub">Virexa</div>
       <div class="placeholder-card">
-        <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-        </svg>
+        <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         <h3>Konten Virexa akan ditambahkan</h3>
         <p>Modul ini sedang dalam pengembangan. Silakan cek kembali nanti.</p>
       </div>
@@ -784,56 +599,39 @@ const LINKS = {
   jadwalPica:      'https://docs.google.com/spreadsheets/d/1OPCUibLNnmyogv0OrrN5pPF2r9_Uy6792V75-TwjDrA/edit?usp=sharing',
   docPica:         'https://drive.google.com/your-pica-archive',
   docKpi:          'https://drive.google.com/your-kpi-archive',
+  docLaporan:      'https://drive.google.com/your-laporan-archive',
   docZoom:         'https://drive.google.com/your-zoom-archive',
   todoSpreadsheet: 'https://docs.google.com/spreadsheets/d/1WzOjlIOHWLMmRcAZYzgGqmY9QOiY-2pFYbh4HJfh_t4/edit?usp=sharing',
   docTodo:         'https://drive.google.com/your-todo-archive',
-
-  // ── Modul Generate Chat Pemberitahuan ─────────────
   docChat:         'https://drive.google.com/your-chat-archive',
-
-  // ── Modul Absen ────────────────────────────────────
-  absen:           'https://employee.fkdb.or.id/live-attendance',           // ← ganti link absen
+  absen:           'https://employee.fkdb.or.id/live-attendance',
   docAbsen:        'https://drive.google.com/your-absen-archive',
 };
 
 const companies = [
-  // ┌─────────────────────────────────────────────────────────────────┐
-  // │  name         → nama lengkap perusahaan                        │
-  // │  type         → jenis usaha (subtitle)                         │
-  // │  logo         → path file dari folder dashboard/               │
-  // │  logoFallback → singkatan jika file logo tidak ditemukan       │
-  // │  color        → warna identitas perusahaan                     │
-  // │  bg / border  → tampilan kotak logo normal                     │
-  // │  link         → link KPI perusahaan                            │
-  // │  driveLink    → link Google Drive perusahaan                   │
-  // └─────────────────────────────────────────────────────────────────┘
   {
     name: 'PT Azaki Food Internasional', type: 'Manufaktur',
     logo: 'dashboard/afi.png', logoFallback: 'AFI',
     color: '#43772D', bg: '#FFF', border: '#43772D',
-    link:      'https://drive.google.com/drive/folders/1fvsTJaHiVzH_kDE33e4f_XT7CKEkpd0B?usp=drive_link',
-    driveLink: 'https://drive.google.com/drive/folders/1CuOpOGHaJmgSyC8hSQsJ-6A-czp722SM?usp=drive_link',
+    link:        'https://drive.google.com/drive/folders/1fvsTJaHiVzH_kDE33e4f_XT7CKEkpd0B?usp=drive_link',
+    driveLink:   'https://drive.google.com/drive/folders/1CuOpOGHaJmgSyC8hSQsJ-6A-czp722SM?usp=drive_link',
     laporanLink: 'https://drive.google.com/drive/folders/1f9E_7Q_7il9AzxUt8geLXBdxIZJc6fXc?usp=drive_link',
   },
   {
     name: 'PT Doa Bangsa Agrobisnis', type: 'Pertanian',
     logo: 'dashboard/dba.png', logoFallback: 'DBA',
     color: '#0070C0', bg: '#fff', border: '#0070C0',
-    link:      'https://drive.google.com/drive/folders/1NjC_TbLgnKMnRUzZ0Wc20MtVonLOcd6m?usp=drive_link',
-    driveLink: 'https://drive.google.com/drive/folders/1_SoubqISJ9Pu2rpTJ-O0KXnL3Vdn1YnF?usp=drive_link',
+    link:        'https://drive.google.com/drive/folders/1NjC_TbLgnKMnRUzZ0Wc20MtVonLOcd6m?usp=drive_link',
+    driveLink:   'https://drive.google.com/drive/folders/1_SoubqISJ9Pu2rpTJ-O0KXnL3Vdn1YnF?usp=drive_link',
     laporanLink: 'https://drive.google.com/drive/folders/1siM8jeXJ4P2PD7yPuZzw5lq69DSuM2Au?usp=drive_link',
   },
 ];
 
-// ─── State variables ───────────────────────────────────────────────────────
-let driveOpen = false;
-let kpiOpen   = false;
-let laporanOpen = false;
-let zoomOpen  = false;
-let chatOpen  = false;
-let agendaCounter = 0;
+// ─── State ─────────────────────────────────────────────────────────────────
+let driveOpen = false, kpiOpen = false, laporanOpen = false;
+let zoomOpen  = false, chatOpen = false, agendaCounter = 0;
 
-// ─── Sidebar mobile toggle ─────────────────────────────────────────────────
+// ─── Sidebar ───────────────────────────────────────────────────────────────
 function openSidebar() {
   document.getElementById('sidebar').classList.add('open');
   document.getElementById('sidebar-overlay').classList.add('show');
@@ -845,40 +643,60 @@ function closeSidebar() {
   document.body.style.overflow = '';
 }
 
-
+// ─── Search ────────────────────────────────────────────────────────────────
 function handleSearch(query) {
   const q = query.trim().toLowerCase();
   document.getElementById('searchClear').style.display = q ? 'flex' : 'none';
-  const activePage = document.querySelector('.page.active');
-  const grid = activePage ? activePage.querySelector('.module-grid') : null;
-  if (!grid) return;
-  const cards = grid.querySelectorAll('.card[data-search]');
-  const emptyEl = grid.querySelector('.search-empty');
-  if (emptyEl) emptyEl.remove();
+
+  const grid        = document.getElementById('amsGrid');
+  const chatSection = document.getElementById('chatSection');
+  const emptyAll    = document.getElementById('searchEmptyAll');
+
+  // Bersihkan empty state lama
+  const oldEmpty = grid.querySelector('.search-empty');
+  if (oldEmpty) oldEmpty.remove();
+
   if (!q) {
-    cards.forEach(c => { c.classList.remove('search-hidden','search-match','search-weak'); c.style.order = ''; });
+    // Reset semua ke kondisi normal
+    grid.querySelectorAll('.card[data-search]').forEach(c => {
+      c.classList.remove('search-hidden');
+      c.style.order = '';
+    });
     grid.classList.remove('searching');
+    chatSection.style.display = '';
+    emptyAll.style.display = 'none';
     return;
   }
+
+  // Mode searching: grid-section-header tersembunyi otomatis via CSS
   grid.classList.add('searching');
   let anyVisible = false;
-  cards.forEach(card => {
-    const text = (card.dataset.search || '').toLowerCase();
+
+  // ── Cek card dalam grid ──
+  grid.querySelectorAll('.card[data-search]').forEach(card => {
+    const text  = (card.dataset.search || '').toLowerCase();
     const words = text.split(/\s+/);
     const startsWithMatch = words.some(w => w.startsWith(q));
-    const containsMatch = text.includes(q);
-    card.classList.remove('search-hidden','search-match','search-weak');
+    const containsMatch   = text.includes(q);
+
+    card.classList.remove('search-hidden');
+    card.style.order = '';
+
     if (startsWithMatch)    { card.style.order = '0'; anyVisible = true; }
     else if (containsMatch) { card.style.order = '1'; anyVisible = true; }
-    else { card.classList.add('search-hidden'); card.style.order = ''; }
+    else                    { card.classList.add('search-hidden'); }
   });
-  if (!anyVisible) {
-    const empty = document.createElement('div');
-    empty.className = 'search-empty';
-    empty.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><span>Tidak ada modul ditemukan</span>Coba kata kunci lain';
-    grid.appendChild(empty);
-  }
+
+  // ── Cek chat section (di luar grid) ──
+  const chatText  = 'generate chat pemberitahuan review kpi template notifikasi briefing';
+  const chatMatch = chatText.includes(q);
+  chatSection.style.display = chatMatch ? '' : 'none';
+  if (chatMatch) anyVisible = true;
+
+  // ── Empty state global ──
+  emptyAll.style.display = anyVisible ? 'none' : 'block';
 }
+
 function clearSearch() {
   const input = document.getElementById('searchInput');
   input.value = '';
@@ -894,7 +712,7 @@ function navigate(page, el) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
   document.getElementById('headerTitle').textContent = titles[page][0];
-  document.getElementById('headerSub').textContent = titles[page][1];
+  document.getElementById('headerSub').textContent   = titles[page][1];
   clearSearch();
   closeSidebar();
 }
@@ -906,6 +724,7 @@ function navigate(page, el) {
   set('link-jadwal-pica', LINKS.jadwalPica);
   set('link-doc-pica',    LINKS.docPica);
   set('link-doc-kpi',     LINKS.docKpi);
+  set('link-doc-laporan', LINKS.docLaporan);
   set('link-doc-zoom',    LINKS.docZoom);
   set('link-todo',        LINKS.todoSpreadsheet);
   set('link-doc-todo',    LINKS.docTodo);
@@ -926,16 +745,12 @@ function buildCompanyHTML(c, linkField) {
   </a>`;
 }
 (function renderCompanies() {
-  document.getElementById('kpiCompanyGrid').innerHTML   = companies.map(c => buildCompanyHTML(c, 'link')).join('');
-  document.getElementById('laporanCompanyGrid').innerHTML   = companies.map(c => buildCompanyHTML(c, 'laporanLink')).join('');
-  document.getElementById('driveCompanyGrid').innerHTML = companies.map(c => buildCompanyHTML(c, 'driveLink')).join('');
-
-  // Populate dropdown perusahaan di form Chat
+  document.getElementById('kpiCompanyGrid').innerHTML     = companies.map(c => buildCompanyHTML(c, 'link')).join('');
+  document.getElementById('laporanCompanyGrid').innerHTML = companies.map(c => buildCompanyHTML(c, 'laporanLink')).join('');
+  document.getElementById('driveCompanyGrid').innerHTML   = companies.map(c => buildCompanyHTML(c, 'driveLink')).join('');
   const sel = document.getElementById('chatPerusahaan');
   sel.innerHTML = '<option value="">-- Pilih Perusahaan --</option>' +
     companies.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
-
-  // Inisialisasi 1 agenda item pertama
   addAgendaItem();
 })();
 
@@ -968,12 +783,19 @@ function toggleZoom(btn) {
     ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/></svg> Tutup Form'
     : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Buat Share Zoom';
 }
+function toggleChat(btn) {
+  chatOpen = !chatOpen;
+  document.getElementById('chatPanel').classList.toggle('hidden', !chatOpen);
+  btn.innerHTML = chatOpen
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/></svg> Tutup Form'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Buat Pesan';
+}
 
 // ─── Zoom Generator ────────────────────────────────────────────────────────
 function generateZoom() {
-  const keperluan = document.getElementById('zoomKeperluan').value.trim();
-  const penyelenggara = document.getElementById('zoomPenyelenggara').value.trim();
-  const link = document.getElementById('zoomLink').value.trim();
+  const keperluan    = document.getElementById('zoomKeperluan').value.trim();
+  const penyelenggara= document.getElementById('zoomPenyelenggara').value.trim();
+  const link         = document.getElementById('zoomLink').value.trim();
   if (!keperluan || !penyelenggara || !link) { alert('Harap isi semua field terlebih dahulu.'); return; }
   const template = "Assalamu'alaikum warahmatullahi wabarakatuh,\n\nBerikut kami sampaikan link Zoom untuk kegiatan " + keperluan + ".\n\nDiselenggarakan oleh: " + penyelenggara + "\nLink Zoom: " + link + "\n\nTerima kasih.";
   document.getElementById('zoomOutput').textContent = template;
@@ -989,48 +811,31 @@ function resetZoom() {
 }
 function copyZoom() {
   const text = document.getElementById('zoomOutput').textContent;
-  const fb = document.getElementById('copyFeedback');
+  const fb   = document.getElementById('copyFeedback');
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(() => showCopyFeedback(fb)).catch(() => fallbackCopy(text, fb));
   } else { fallbackCopy(text, fb); }
 }
 function fallbackCopy(text, fb) {
   const ta = document.createElement('textarea');
-  ta.value = text;
-  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
-  document.body.appendChild(ta);
-  ta.focus(); ta.select();
+  ta.value = text; ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+  document.body.appendChild(ta); ta.focus(); ta.select();
   try { document.execCommand('copy'); showCopyFeedback(fb); }
   catch(e) { alert('Gagal menyalin. Silakan copy manual dari kotak teks di atas.'); }
   document.body.removeChild(ta);
 }
-function showCopyFeedback(fb) {
-  fb.classList.add('show');
-  setTimeout(() => fb.classList.remove('show'), 2000);
-}
-
-// ─── Toggle Chat ───────────────────────────────────────────────────────────
-function toggleChat(btn) {
-  chatOpen = !chatOpen;
-  document.getElementById('chatPanel').classList.toggle('hidden', !chatOpen);
-  btn.innerHTML = chatOpen
-    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/></svg> Tutup Form'
-    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Buat Pesan';
-}
+function showCopyFeedback(fb) { fb.classList.add('show'); setTimeout(() => fb.classList.remove('show'), 2000); }
 
 // ─── Format helpers ────────────────────────────────────────────────────────
-const BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 const BULAN_PENDEK = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
-
 function formatTanggalID(dateStr) {
   if (!dateStr) return '...';
   const d = new Date(dateStr + 'T00:00:00');
   return d.getDate() + ' ' + BULAN_PENDEK[d.getMonth()] + ' ' + d.getFullYear();
 }
-
 function formatRentang(mulaiStr, selesaiStr) {
   if (!mulaiStr) return '...';
-  const dM = new Date(mulaiStr   + 'T00:00:00');
+  const dM = new Date(mulaiStr + 'T00:00:00');
   if (!selesaiStr || mulaiStr === selesaiStr) return formatTanggalID(mulaiStr);
   const dS = new Date(selesaiStr + 'T00:00:00');
   if (dM.getMonth() === dS.getMonth() && dM.getFullYear() === dS.getFullYear()) {
@@ -1038,13 +843,9 @@ function formatRentang(mulaiStr, selesaiStr) {
   }
   return formatTanggalID(mulaiStr) + ' - ' + formatTanggalID(selesaiStr);
 }
+function formatJamDot(t) { return t ? t.replace(':', '.') : ''; }
 
-function formatJamDot(t) {
-  // "08:30" → "08.30"
-  return t ? t.replace(':', '.') : '';
-}
-
-// ─── Agenda item counter ───────────────────────────────────────────────────
+// ─── Agenda builder ────────────────────────────────────────────────────────
 function buildAgendaItemHTML(n) {
   return `<div class="agenda-item" id="ag-${n}">
     <div class="agenda-item-header">
@@ -1054,117 +855,68 @@ function buildAgendaItemHTML(n) {
     <div class="form-field">
       <label class="form-label">Tanggal</label>
       <div class="time-row">
-        <div>
-          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Mulai</div>
-          <input class="form-input ag-tgl-mulai" type="date" />
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Selesai (opsional)</div>
-          <input class="form-input ag-tgl-selesai" type="date" />
-        </div>
+        <div><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Mulai</div><input class="form-input ag-tgl-mulai" type="date" /></div>
+        <div><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Selesai (opsional)</div><input class="form-input ag-tgl-selesai" type="date" /></div>
       </div>
     </div>
-    <div class="form-field">
-      <label class="form-label">Kegiatan</label>
-      <input class="form-input ag-kegiatan" type="text" placeholder="cth: Briefing pagi" />
-    </div>
+    <div class="form-field"><label class="form-label">Kegiatan</label><input class="form-input ag-kegiatan" type="text" placeholder="cth: Briefing pagi" /></div>
     <div class="form-field">
       <div class="waktu-check-row">
         <label class="form-label" style="margin-bottom:0">Waktu</label>
-        <label class="waktu-check-label">
-          <input type="checkbox" class="ag-waktu-sesuai" onchange="toggleWaktuSesuai(this)" />
-          Waktu menyesuaikan
-        </label>
+        <label class="waktu-check-label"><input type="checkbox" class="ag-waktu-sesuai" onchange="toggleWaktuSesuai(this)" />Waktu menyesuaikan</label>
       </div>
       <div class="time-row ag-waktu-fields">
-        <div>
-          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Mulai</div>
-          <input class="form-input ag-waktu-mulai" type="time" />
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Selesai</div>
-          <input class="form-input ag-waktu-selesai" type="time" />
-        </div>
+        <div><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Mulai</div><input class="form-input ag-waktu-mulai" type="time" /></div>
+        <div><div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Selesai</div><input class="form-input ag-waktu-selesai" type="time" /></div>
       </div>
     </div>
-    <div class="form-field" style="margin-bottom:0">
-      <label class="form-label">Keterangan (opsional)</label>
-      <input class="form-input ag-keterangan" type="text" placeholder="cth: Diikuti oleh semua tim DBA" />
-    </div>
+    <div class="form-field" style="margin-bottom:0"><label class="form-label">Keterangan (opsional)</label><input class="form-input ag-keterangan" type="text" placeholder="cth: Diikuti oleh semua tim DBA" /></div>
   </div>`;
 }
-
 function addAgendaItem() {
   agendaCounter++;
-  const list = document.getElementById('agendaList');
   const div = document.createElement('div');
   div.innerHTML = buildAgendaItemHTML(agendaCounter);
-  list.appendChild(div.firstElementChild);
+  document.getElementById('agendaList').appendChild(div.firstElementChild);
   renumberAgendaItems();
 }
-
-function removeAgendaItem(id) {
-  const el = document.getElementById(id);
-  if (el) el.remove();
-  renumberAgendaItems();
-}
-
+function removeAgendaItem(id) { const el = document.getElementById(id); if (el) el.remove(); renumberAgendaItems(); }
 function renumberAgendaItems() {
   document.querySelectorAll('#agendaList .agenda-item').forEach((item, i) => {
-    const label = item.querySelector('.agenda-item-num');
-    if (label) label.textContent = 'Agenda ' + (i + 1);
+    const lbl = item.querySelector('.agenda-item-num');
+    if (lbl) lbl.textContent = 'Agenda ' + (i + 1);
   });
 }
-
 function toggleWaktuSesuai(chk) {
-  const fields = chk.closest('.agenda-item').querySelector('.ag-waktu-fields');
-  fields.classList.toggle('hidden', chk.checked);
+  chk.closest('.agenda-item').querySelector('.ag-waktu-fields').classList.toggle('hidden', chk.checked);
 }
 
 // ─── Generate Chat ─────────────────────────────────────────────────────────
 function generateChat() {
   const perusahaan = document.getElementById('chatPerusahaan').value.trim();
   if (!perusahaan) { alert('Harap pilih perusahaan terlebih dahulu.'); return; }
-
   const items = document.querySelectorAll('#agendaList .agenda-item');
   if (items.length === 0) { alert('Tambahkan minimal satu agenda.'); return; }
-
-  const agendaLines = [];
-  let valid = true;
-
+  const agendaLines = []; let valid = true;
   items.forEach((item, i) => {
-    const tglMulai   = item.querySelector('.ag-tgl-mulai').value;
-    const tglSelesai = item.querySelector('.ag-tgl-selesai').value;
-    const kegiatan   = item.querySelector('.ag-kegiatan').value.trim();
+    const tglMulai     = item.querySelector('.ag-tgl-mulai').value;
+    const tglSelesai   = item.querySelector('.ag-tgl-selesai').value;
+    const kegiatan     = item.querySelector('.ag-kegiatan').value.trim();
     const menyesuaikan = item.querySelector('.ag-waktu-sesuai').checked;
-    const waktuMulai = item.querySelector('.ag-waktu-mulai').value;
+    const waktuMulai   = item.querySelector('.ag-waktu-mulai').value;
     const waktuSelesai = item.querySelector('.ag-waktu-selesai').value;
-    const keterangan = item.querySelector('.ag-keterangan').value.trim();
-
-    if (!tglMulai || !kegiatan) {
-      alert('Agenda ' + (i + 1) + ': tanggal mulai dan kegiatan harus diisi.');
-      valid = false;
-      return;
-    }
-
+    const keterangan   = item.querySelector('.ag-keterangan').value.trim();
+    if (!tglMulai || !kegiatan) { alert('Agenda ' + (i+1) + ': tanggal mulai dan kegiatan harus diisi.'); valid = false; return; }
     const tglStr = formatRentang(tglMulai, tglSelesai);
-
     let waktuStr = '';
-    if (menyesuaikan) {
-      waktuStr = '(Waktu menyesuaikan)';
-    } else if (waktuMulai && waktuSelesai) {
-      waktuStr = 'dari jam ' + formatJamDot(waktuMulai) + ' s/d ' + formatJamDot(waktuSelesai);
-    }
-
+    if (menyesuaikan) { waktuStr = '(Waktu menyesuaikan)'; }
+    else if (waktuMulai && waktuSelesai) { waktuStr = 'dari jam ' + formatJamDot(waktuMulai) + ' s/d ' + formatJamDot(waktuSelesai); }
     let baris = '- ' + tglStr + ' : ' + kegiatan;
     if (waktuStr) baris += ' ' + waktuStr;
     if (keterangan) baris += ' (' + keterangan + ')';
-
     agendaLines.push(baris);
   });
-
   if (!valid) return;
-
   const template =
 `Assalamu'alaikum warahmatullahi wabarakatuh ☀️
 
@@ -1179,40 +931,32 @@ Salam semangat bertumbuh, berkembang, dan bermanfaat.
 Terima kasih. 🤗
 
 Wassalamu'alaikum warahmatullahi wabarakatuh.`;
-
   document.getElementById('chatOutput').textContent = template;
   document.getElementById('chatOutput').classList.add('visible');
   document.getElementById('chatOutputEmpty').style.display = 'none';
   document.getElementById('chatCopyRow').style.display = 'flex';
 }
-
 function resetChat() {
   document.getElementById('chatPerusahaan').value = '';
-  // Kosongkan agenda list, tambah 1 item baru
-  const list = document.getElementById('agendaList');
-  list.innerHTML = '';
-  agendaCounter = 0;
-  addAgendaItem();
+  document.getElementById('agendaList').innerHTML = '';
+  agendaCounter = 0; addAgendaItem();
   document.getElementById('chatOutput').textContent = '';
   document.getElementById('chatOutput').classList.remove('visible');
   document.getElementById('chatOutputEmpty').style.display = 'flex';
   document.getElementById('chatCopyRow').style.display = 'none';
   document.getElementById('chatCopyFeedback').classList.remove('show');
 }
-
 function copyChat() {
   const text = document.getElementById('chatOutput').textContent;
-  const fb = document.getElementById('chatCopyFeedback');
+  const fb   = document.getElementById('chatCopyFeedback');
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(() => showCopyFeedback(fb)).catch(() => fallbackCopyChat(text, fb));
   } else { fallbackCopyChat(text, fb); }
 }
 function fallbackCopyChat(text, fb) {
   const ta = document.createElement('textarea');
-  ta.value = text;
-  ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
-  document.body.appendChild(ta);
-  ta.focus(); ta.select();
+  ta.value = text; ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+  document.body.appendChild(ta); ta.focus(); ta.select();
   try { document.execCommand('copy'); showCopyFeedback(fb); }
   catch(e) { alert('Gagal menyalin. Silakan copy manual.'); }
   document.body.removeChild(ta);
