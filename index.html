@@ -470,6 +470,42 @@
           <div class="card-footer"><a id="link-doc-laporan" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Laporan →</a></div>
         </div>
 
+        <div class="card" data-search="ERP Perusahaan Dashboard">
+          <div class="card-header">
+            <div class="card-icon blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+              
+                <!-- Core System -->
+                <circle cx="12" cy="12" r="3" />
+              
+                <!-- Modules -->
+                <rect x="3" y="3" width="4" height="4" rx="1" />
+                <rect x="17" y="3" width="4" height="4" rx="1" />
+                <rect x="3" y="17" width="4" height="4" rx="1" />
+                <rect x="17" y="17" width="4" height="4" rx="1" />
+              
+                <!-- Connections -->
+                <line x1="12" y1="9" x2="5" y2="5" />
+                <line x1="12" y1="9" x2="19" y2="5" />
+                <line x1="12" y1="15" x2="5" y2="19" />
+                <line x1="12" y1="15" x2="19" y2="19" />
+              
+              </svg>
+            </div>
+            <div><div class="card-title">ERP Perusahaan</div><div class="card-desc">Akses ERP per perusahaan</div></div>
+          </div>
+          <button class="btn btn-blue" onclick="toggleERP(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            Lihat ERP
+          </button>
+          <div class="expand-panel" id="ERPPanel">
+            <div style="margin-top:14px;margin-bottom:6px;font-size:12px;font-weight:600;color:#9ba3bf;letter-spacing:0.3px;">PILIH PERUSAHAAN</div>
+            <div class="company-grid" id="ERPCompanyGrid"></div>
+          </div>
+          <div class="card-footer"><a id="link-doc-laporan" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Laporan →</a></div>
+        </div>
+
         <!-- ── Generator ── -->
         <div class="grid-section-header">
           <span class="grid-section-label">Generator</span>
@@ -616,6 +652,7 @@ const companies = [
     link:        'https://drive.google.com/drive/folders/1fvsTJaHiVzH_kDE33e4f_XT7CKEkpd0B?usp=drive_link',
     driveLink:   'https://drive.google.com/drive/folders/1CuOpOGHaJmgSyC8hSQsJ-6A-czp722SM?usp=drive_link',
     laporanLink: 'https://drive.google.com/drive/folders/1f9E_7Q_7il9AzxUt8geLXBdxIZJc6fXc?usp=drive_link',
+    ERPLink: 'https://erpafi.id/',
   },
   {
     name: 'PT Doa Bangsa Agrobisnis', type: 'Pertanian',
@@ -624,12 +661,13 @@ const companies = [
     link:        'https://drive.google.com/drive/folders/1NjC_TbLgnKMnRUzZ0Wc20MtVonLOcd6m?usp=drive_link',
     driveLink:   'https://drive.google.com/drive/folders/1_SoubqISJ9Pu2rpTJ-O0KXnL3Vdn1YnF?usp=drive_link',
     laporanLink: 'https://drive.google.com/drive/folders/1siM8jeXJ4P2PD7yPuZzw5lq69DSuM2Au?usp=drive_link',
+    ERPLink: 'https://erpafi.id/',
   },
 ];
 
 // ─── State ─────────────────────────────────────────────────────────────────
 let driveOpen = false, kpiOpen = false, laporanOpen = false;
-let zoomOpen  = false, chatOpen = false, agendaCounter = 0;
+let zoomOpen  = false, chatOpen = false,ERPOpen = false; agendaCounter = 0;
 
 // ─── Sidebar ───────────────────────────────────────────────────────────────
 function openSidebar() {
@@ -747,6 +785,7 @@ function buildCompanyHTML(c, linkField) {
 (function renderCompanies() {
   document.getElementById('kpiCompanyGrid').innerHTML     = companies.map(c => buildCompanyHTML(c, 'link')).join('');
   document.getElementById('laporanCompanyGrid').innerHTML = companies.map(c => buildCompanyHTML(c, 'laporanLink')).join('');
+  document.getElementById('ERPCompanyGrid').innerHTML = companies.map(c => buildCompanyHTML(c, 'ERPLink')).join('');
   document.getElementById('driveCompanyGrid').innerHTML   = companies.map(c => buildCompanyHTML(c, 'driveLink')).join('');
   const sel = document.getElementById('chatPerusahaan');
   sel.innerHTML = '<option value="">-- Pilih Perusahaan --</option>' +
@@ -775,6 +814,13 @@ function toggleLaporan(btn) {
   btn.innerHTML = laporanOpen
     ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><path d="M18 15l-6-6-6 6"/></svg> Tutup'
     : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><path d="M9 18l6-6-6-6"/></svg> Lihat Laporan';
+}
+function toggleERP(btn) {
+  ERPOpen = !ERPOpen;
+  document.getElementById('ERPPanel').classList.toggle('open', ERPOpen);
+  btn.innerHTML = ERPOpen
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><path d="M18 15l-6-6-6 6"/></svg> Tutup'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><path d="M9 18l6-6-6-6"/></svg> Lihat ERP';
 }
 function toggleZoom(btn) {
   zoomOpen = !zoomOpen;
