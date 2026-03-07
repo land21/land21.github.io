@@ -72,21 +72,8 @@
 
   /* ── Module Grid ── */
   .module-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
-
-  /* Saat searching: flex agar card bisa reorder, min-width 0 di mobile */
-  .module-grid.searching {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-content: flex-start;
-  }
-  /* Card saat searching: tumbuh tapi tidak terlalu lebar */
-  .module-grid.searching .card {
-    flex: 1 1 300px;
-    min-width: 0;
-    max-width: 100%;
-  }
-  /* Sembunyikan divider section saat searching */
+  .module-grid.searching { display: flex; flex-wrap: wrap; gap: 20px; align-content: flex-start; }
+  .module-grid.searching .card { flex: 1 1 300px; min-width: 0; max-width: 100%; }
   .module-grid.searching .grid-section-header { display: none; }
 
   .card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 18px; }
@@ -123,7 +110,7 @@
 
   /* ── Expand Panel ── */
   .expand-panel { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.25s ease; opacity: 0; }
-  .expand-panel.open { max-height: 1400px; opacity: 1; }
+  .expand-panel.open { max-height: 2400px; opacity: 1; }
 
   .company-grid { display: grid; grid-template-columns: 1fr; gap: 7px; margin-top: 12px; }
   .company-btn { display: flex; align-items: center; gap: 11px; padding: 10px 14px; border-radius: 10px; background: var(--surface); border: 1.5px solid var(--border-card); color: var(--text-dark); font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.18s ease; font-family: 'DM Sans', sans-serif; }
@@ -169,6 +156,20 @@
   .waktu-check-label input { cursor: pointer; accent-color: var(--red); width: 13px; height: 13px; }
   .ag-waktu-fields { transition: opacity 0.2s; }
   .ag-waktu-fields.hidden { opacity: 0.3; pointer-events: none; }
+
+  /* ── Dept / KPI builder ── */
+  .dept-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; margin-bottom: 12px; }
+  .dept-item { background: var(--surface-accent); border: 1.5px solid var(--border-input); border-radius: 11px; padding: 14px; }
+  .dept-item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .dept-item-num { font-size: 11px; font-weight: 700; color: var(--violet-dark); letter-spacing: 0.5px; text-transform: uppercase; }
+  .kpi-poin-list { display: flex; flex-direction: column; gap: 6px; margin: 8px 0 4px; }
+  .kpi-poin-row { display: flex; gap: 6px; align-items: center; }
+  .kpi-poin-row .form-input { flex: 1; padding: 7px 10px; font-size: 13px; }
+  .kpi-poin-del { background: none; border: none; cursor: pointer; width: 26px; height: 26px; border-radius: 6px; color: var(--text-muted); font-size: 16px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; flex-shrink: 0; }
+  .kpi-poin-del:hover { background: #fee2e2; color: var(--red); }
+  .add-poin-btn { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 7px; border: 1.5px dashed var(--border-input); background: transparent; color: var(--text-muted); font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.15s; margin-top: 2px; }
+  .add-poin-btn:hover { border-color: var(--violet-dark); color: var(--violet-dark); background: var(--violet-light); }
+  .add-poin-btn svg { width: 12px; height: 12px; }
 
   /* ── Grid section divider ── */
   .grid-section-header { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; padding-top: 8px; }
@@ -241,13 +242,9 @@
     .search-wrap:focus-within { width: 190px; }
     #content { padding: 16px; }
     .section-title { font-size: 16px; }
-
-    /* Grid: single column normal, flex wrap saat searching */
     .module-grid { grid-template-columns: 1fr; gap: 14px; }
-    /* Mobile searching: paksa 1 kolom */
     .module-grid.searching { flex-direction: column; }
     .module-grid.searching .card { flex: none; width: 100%; max-width: 100%; min-width: 0; }
-
     .time-row { grid-template-columns: 1fr 1fr; gap: 6px; }
     .chat-body-inner { grid-template-columns: 1fr; }
     .chat-col-form { border-right: none; border-bottom: 1px solid var(--border-card); }
@@ -405,27 +402,15 @@
         <div class="card" data-search="Internal Audit PT AFI">
           <div class="card-header">
             <div class="card-icon violet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-              
-                <!-- Document -->
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-              
-                <!-- Checklist Lines -->
-                <line x1="9" y1="13" x2="16" y2="13" />
-                <line x1="9" y1="17" x2="16" y2="17" />
-              
-                <!-- Checkmarks -->
-                <polyline points="6 13 7.5 14.5 9 12.5" />
-                <polyline points="6 17 7.5 18.5 9 16.5" />
-              
-                <!-- Audit Seal (small circle) -->
-                <circle cx="16.5" cy="5.5" r="1.5" />
-              
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="9" y1="13" x2="16" y2="13"/><line x1="9" y1="17" x2="16" y2="17"/>
+                <polyline points="6 13 7.5 14.5 9 12.5"/><polyline points="6 17 7.5 18.5 9 16.5"/>
+                <circle cx="16.5" cy="5.5" r="1.5"/>
               </svg>
             </div>
-            <div><div class="card-title">Internal Audit AFI</div><div class="card-desc">Chechlist Internal Audit PT AFI</div></div>
+            <div><div class="card-title">Internal Audit AFI</div><div class="card-desc">Checklist Internal Audit PT AFI</div></div>
           </div>
           <a id="link-internalAudit" href="#" target="_blank" class="btn btn-violet">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -437,19 +422,11 @@
         <div class="card" data-search="Spreadsheet Daftar Kode PT AFI ERP">
           <div class="card-header">
             <div class="card-icon violet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-              
-                <!-- Document -->
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-              
-                <!-- Spreadsheet Grid -->
-                <line x1="8" y1="12" x2="16" y2="12" />
-                <line x1="8" y1="16" x2="16" y2="16" />
-                <line x1="10" y1="10" x2="10" y2="18" />
-                <line x1="14" y1="10" x2="14" y2="18" />
-              
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="16" x2="16" y2="16"/>
+                <line x1="10" y1="10" x2="10" y2="18"/><line x1="14" y1="10" x2="14" y2="18"/>
               </svg>
             </div>
             <div><div class="card-title">Spreadsheet ERP</div><div class="card-desc">Spreadsheet Daftar Kode PT AFI</div></div>
@@ -464,17 +441,11 @@
         <div class="card" data-search="Report Achievement Produksi Saskia">
           <div class="card-header">
             <div class="card-icon violet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-              
-                <!-- Document -->
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-              
-                <!-- Chart -->
-                <polyline points="8 16 11 13 14 15 17 10" />
-                <line x1="8" y1="18" x2="8" y2="10" />
-              
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <polyline points="8 16 11 13 14 15 17 10"/>
+                <line x1="8" y1="18" x2="8" y2="10"/>
               </svg>
             </div>
             <div><div class="card-title">Report Achievement</div><div class="card-desc">Report Achievement Produksi Saskia</div></div>
@@ -557,24 +528,12 @@
         <div class="card" data-search="ERP Perusahaan Dashboard">
           <div class="card-header">
             <div class="card-icon blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-              
-                <!-- Core System -->
-                <circle cx="12" cy="12" r="3" />
-              
-                <!-- Modules -->
-                <rect x="3" y="3" width="4" height="4" rx="1" />
-                <rect x="17" y="3" width="4" height="4" rx="1" />
-                <rect x="3" y="17" width="4" height="4" rx="1" />
-                <rect x="17" y="17" width="4" height="4" rx="1" />
-              
-                <!-- Connections -->
-                <line x1="12" y1="9" x2="5" y2="5" />
-                <line x1="12" y1="9" x2="19" y2="5" />
-                <line x1="12" y1="15" x2="5" y2="19" />
-                <line x1="12" y1="15" x2="19" y2="19" />
-              
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/>
+                <rect x="3" y="3" width="4" height="4" rx="1"/><rect x="17" y="3" width="4" height="4" rx="1"/>
+                <rect x="3" y="17" width="4" height="4" rx="1"/><rect x="17" y="17" width="4" height="4" rx="1"/>
+                <line x1="12" y1="9" x2="5" y2="5"/><line x1="12" y1="9" x2="19" y2="5"/>
+                <line x1="12" y1="15" x2="5" y2="19"/><line x1="12" y1="15" x2="19" y2="19"/>
               </svg>
             </div>
             <div><div class="card-title">ERP Perusahaan</div><div class="card-desc">Akses ERP per perusahaan</div></div>
@@ -587,7 +546,7 @@
             <div style="margin-top:14px;margin-bottom:6px;font-size:12px;font-weight:600;color:#9ba3bf;letter-spacing:0.3px;">PILIH PERUSAHAAN</div>
             <div class="company-grid" id="ERPCompanyGrid"></div>
           </div>
-          <div class="card-footer"><a id="link-doc-laporan" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Laporan →</a></div>
+          <div class="card-footer"><a id="link-doc-erp" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi ERP →</a></div>
         </div>
 
         <!-- ── Generator ── -->
@@ -596,6 +555,7 @@
           <div class="grid-section-line"></div>
         </div>
 
+        <!-- Generate Share Zoom -->
         <div class="card" data-search="Generate Share Zoom Buat Undangan Template">
           <div class="card-header">
             <div class="card-icon green">
@@ -629,6 +589,96 @@
             </div>
           </div>
           <div class="card-footer"><a id="link-doc-zoom" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Zoom →</a></div>
+        </div>
+
+        <!-- Generate Notulensi -->
+        <div class="card" data-search="Generate Notulensi Rekaman Kegiatan Rapat">
+          <div class="card-header">
+            <div class="card-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="8" y1="13" x2="16" y2="13"/>
+                <line x1="8" y1="17" x2="13" y2="17"/>
+                <path d="M17 17l1.5 1.5L21 16"/>
+              </svg>
+            </div>
+            <div><div class="card-title">Generate Notulensi</div><div class="card-desc">Buat pesan pengiriman notulensi kegiatan otomatis</div></div>
+          </div>
+          <button class="btn btn-green" onclick="toggleNotulensi(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Buat Notulensi
+          </button>
+          <div class="expand-panel" id="notulensiPanel">
+            <div class="zoom-form">
+              <div class="form-field">
+                <label class="form-label">Nama Kegiatan</label>
+                <input class="form-input" id="notulensiKegiatan" type="text" placeholder="cth: AI Pemkot Sukabumi bersama Monash" />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Link Rekaman <span style="font-weight:400;color:var(--text-muted)">(opsional)</span></label>
+                <input class="form-input" id="notulensiLink" type="url" placeholder="https://drive.google.com/..." />
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
+                <button class="btn btn-success" onclick="generateNotulensi()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Generate</button>
+                <button class="btn btn-ghost" onclick="resetNotulensi()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>Reset</button>
+              </div>
+              <div class="output-box" id="notulensiOutput"></div>
+              <div id="notulensiCopyRow" style="display:none;margin-top:10px;align-items:center;gap:6px">
+                <button class="btn btn-outline" onclick="copyNotulensi()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy to Clipboard</button>
+                <span class="copy-feedback" id="notulensiCopyFeedback">&#10003; Tersalin!</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer"><a id="link-doc-notulensi" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Notulensi →</a></div>
+        </div>
+
+        <!-- Generate Pengingat KPI -->
+        <div class="card" data-search="Generate Pengingat KPI Departemen Poin Kosong Data Belum Terisi">
+          <div class="card-header">
+            <div class="card-icon green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                <line x1="12" y1="2" x2="12" y2="4"/>
+              </svg>
+            </div>
+            <div><div class="card-title">Generate Pengingat KPI</div><div class="card-desc">Ingatkan PIC KPI departemen mana yang masih kosong</div></div>
+          </div>
+          <button class="btn btn-green" onclick="togglePengingat(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Buat Pengingat
+          </button>
+          <div class="expand-panel" id="pengingatPanel">
+            <div class="zoom-form">
+              <div class="form-field">
+                <label class="form-label">Perusahaan</label>
+                <select class="form-select" id="pengingatPerusahaan"></select>
+              </div>
+              <div class="form-field" style="margin-bottom:8px">
+                <label class="form-label">Departemen &amp; Poin KPI Kosong</label>
+                <div class="dept-list" id="deptList"></div>
+                <button class="add-agenda-btn" onclick="addDeptItem()">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Tambah Departemen
+                </button>
+              </div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+                <button class="btn btn-success" onclick="generatePengingat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>Generate</button>
+                <button class="btn btn-ghost" onclick="resetPengingat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.36"/></svg>Reset</button>
+              </div>
+              <div class="output-box" id="pengingatOutput"></div>
+              <div id="pengingatCopyRow" style="display:none;margin-top:10px;align-items:center;gap:6px">
+                <button class="btn btn-outline" onclick="copyPengingat()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy to Clipboard</button>
+                <span class="copy-feedback" id="pengingatCopyFeedback">&#10003; Tersalin!</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer"><a id="link-doc-pengingat" href="#" target="_blank" class="doc-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Dokumentasi Pengingat KPI →</a></div>
         </div>
 
       </div><!-- /module-grid -->
@@ -691,7 +741,7 @@
         </div>
       </div>
 
-      <!-- Empty state search (di luar grid, muncul jika semua tersembunyi) -->
+      <!-- Empty state search -->
       <div id="searchEmptyAll" style="display:none;text-align:center;padding:60px 20px;color:var(--text-muted);font-size:14px;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:40px;height:40px;margin:0 auto 12px;display:block;color:var(--border)"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         <span style="display:block;font-weight:600;color:var(--text-secondary);margin-bottom:4px;">Tidak ada modul ditemukan</span>
@@ -729,6 +779,8 @@ const LINKS = {
   spERP:           'https://docs.google.com/spreadsheets/d/14rirriyVkKiqzOMVQVQZLmR7XBfjEa5MxeZt-9HqO8M/edit?usp=sharing',
   reportAcv:       'https://docs.google.com/spreadsheets/d/1dFlm7s-iE8ReRarxDJnm9xgFwLWQl1xjjggt17lzYcQ/edit?usp=sharing',
   internalAudit:   'https://docs.google.com/spreadsheets/d/1vcb4U3RohcARxmyN-cjWVoDXOt8VOEA-11E-eQJCTvM/edit?usp=sharing',
+  docNotulensi:    'https://drive.google.com/your-notulensi-archive',
+  docPengingat:    'https://drive.google.com/your-pengingat-archive',
 };
 
 const companies = [
@@ -739,7 +791,7 @@ const companies = [
     link:        'https://drive.google.com/drive/folders/1fvsTJaHiVzH_kDE33e4f_XT7CKEkpd0B?usp=drive_link',
     driveLink:   'https://drive.google.com/drive/folders/1CuOpOGHaJmgSyC8hSQsJ-6A-czp722SM?usp=drive_link',
     laporanLink: 'https://drive.google.com/drive/folders/1f9E_7Q_7il9AzxUt8geLXBdxIZJc6fXc?usp=drive_link',
-    ERPLink: 'https://erpafi.id/',
+    ERPLink:     'https://erpafi.id/',
   },
   {
     name: 'PT Doa Bangsa Agrobisnis', type: 'Pertanian',
@@ -748,13 +800,14 @@ const companies = [
     link:        'https://drive.google.com/drive/folders/1NjC_TbLgnKMnRUzZ0Wc20MtVonLOcd6m?usp=drive_link',
     driveLink:   'https://drive.google.com/drive/folders/1_SoubqISJ9Pu2rpTJ-O0KXnL3Vdn1YnF?usp=drive_link',
     laporanLink: 'https://drive.google.com/drive/folders/1siM8jeXJ4P2PD7yPuZzw5lq69DSuM2Au?usp=drive_link',
-    ERPLink: 'https://erpafi.id/',
+    ERPLink:     'https://erpafi.id/',
   },
 ];
 
 // ─── State ─────────────────────────────────────────────────────────────────
-let driveOpen = false, kpiOpen = false, laporanOpen = false;
-let zoomOpen  = false, chatOpen = false,ERPOpen = false; agendaCounter = 0;
+let driveOpen = false, kpiOpen = false, laporanOpen = false, ERPOpen = false;
+let zoomOpen = false, chatOpen = false, notulensiOpen = false, pengingatOpen = false;
+let agendaCounter = 0, deptCounter = 0;
 
 // ─── Sidebar ───────────────────────────────────────────────────────────────
 function openSidebar() {
@@ -772,61 +825,40 @@ function closeSidebar() {
 function handleSearch(query) {
   const q = query.trim().toLowerCase();
   document.getElementById('searchClear').style.display = q ? 'flex' : 'none';
-
   const grid        = document.getElementById('amsGrid');
   const chatSection = document.getElementById('chatSection');
   const emptyAll    = document.getElementById('searchEmptyAll');
-
-  // Bersihkan empty state lama
   const oldEmpty = grid.querySelector('.search-empty');
   if (oldEmpty) oldEmpty.remove();
-
   if (!q) {
-    // Reset semua ke kondisi normal
-    grid.querySelectorAll('.card[data-search]').forEach(c => {
-      c.classList.remove('search-hidden');
-      c.style.order = '';
-    });
+    grid.querySelectorAll('.card[data-search]').forEach(c => { c.classList.remove('search-hidden'); c.style.order = ''; });
     grid.classList.remove('searching');
     chatSection.style.display = '';
     emptyAll.style.display = 'none';
     return;
   }
-
-  // Mode searching: grid-section-header tersembunyi otomatis via CSS
   grid.classList.add('searching');
   let anyVisible = false;
-
-  // ── Cek card dalam grid ──
   grid.querySelectorAll('.card[data-search]').forEach(card => {
     const text  = (card.dataset.search || '').toLowerCase();
     const words = text.split(/\s+/);
     const startsWithMatch = words.some(w => w.startsWith(q));
     const containsMatch   = text.includes(q);
-
     card.classList.remove('search-hidden');
     card.style.order = '';
-
     if (startsWithMatch)    { card.style.order = '0'; anyVisible = true; }
     else if (containsMatch) { card.style.order = '1'; anyVisible = true; }
     else                    { card.classList.add('search-hidden'); }
   });
-
-  // ── Cek chat section (di luar grid) ──
-  const chatText  = 'generate chat pemberitahuan review kpi template notifikasi briefing';
+  const chatText = 'generate chat pemberitahuan review kpi template notifikasi briefing';
   const chatMatch = chatText.includes(q);
   chatSection.style.display = chatMatch ? '' : 'none';
   if (chatMatch) anyVisible = true;
-
-  // ── Empty state global ──
   emptyAll.style.display = anyVisible ? 'none' : 'block';
 }
-
 function clearSearch() {
   const input = document.getElementById('searchInput');
-  input.value = '';
-  handleSearch('');
-  input.focus();
+  input.value = ''; handleSearch(''); input.focus();
 }
 
 // ─── Navigation ────────────────────────────────────────────────────────────
@@ -838,27 +870,28 @@ function navigate(page, el) {
   document.getElementById('page-' + page).classList.add('active');
   document.getElementById('headerTitle').textContent = titles[page][0];
   document.getElementById('headerSub').textContent   = titles[page][1];
-  clearSearch();
-  closeSidebar();
+  clearSearch(); closeSidebar();
 }
 
 // ─── Apply Links ───────────────────────────────────────────────────────────
 (function applyLinks() {
   const set = (id, val) => { const el = document.getElementById(id); if (el) el.href = val; };
-  set('link-drive',       LINKS.docDrive);
-  set('link-jadwal-pica', LINKS.jadwalPica);
-  set('link-doc-pica',    LINKS.docPica);
-  set('link-doc-kpi',     LINKS.docKpi);
-  set('link-doc-laporan', LINKS.docLaporan);
-  set('link-doc-zoom',    LINKS.docZoom);
-  set('link-todo',        LINKS.todoSpreadsheet);
-  set('link-doc-todo',    LINKS.docTodo);
-  set('link-doc-chat',    LINKS.docChat);
-  set('link-absen',       LINKS.absen);
-  set('link-doc-absen',   LINKS.docAbsen);
-  set('link-spERP',       LINKS.spERP);
-  set('link-reportAcv',   LINKS.reportAcv);
-  set('link-internalAudit',   LINKS.internalAudit);
+  set('link-drive',          LINKS.docDrive);
+  set('link-jadwal-pica',    LINKS.jadwalPica);
+  set('link-doc-pica',       LINKS.docPica);
+  set('link-doc-kpi',        LINKS.docKpi);
+  set('link-doc-laporan',    LINKS.docLaporan);
+  set('link-doc-zoom',       LINKS.docZoom);
+  set('link-todo',           LINKS.todoSpreadsheet);
+  set('link-doc-todo',       LINKS.docTodo);
+  set('link-doc-chat',       LINKS.docChat);
+  set('link-absen',          LINKS.absen);
+  set('link-doc-absen',      LINKS.docAbsen);
+  set('link-spERP',          LINKS.spERP);
+  set('link-reportAcv',      LINKS.reportAcv);
+  set('link-internalAudit',  LINKS.internalAudit);
+  set('link-doc-notulensi',  LINKS.docNotulensi);
+  set('link-doc-pengingat',  LINKS.docPengingat);
 })();
 
 // ─── Render Companies ──────────────────────────────────────────────────────
@@ -875,12 +908,14 @@ function buildCompanyHTML(c, linkField) {
 (function renderCompanies() {
   document.getElementById('kpiCompanyGrid').innerHTML     = companies.map(c => buildCompanyHTML(c, 'link')).join('');
   document.getElementById('laporanCompanyGrid').innerHTML = companies.map(c => buildCompanyHTML(c, 'laporanLink')).join('');
-  document.getElementById('ERPCompanyGrid').innerHTML = companies.map(c => buildCompanyHTML(c, 'ERPLink')).join('');
+  document.getElementById('ERPCompanyGrid').innerHTML     = companies.map(c => buildCompanyHTML(c, 'ERPLink')).join('');
   document.getElementById('driveCompanyGrid').innerHTML   = companies.map(c => buildCompanyHTML(c, 'driveLink')).join('');
-  const sel = document.getElementById('chatPerusahaan');
-  sel.innerHTML = '<option value="">-- Pilih Perusahaan --</option>' +
+  const opts = '<option value="">-- Pilih Perusahaan --</option>' +
     companies.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
+  document.getElementById('chatPerusahaan').innerHTML = opts;
+  document.getElementById('pengingatPerusahaan').innerHTML = opts;
   addAgendaItem();
+  addDeptItem();
 })();
 
 // ─── Toggles ───────────────────────────────────────────────────────────────
@@ -919,6 +954,20 @@ function toggleZoom(btn) {
     ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/></svg> Tutup Form'
     : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Buat Share Zoom';
 }
+function toggleNotulensi(btn) {
+  notulensiOpen = !notulensiOpen;
+  document.getElementById('notulensiPanel').classList.toggle('open', notulensiOpen);
+  btn.innerHTML = notulensiOpen
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/></svg> Tutup Form'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Buat Notulensi';
+}
+function togglePengingat(btn) {
+  pengingatOpen = !pengingatOpen;
+  document.getElementById('pengingatPanel').classList.toggle('open', pengingatOpen);
+  btn.innerHTML = pengingatOpen
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="5" y1="12" x2="19" y2="12"/></svg> Tutup Form'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Buat Pengingat';
+}
 function toggleChat(btn) {
   chatOpen = !chatOpen;
   document.getElementById('chatPanel').classList.toggle('hidden', !chatOpen);
@@ -927,14 +976,30 @@ function toggleChat(btn) {
     : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="15" height="15"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Buat Pesan';
 }
 
+// ─── Shared helpers ────────────────────────────────────────────────────────
+function showCopyFeedback(fb) { fb.classList.add('show'); setTimeout(() => fb.classList.remove('show'), 2000); }
+function copyText(text, fb) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => showCopyFeedback(fb)).catch(() => fallbackCopyText(text, fb));
+  } else { fallbackCopyText(text, fb); }
+}
+function fallbackCopyText(text, fb) {
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+  document.body.appendChild(ta); ta.focus(); ta.select();
+  try { document.execCommand('copy'); showCopyFeedback(fb); }
+  catch(e) { alert('Gagal menyalin. Silakan copy manual.'); }
+  document.body.removeChild(ta);
+}
+
 // ─── Zoom Generator ────────────────────────────────────────────────────────
 function generateZoom() {
   const keperluan    = document.getElementById('zoomKeperluan').value.trim();
   const penyelenggara= document.getElementById('zoomPenyelenggara').value.trim();
   const link         = document.getElementById('zoomLink').value.trim();
   if (!keperluan || !penyelenggara || !link) { alert('Harap isi semua field terlebih dahulu.'); return; }
-  const template = "Assalamu'alaikum warahmatullahi wabarakatuh,\n\nBerikut kami sampaikan link Zoom untuk kegiatan " + keperluan + ".\n\nDiselenggarakan oleh: " + penyelenggara + "\nLink Zoom: " + link + "\n\nTerima kasih.";
-  document.getElementById('zoomOutput').textContent = template;
+  const t = "Assalamu'alaikum warahmatullahi wabarakatuh,\n\nBerikut kami sampaikan link Zoom untuk kegiatan " + keperluan + ".\n\nDiselenggarakan oleh: " + penyelenggara + "\nLink Zoom: " + link + "\n\nTerima kasih.";
+  document.getElementById('zoomOutput').textContent = t;
   document.getElementById('zoomOutput').classList.add('visible');
   document.getElementById('copyRow').style.display = 'flex';
 }
@@ -945,22 +1010,131 @@ function resetZoom() {
   document.getElementById('copyRow').style.display = 'none';
   document.getElementById('copyFeedback').classList.remove('show');
 }
-function copyZoom() {
-  const text = document.getElementById('zoomOutput').textContent;
-  const fb   = document.getElementById('copyFeedback');
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(() => showCopyFeedback(fb)).catch(() => fallbackCopy(text, fb));
-  } else { fallbackCopy(text, fb); }
+function copyZoom() { copyText(document.getElementById('zoomOutput').textContent, document.getElementById('copyFeedback')); }
+
+// ─── Notulensi Generator ───────────────────────────────────────────────────
+function generateNotulensi() {
+  const kegiatan = document.getElementById('notulensiKegiatan').value.trim();
+  if (!kegiatan) { alert('Harap isi nama kegiatan terlebih dahulu.'); return; }
+  const link = document.getElementById('notulensiLink').value.trim();
+  let t;
+  if (link) {
+    t = "Assalamu'alaikum warahmatullahi wabarakatuh,\nBerikut disampaikan Notulensi dan link rekaman* untuk kegiatan " + kegiatan + ".\nLink Rekaman: " + link + "\nTerima kasih.";
+  } else {
+    t = "Assalamu'alaikum warahmatullahi wabarakatuh,\nBerikut disampaikan Notulensi untuk kegiatan " + kegiatan + ".\nTerima kasih.";
+  }
+  document.getElementById('notulensiOutput').textContent = t;
+  document.getElementById('notulensiOutput').classList.add('visible');
+  document.getElementById('notulensiCopyRow').style.display = 'flex';
 }
-function fallbackCopy(text, fb) {
-  const ta = document.createElement('textarea');
-  ta.value = text; ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
-  document.body.appendChild(ta); ta.focus(); ta.select();
-  try { document.execCommand('copy'); showCopyFeedback(fb); }
-  catch(e) { alert('Gagal menyalin. Silakan copy manual dari kotak teks di atas.'); }
-  document.body.removeChild(ta);
+function resetNotulensi() {
+  document.getElementById('notulensiKegiatan').value = '';
+  document.getElementById('notulensiLink').value = '';
+  document.getElementById('notulensiOutput').textContent = '';
+  document.getElementById('notulensiOutput').classList.remove('visible');
+  document.getElementById('notulensiCopyRow').style.display = 'none';
+  document.getElementById('notulensiCopyFeedback').classList.remove('show');
 }
-function showCopyFeedback(fb) { fb.classList.add('show'); setTimeout(() => fb.classList.remove('show'), 2000); }
+function copyNotulensi() { copyText(document.getElementById('notulensiOutput').textContent, document.getElementById('notulensiCopyFeedback')); }
+
+// ─── Dept / KPI Builder ────────────────────────────────────────────────────
+function buildDeptItemHTML(n) {
+  return `<div class="dept-item" id="dept-${n}">
+    <div class="dept-item-header">
+      <span class="dept-item-num">Departemen ${n}</span>
+      <button class="agenda-item-del" onclick="removeDeptItem('dept-${n}')" title="Hapus">&#215;</button>
+    </div>
+    <div class="form-field" style="margin-bottom:10px">
+      <label class="form-label">Nama Departemen</label>
+      <input class="form-input dept-nama" type="text" placeholder="cth: Produksi / HRD / Finance" />
+    </div>
+    <div class="form-field" style="margin-bottom:0">
+      <label class="form-label">Poin KPI yang belum ada data</label>
+      <div class="kpi-poin-list" id="poin-list-${n}"></div>
+      <button class="add-poin-btn" onclick="addPoinKPI('poin-list-${n}')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Tambah Poin
+      </button>
+    </div>
+  </div>`;
+}
+function addDeptItem() {
+  deptCounter++;
+  const div = document.createElement('div');
+  div.innerHTML = buildDeptItemHTML(deptCounter);
+  document.getElementById('deptList').appendChild(div.firstElementChild);
+  renumberDeptItems();
+  addPoinKPI('poin-list-' + deptCounter);
+}
+function removeDeptItem(id) { const el = document.getElementById(id); if (el) el.remove(); renumberDeptItems(); }
+function renumberDeptItems() {
+  document.querySelectorAll('#deptList .dept-item').forEach((item, i) => {
+    const lbl = item.querySelector('.dept-item-num');
+    if (lbl) lbl.textContent = 'Departemen ' + (i + 1);
+  });
+}
+function addPoinKPI(listId) {
+  const list = document.getElementById(listId);
+  if (!list) return;
+  const row = document.createElement('div');
+  row.className = 'kpi-poin-row';
+  row.innerHTML = '<input class="form-input poin-input" type="text" placeholder="cth: Target Produksi Harian" /><button class="kpi-poin-del" onclick="this.parentElement.remove()" title="Hapus">&#215;</button>';
+  list.appendChild(row);
+}
+
+// ─── Pengingat KPI Generator ──────────────────────────────────────────────
+function generatePengingat() {
+  const perusahaan = document.getElementById('pengingatPerusahaan').value.trim();
+  if (!perusahaan) { alert('Harap pilih perusahaan terlebih dahulu.'); return; }
+  const depts = document.querySelectorAll('#deptList .dept-item');
+  if (depts.length === 0) { alert('Tambahkan minimal satu departemen.'); return; }
+
+  const deptBlocks = [];
+  let valid = true;
+  depts.forEach((dept, i) => {
+    const nama = dept.querySelector('.dept-nama').value.trim();
+    if (!nama) { alert('Departemen ' + (i+1) + ': nama departemen harus diisi.'); valid = false; return; }
+    const poinList = [];
+    dept.querySelectorAll('.poin-input').forEach(inp => { const v = inp.value.trim(); if (v) poinList.push(v); });
+    if (poinList.length === 0) { alert('Departemen ' + (i+1) + ': tambahkan minimal satu poin KPI.'); valid = false; return; }
+    let block = '   * ' + nama + '\n     KPI yang masih kosong:';
+    poinList.forEach(p => { block += '\n     * ' + p; });
+    deptBlocks.push(block);
+  });
+  if (!valid) return;
+
+  const t =
+`Assalamualaikum Warahmatullahi Wabarakatuh
+Selamat pagi Bapak/Ibu seluruh PIC KPI di masing-masing Departemen,
+
+Mohon bantuan untuk melakukan pengecekan dan melengkapi *data KPI Departemen* yang saat ini masih terdapat beberapa *poin KPI yang belum diisi atau masih kosong*.
+Adapun yang perlu diperhatikan oleh masing-masing departemen adalah sebagai berikut:
+1. Daftar Departemen dan KPI yang masih belum terisi:
+
+${deptBlocks.join('\n\n')}
+
+Bagi departemen yang masih memiliki *poin KPI yang belum terisi*, mohon dapat segera melengkapi data tersebut agar proses *rekapitulasi dan evaluasi KPI* dapat berjalan dengan baik.
+
+Apabila terdapat kendala dalam pengisian atau membutuhkan klarifikasi terkait indikator KPI, silakan dapat langsung dikoordinasikan.
+
+Terima kasih atas perhatian dan kerja samanya.
+
+Wassalamualaikum Warahmatullahi Wabarakatuh.`;
+
+  document.getElementById('pengingatOutput').textContent = t;
+  document.getElementById('pengingatOutput').classList.add('visible');
+  document.getElementById('pengingatCopyRow').style.display = 'flex';
+}
+function resetPengingat() {
+  document.getElementById('pengingatPerusahaan').value = '';
+  document.getElementById('deptList').innerHTML = '';
+  deptCounter = 0; addDeptItem();
+  document.getElementById('pengingatOutput').textContent = '';
+  document.getElementById('pengingatOutput').classList.remove('visible');
+  document.getElementById('pengingatCopyRow').style.display = 'none';
+  document.getElementById('pengingatCopyFeedback').classList.remove('show');
+}
+function copyPengingat() { copyText(document.getElementById('pengingatOutput').textContent, document.getElementById('pengingatCopyFeedback')); }
 
 // ─── Format helpers ────────────────────────────────────────────────────────
 const BULAN_PENDEK = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
@@ -1053,7 +1227,7 @@ function generateChat() {
     agendaLines.push(baris);
   });
   if (!valid) return;
-  const template =
+  const t =
 `Assalamu'alaikum warahmatullahi wabarakatuh ☀️
 
 Pak ..., Pak ..., dan teman2 semua, semoga sehat dan semangat selalu mencapai target 2026.
@@ -1067,7 +1241,7 @@ Salam semangat bertumbuh, berkembang, dan bermanfaat.
 Terima kasih. 🤗
 
 Wassalamu'alaikum warahmatullahi wabarakatuh.`;
-  document.getElementById('chatOutput').textContent = template;
+  document.getElementById('chatOutput').textContent = t;
   document.getElementById('chatOutput').classList.add('visible');
   document.getElementById('chatOutputEmpty').style.display = 'none';
   document.getElementById('chatCopyRow').style.display = 'flex';
@@ -1082,21 +1256,7 @@ function resetChat() {
   document.getElementById('chatCopyRow').style.display = 'none';
   document.getElementById('chatCopyFeedback').classList.remove('show');
 }
-function copyChat() {
-  const text = document.getElementById('chatOutput').textContent;
-  const fb   = document.getElementById('chatCopyFeedback');
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(() => showCopyFeedback(fb)).catch(() => fallbackCopyChat(text, fb));
-  } else { fallbackCopyChat(text, fb); }
-}
-function fallbackCopyChat(text, fb) {
-  const ta = document.createElement('textarea');
-  ta.value = text; ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
-  document.body.appendChild(ta); ta.focus(); ta.select();
-  try { document.execCommand('copy'); showCopyFeedback(fb); }
-  catch(e) { alert('Gagal menyalin. Silakan copy manual.'); }
-  document.body.removeChild(ta);
-}
+function copyChat() { copyText(document.getElementById('chatOutput').textContent, document.getElementById('chatCopyFeedback')); }
 </script>
 </body>
 </html>
